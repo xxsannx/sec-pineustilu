@@ -18,7 +18,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('google_id')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('country_code', 5)->default('+62');
+            $table->string('phone', 15)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
