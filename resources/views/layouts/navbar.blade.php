@@ -33,23 +33,18 @@
                             <div class="py-2">
                                 <a href="/area/pineus-tilu-1" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] transition-colors">
                                     <div class="font-medium">Pineus Tilu 1</div>
-                                    <div class="text-xs text-gray-500">Area camping utama</div>
                                 </a>
                                 <a href="/area/pineus-tilu-2" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] transition-colors">
                                     <div class="font-medium">Pineus Tilu 2</div>
-                                    <div class="text-xs text-gray-500">Area camping luas</div>
                                 </a>
                                 <a href="/area/pineus-tilu-3-vip" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] transition-colors">
                                     <div class="font-medium">Pineus Tilu 3 VIP</div>
-                                    <div class="text-xs text-gray-500">Area VIP eksklusif</div>
                                 </a>
                                 <a href="/area/pineus-tilu-4" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] transition-colors">
                                     <div class="font-medium">Pineus Tilu 4</div>
-                                    <div class="text-xs text-gray-500">Area family</div>
                                 </a>
                                 <a href="/area/pineus-tilu-cabin" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] transition-colors">
                                     <div class="font-medium">Pineus Tilu Cabin</div>
-                                    <div class="text-xs text-gray-500">Cabin glamping</div>
                                 </a>
                             </div>
                         </div>
@@ -92,7 +87,6 @@
                                         </svg>
                                         Glamping
                                     </div>
-                                    <div class="text-xs text-gray-500 ml-7">Booking camping & glamping</div>
                                 </a>
                                 <a href="/reservasi/outbond" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] transition-colors">
                                     <div class="font-medium flex items-center">
@@ -101,7 +95,6 @@
                                         </svg>
                                         Outbond
                                     </div>
-                                    <div class="text-xs text-gray-500 ml-7">Booking aktivitas outbond</div>
                                 </a>
                             </div>
                         </div>
