@@ -61,7 +61,7 @@
                     </a>
 
                     <!-- Morikafe -->
-                    <a href="#morikafe" class="px-4 py-2 text-gray-700 hover:text-[#017249] font-medium transition-colors">
+                   <a href="{{ route('morikafe') }}" class="px-4 py-2 text-gray-700 hover:text-[#017249] font-medium transition-colors">
                         Morikafe
                     </a>
 
@@ -150,7 +150,7 @@
                 <a href="{{ route('pedoman') }}" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] rounded-lg transition-colors">
                     Pedoman
                 </a>
-                <a href="#morikafe" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] rounded-lg transition-colors">
+                <a href="{{ route('morikafe') }}" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] rounded-lg transition-colors">
                     Morikafe
                 </a>
                 <a href="#faq" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] rounded-lg transition-colors">
