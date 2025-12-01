@@ -86,17 +86,26 @@ class RolePermissionSeeder extends Seeder
         ];
 
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
+            Permission::firstOrCreate(
+                ['name' => $permission],
+                ['guard_name' => 'web']
+            );
         }
 
         // Create roles and assign permissions
         
         // Super Admin Role - has all permissions
-        $superAdminRole = Role::create(['name' => 'super-admin']);
+        $superAdminRole = Role::firstOrCreate(
+            ['name' => 'super-admin'],
+            ['guard_name' => 'web']
+        );
         $superAdminRole->givePermissionTo(Permission::all());
 
         // Admin Role - has most permissions except user management and settings
-        $adminRole = Role::create(['name' => 'admin']);
+        $adminRole = Role::firstOrCreate(
+            ['name' => 'admin'],
+            ['guard_name' => 'web']
+        );
         $adminRole->givePermissionTo([
             'view bookings',
             'create bookings',
@@ -128,7 +137,10 @@ class RolePermissionSeeder extends Seeder
         ]);
 
         // Staff Role - limited permissions
-        $staffRole = Role::create(['name' => 'staff']);
+        $staffRole = Role::firstOrCreate(
+            ['name' => 'staff'],
+            ['guard_name' => 'web']
+        );
         $staffRole->givePermissionTo([
             'view bookings',
             'create bookings',
@@ -143,7 +155,10 @@ class RolePermissionSeeder extends Seeder
         ]);
 
         // Customer Role - basic permissions
-        $customerRole = Role::create(['name' => 'customer']);
+        $customerRole = Role::firstOrCreate(
+            ['name' => 'customer'],
+            ['guard_name' => 'web']
+        );
         $customerRole->givePermissionTo([
             'view areas',
             'view facilities',
@@ -157,7 +172,10 @@ class RolePermissionSeeder extends Seeder
         ]);
 
         // Guest Role - view only
-        $guestRole = Role::create(['name' => 'guest']);
+        $guestRole = Role::firstOrCreate(
+            ['name' => 'guest'],
+            ['guard_name' => 'web']
+        );
         $guestRole->givePermissionTo([
             'view areas',
             'view facilities',
