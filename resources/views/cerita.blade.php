@@ -77,15 +77,20 @@
         </div>
     </section>
 
-    <!-- Credit under left box -->
+    <!-- Credit under left box (moved inside a story-box) -->
     <section class="w-full mt-10">
-        <div class="grid grid-cols-1 md:grid-cols-3">
-            <div class="text-left text-sm text-gray-700">
-                <p class="font-semibold text-[#017249]">Feel the awesome space, feel the incredible experience.</p>
-                <p class="mt-2">Bandung, 24 Juni 2021<br>BSBarchitect<br>PINEUS TILU Riverside Camping Ground<br>IG @pineustilu</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="story-box story-box--left">
+                <div class="story-box-inner">
+                    <p class="font-semibold text-[#017249]">Feel the awesome space, feel the incredible experience.</p>
+                    <p class="mt-2 text-sm text-gray-700">
+                        Bandung, 24 Juni 2021<br>
+                        BSBarchitect<br>
+                        PINEUS TILU Riverside Camping Ground<br>
+                        IG @pineustilu
+                    </p>
+                </div>
             </div>
-            <div></div>
-            <div></div>
         </div>
     </section>
 </main>
