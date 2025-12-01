@@ -14,6 +14,7 @@ class Cancellation extends Model
         'booking_id',
         'cancellation_date',
         'cancellation_fee',
+        'cancelled_by',
         'total_refund',
         'refund_status',
         'reason',

@@ -15,7 +15,6 @@ class Price extends Model
         'item_id',
         'outbond_id',
         'season_id',
-        'price_type',
         'price',
     ];
 
