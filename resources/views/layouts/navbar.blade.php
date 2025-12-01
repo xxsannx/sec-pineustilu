@@ -12,7 +12,7 @@
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex items-center space-x-1">
                     <!-- Cerita -->
-                    <a href="#cerita" class="px-4 py-2 text-gray-700 hover:text-[#017249] font-medium transition-colors">
+                    <a href="{{ route('cerita') }}" class="px-4 py-2 text-gray-700 hover:text-[#017249] font-medium transition-colors">
                         Cerita
                     </a>
 
@@ -121,7 +121,7 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
             <div class="px-4 pt-2 pb-4 space-y-1">
-                <a href="#cerita" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] rounded-lg transition-colors">
+                <a href="{{ route('cerita') }}" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] rounded-lg transition-colors">
                     Cerita
                 </a>
                 <a href="/" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] rounded-lg transition-colors">

@@ -7,6 +7,8 @@ use App\Livewire\Settings\TwoFactor;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
+Route::view('/cerita', 'cerita')->name('cerita');
+
 Route::view('/', 'dashboard')->name('home');
 
 Route::view('dashboard', 'dashboard')
