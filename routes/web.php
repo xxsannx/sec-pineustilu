@@ -11,10 +11,12 @@ Route::view('/cerita', 'cerita')->name('cerita');
 
 Route::view('/', 'dashboard')->name('home');
 
-Route::view('/aktivitas', 'aktivitas')->name('aktivitas');
-
 Route::view('dashboard', 'dashboard')
     ->name('dashboard');
+
+Route::view('/aktivitas', 'aktivitas')->name('aktivitas');
+
+Route::view('/pedoman', 'pedoman')->name('pedoman');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
