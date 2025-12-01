@@ -16,9 +16,10 @@ return new class extends Migration
             $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
             $table->date('cancellation_date');
             $table->decimal('cancellation_fee', 15, 2)->default(0);
+            $table->string('cancelled_by'); // admin, customer
             $table->decimal('total_refund', 15, 2)->default(0);
             $table->string('refund_status')->default('pending'); // pending, processed, completed
-            $table->string('reason')->nullable();
+            $table->text('reason')->nullable();
             $table->string('status')->default('pending'); // pending, approved, rejected
             $table->timestamps();
         });

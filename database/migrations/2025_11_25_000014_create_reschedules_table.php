@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('new_book_id')->constrained('bookings')->cascadeOnDelete();
             $table->date('reschedule_date');
             $table->decimal('reschedule_fee', 15, 2)->default(0);
-            $table->string('reason')->nullable();
+            $table->text('reason')->nullable();
             $table->string('status')->default('pending'); // pending, approved, rejected
             $table->timestamps();
         });
