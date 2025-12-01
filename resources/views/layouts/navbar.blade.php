@@ -51,13 +51,12 @@
                     </div>
 
                     <!-- Aktivitas -->
-                    <a href="{{ route('aktivitas') }}"
-                    class="{{ request()->routeIs('aktivitas') ? 'text-[#017249] font-semibold' : 'text-gray-700' }}">
+                    <a href="{{ route('aktivitas') }}" class="px-4 py-2 text-gray-700 hover:text-[#017249] font-medium transition-colors">
                         Aktivitas
                     </a>
 
                     <!-- Pedoman -->
-                    <a href="#pedoman" class="px-4 py-2 text-gray-700 hover:text-[#017249] font-medium transition-colors">
+                   <a href="{{ route('pedoman') }}" class="px-4 py-2 text-gray-700 hover:text-[#017249] font-medium transition-colors">
                         Pedoman
                     </a>
 
@@ -145,11 +144,10 @@
                         <a href="/area/pineus-tilu-cabin" class="block px-4 py-2 text-sm text-gray-600 hover:text-[#017249] rounded-lg">Pineus Tilu Cabin</a>
                     </div>
                 </div>
-
-                <a href="#aktivitas" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] rounded-lg transition-colors">
+                <a href="{{ route('aktivitas') }}" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] rounded-lg transition-colors">
                     Aktivitas
                 </a>
-                <a href="#pedoman" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] rounded-lg transition-colors">
+                <a href="{{ route('pedoman') }}" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] rounded-lg transition-colors">
                     Pedoman
                 </a>
                 <a href="#morikafe" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-[#017249] rounded-lg transition-colors">
