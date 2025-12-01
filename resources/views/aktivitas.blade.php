@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Aktivitas Outdoor - Pineus Tilu - Glamping & Outbound')
+
 @section('content')
 @include('layouts.navbar')
 
