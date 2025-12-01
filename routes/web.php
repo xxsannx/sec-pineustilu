@@ -11,6 +11,8 @@ Route::view('/cerita', 'cerita')->name('cerita');
 
 Route::view('/', 'dashboard')->name('home');
 
+Route::view('/aktivitas', 'aktivitas')->name('aktivitas');
+
 Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 

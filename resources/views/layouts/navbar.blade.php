@@ -51,7 +51,8 @@
                     </div>
 
                     <!-- Aktivitas -->
-                    <a href="#aktivitas" class="px-4 py-2 text-gray-700 hover:text-[#017249] font-medium transition-colors">
+                    <a href="{{ route('aktivitas') }}"
+                    class="{{ request()->routeIs('aktivitas') ? 'text-[#017249] font-semibold' : 'text-gray-700' }}">
                         Aktivitas
                     </a>
 
