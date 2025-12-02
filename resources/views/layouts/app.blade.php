@@ -6,17 +6,29 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Pineus Tilu - Glamping & Camping')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
     @stack('styles')
 </head>
-<body class="font-sans antialiased bg-gray-50">
+<body class="font-sans antialiased overflow-x-hidden">
     @include('layouts.navbar')
 
-    <main class="min-h-screen pt-20">
+    <main class="overflow-x-hidden">
         @yield('content')
     </main>
 
     @include('layouts.footer')
 
+    <script src="{{ asset('js/aos.js') }}"></script>
+    <script>
+        AOS.init({
+            duration: 600,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 50,
+            throttleDelay: 99,
+            debounceDelay: 50
+        });
+    </script>
     @stack('scripts')
 </body>
 </html>

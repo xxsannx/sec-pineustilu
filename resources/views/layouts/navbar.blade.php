@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="bg-white shadow-md fixed w-full top-0 z-50">
+<nav class="bg-white shadow-md fixed w-full top-0 z-50" data-aos="fade-down" data-aos-duration="600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
@@ -119,65 +119,65 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
-            <div class="px-4 pt-2 pb-4 space-y-1">
-                <a href="{{ route('cerita') }}" class="block px-4 py-3 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-base font-semibold" style="font-family: 'Veteran', monospace;">
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <div class="px-3 pt-2 pb-4 space-y-1">
+                <a href="{{ route('cerita') }}" class="block px-3 py-2 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-sm font-semibold" style="font-family: 'Veteran', monospace;">
                     Cerita
                 </a>
-                <a href="/" class="block px-4 py-3 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-base font-semibold" style="font-family: 'Veteran', monospace;">
+                <a href="/" class="block px-3 py-2 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-sm font-semibold" style="font-family: 'Veteran', monospace;">
                     Beranda
                 </a>
 
                 <!-- Mobile Area Dropdown -->
                 <div class="relative">
-                    <button id="mobile-area-button" class="w-full flex justify-between items-center px-4 py-3 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-base font-semibold" style="font-family: 'Veteran', monospace;">
+                    <button id="mobile-area-button" class="w-full flex justify-between items-center px-3 py-2 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-sm font-semibold" style="font-family: 'Veteran', monospace;">
                         <span>Area</span>
                         <svg class="w-4 h-4 transition-transform" id="mobile-area-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div id="mobile-area-menu" class="hidden pl-4 mt-1 space-y-1">
-                        <a href="/area/pineus-tilu-1" class="block px-4 py-2 text-base text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Pineus Tilu 1</a>
-                        <a href="/area/pineus-tilu-2" class="block px-4 py-2 text-base text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Pineus Tilu 2</a>
-                        <a href="/area/pineus-tilu-3-vip" class="block px-4 py-2 text-base text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Pineus Tilu 3 VIP</a>
-                        <a href="/area/pineus-tilu-4" class="block px-4 py-2 text-base text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Pineus Tilu 4</a>
-                        <a href="/area/pineus-tilu-cabin" class="block px-4 py-2 text-base text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Pineus Tilu Cabin</a>
+                    <div id="mobile-area-menu" class="hidden pl-3 mt-1 space-y-1">
+                        <a href="/area/pineus-tilu-1" class="block px-3 py-1.5 text-sm text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Pineus Tilu 1</a>
+                        <a href="/area/pineus-tilu-2" class="block px-3 py-1.5 text-sm text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Pineus Tilu 2</a>
+                        <a href="/area/pineus-tilu-3-vip" class="block px-3 py-1.5 text-sm text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Pineus Tilu 3 VIP</a>
+                        <a href="/area/pineus-tilu-4" class="block px-3 py-1.5 text-sm text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Pineus Tilu 4</a>
+                        <a href="/area/pineus-tilu-cabin" class="block px-3 py-1.5 text-sm text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Pineus Tilu Cabin</a>
                     </div>
                 </div>
 
-                <a href="{{ route('aktivitas') }}" class="block px-4 py-3 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-base font-semibold" style="font-family: 'Veteran', monospace;">
+                <a href="{{ route('aktivitas') }}" class="block px-3 py-2 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-sm font-semibold" style="font-family: 'Veteran', monospace;">
                     Aktivitas
                 </a>
-                <a href="{{ route('pedoman') }}" class="block px-4 py-3 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-base font-semibold" style="font-family: 'Veteran', monospace;">
+                <a href="{{ route('pedoman') }}" class="block px-3 py-2 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-sm font-semibold" style="font-family: 'Veteran', monospace;">
                     Pedoman
                 </a>
-                <a href="{{ route('morikafe') }}" class="block px-4 py-3 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-base font-semibold" style="font-family: 'Veteran', monospace;">
+                <a href="{{ route('morikafe') }}" class="block px-3 py-2 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-sm font-semibold" style="font-family: 'Veteran', monospace;">
                     Morikafe
                 </a>
-                <a href="{{ route('faq') }}" class="block px-4 py-3 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-base font-semibold" style="font-family: 'Veteran', monospace;">
+                <a href="{{ route('faq') }}" class="block px-3 py-2 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-sm font-semibold" style="font-family: 'Veteran', monospace;">
                     FAQ
                 </a>
 
                 <!-- Mobile Reservasi Dropdown -->
                 <div class="relative">
-                    <button id="mobile-reservasi-button" class="w-full flex justify-between items-center px-4 py-3 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-base font-semibold" style="font-family: 'Veteran', monospace;">
+                    <button id="mobile-reservasi-button" class="w-full flex justify-between items-center px-3 py-2 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-sm font-semibold" style="font-family: 'Veteran', monospace;">
                         <span>Reservasi</span>
                         <svg class="w-4 h-4 transition-transform" id="mobile-reservasi-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div id="mobile-reservasi-menu" class="hidden pl-4 mt-1 space-y-1">
-                        <a href="/reservasi/glamping" class="block px-4 py-2 text-base text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Glamping</a>
-                        <a href="/reservasi/outbond" class="block px-4 py-2 text-base text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Outbond</a>
+                    <div id="mobile-reservasi-menu" class="hidden pl-3 mt-1 space-y-1">
+                        <a href="/reservasi/glamping" class="block px-3 py-1.5 text-sm text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Glamping</a>
+                        <a href="/reservasi/outbond" class="block px-3 py-1.5 text-sm text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Veteran', monospace;">Outbond</a>
                     </div>
                 </div>
 
-                <a href="/login" class="block mx-4 mt-4 px-6 py-3 bg-[#017249] text-white text-center rounded-full hover:bg-[#015a3a] font-semibold transition-colors shadow-md text-base" style="font-family: 'Veteran', monospace;">
+                <a href="/login" class="block mx-2 mt-3 px-6 py-2.5 bg-[#017249] text-white text-center rounded-full hover:bg-[#015a3a] font-semibold transition-colors shadow-md text-sm" style="font-family: 'Veteran', monospace;">
                     Login
                 </a>
             </div>
         </div>
-    </nav>
+</nav>
 
 <script>
     // Mobile menu toggle
