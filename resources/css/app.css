@@ -41,21 +41,21 @@
 @layer base {
     @font-face {
         font-family: 'JapaneseBrush';
-        src: url('/font/japanesebrush.ttf') format('truetype');
+        src: url('../../../public/font/japanesebrush.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
     }
 
     @font-face {
         font-family: 'Bizon';
-        src: url('/font/bizon.ttf') format('truetype');
+        src: url('../../../public/font/bizon.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
     }
 
     @font-face {
         font-family: 'Veteran';
-        src: url('/font/veteran.ttf') format('truetype');
+        src: url('../../../public/font/veteran.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
     }
