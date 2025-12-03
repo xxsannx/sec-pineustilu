@@ -1,6 +1,6 @@
-<footer class="bg-white border-t border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8" data-aos="fade-up" data-aos-duration="800">
+<footer class="bg-white border-t border-gray-200 overflow-x-hidden w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 w-full" data-aos="fade-up" data-aos-duration="800">
             <!-- Logo Section -->
             <div class="col-span-1" data-aos="fade-up" data-aos-delay="100">
                 <img src="{{ asset('images/logo.png') }}" alt="Pineus Tilu Logo" class="h-24 mb-2">

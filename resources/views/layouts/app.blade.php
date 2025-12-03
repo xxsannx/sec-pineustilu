@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
     @stack('styles')
 </head>
-<body class="font-sans antialiased overflow-x-hidden">
+<body class="font-sans antialiased overflow-x-hidden w-full">
     @include('layouts.navbar')
 
-    <main class="overflow-x-hidden">
+    <main class="overflow-x-hidden w-full">
         @yield('content')
     </main>
 
