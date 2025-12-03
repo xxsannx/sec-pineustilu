@@ -25,7 +25,30 @@ Route::view('/faq', 'faq')->name('faq');
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
-    Route::get('settings/profile', Profile::class)->name('profile.edit');
+    Route::get('settings/profile', function () {
+        return view('profile');
+    })->name('profile');
+    
+    Route::put('settings/profile', function (Illuminate\Http\Request $request) {
+        $user = $request->user();
+        
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'phone' => 'nullable|string|max:20',
+            'country_code' => 'nullable|string|max:5',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'country_code' => $request->country_code ?? $user->country_code,
+        ]);
+
+        return back()->with('success', 'Profil berhasil diperbarui!');
+    })->name('profile.update');
+    
     Route::get('settings/password', Password::class)->name('user-password.edit');
     Route::get('settings/appearance', Appearance::class)->name('appearance.edit');
 
