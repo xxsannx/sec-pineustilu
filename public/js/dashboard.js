@@ -2,13 +2,19 @@
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
     modal.style.display = 'flex';
+    // Prevent body scroll
     document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = window.innerWidth - document.documentElement.clientWidth + 'px';
+    document.documentElement.style.overflow = 'hidden';
 }
 
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    // Restore body scroll
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+    document.documentElement.style.overflow = '';
 }
 
 // Close modal when clicking outside
@@ -130,14 +136,20 @@ document.addEventListener('DOMContentLoaded', function() {
 function openMapModal() {
     const modal = document.getElementById('mapModal');
     modal.style.display = 'block';
+    // Prevent body scroll
     document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = window.innerWidth - document.documentElement.clientWidth + 'px';
+    document.documentElement.style.overflow = 'hidden';
     resetZoom();
 }
 
 function closeMapModal() {
     const modal = document.getElementById('mapModal');
     modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    // Restore body scroll
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+    document.documentElement.style.overflow = '';
     resetZoom();
 }
 
