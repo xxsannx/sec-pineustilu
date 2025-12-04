@@ -1,6 +1,6 @@
 <!-- Modal Jabodetabek -->
-<div id="modalJabodetabek" class="fixed inset-0 bg-white/20 backdrop-blur-md z-50 flex items-center justify-center p-4" style="display: none;">
-    <div class="bg-gradient-to-br from-white to-gray-50 rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-modal border-2 border-gray-100">
+<div id="modalJabodetabek" class="fixed inset-0 backdrop-blur-sm bg-black/20 z-50 items-center justify-center p-4 hidden">
+    <div class="bg-gradient-to-br from-white to-gray-50 rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl border-2 border-gray-100">
         <!-- Modal Header -->
         <div class="sticky top-0 bg-white border-b-2 border-gray-100 p-6 md:p-8 flex justify-between items-center z-10 shadow-sm">
             <div class="flex items-center gap-4">
@@ -14,7 +14,7 @@
                     <p class="text-gray-500 text-sm mt-1">Bogor • Depok • Tangerang • Bekasi</p>
                 </div>
             </div>
-            <button onclick="closeModal('modalJabodetabek')" class="bg-gray-100 hover:bg-[#017249] hover:text-white text-gray-600 p-3 rounded-full transition-all duration-300 hover:rotate-90 hover:scale-110 shadow-md">
+            <button data-close-modal="jabodetabek" class="bg-gray-100 hover:bg-[#017249] hover:text-white text-gray-600 p-3 rounded-full transition-all duration-300 hover:rotate-90 hover:scale-110 shadow-md cursor-pointer">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -28,7 +28,8 @@
                 <div class="flex items-start gap-5">
                     <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-4 rounded-xl flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3.5h6M3 8h18M4 8v8a2 2 0 002 2h12a2 2 0 002-2V8M8 18v2m8-2v2m-6-8h4"/>
+                            <rect x="7" y="3" width="10" height="5" rx="1" stroke-width="2"/>
                         </svg>
                     </div>
                     <div class="flex-1">
@@ -130,8 +131,8 @@
                 <div class="flex items-start gap-5">
                     <div class="bg-gradient-to-br from-purple-500 to-purple-600 p-4 rounded-xl flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path>
+                            <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.5 17h13m-13 0a2 2 0 01-2-2V9.5A2.5 2.5 0 016 7h12a2.5 2.5 0 012.5 2.5V15a2 2 0 01-2 2m-13 0a2 2 0 110-4m13 4a2 2 0 110-4M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2"></path>
                         </svg>
                     </div>
                     <div class="flex-1">

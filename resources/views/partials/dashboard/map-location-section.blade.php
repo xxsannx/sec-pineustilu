@@ -15,12 +15,12 @@
                 <div class="bg-white rounded-2xl p-4 md:p-6 shadow-xl">
                     <div class="flex items-center gap-2 mb-4">
                         <svg class="w-6 h-6 text-[#017249]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
                         </svg>
                         <h3 class="text-xl md:text-2xl font-bold text-gray-800">Peta Area Camping</h3>
                     </div>
                     
-                    <div class="cursor-pointer group relative rounded-2xl overflow-visible shadow-md" onclick="openMapModal()">
+                    <div data-open-modal="map" class="cursor-pointer group relative rounded-2xl overflow-visible shadow-md">
                         <img src="/images/fullmap.jpeg" alt="Peta Pineus Tilu Camp Ground" class="w-full h-auto block rounded-2xl relative z-[1]">
                         <div class="absolute inset-0 bg-transparent group-hover:bg-black group-hover:bg-opacity-20 transition-colors duration-300 flex items-center justify-center pointer-events-none z-[2] rounded-2xl">
                             <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full">
@@ -73,7 +73,7 @@
                        rel="noopener noreferrer"
                        class="w-full inline-flex items-center justify-center gap-2 bg-[#017249] hover:bg-[#015a3a] text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                         </svg>
                         Buka di Google Maps
                     </a>

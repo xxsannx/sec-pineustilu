@@ -12,7 +12,7 @@
         <!-- Route Cards Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 px-2" data-aos="fade-up" data-aos-duration="800">
             <!-- Jabodetabek Card -->
-            <div onclick="openModal('modalJabodetabek')" class="group cursor-pointer bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-[#017249] mx-auto w-full max-w-sm">
+            <div data-open-modal="jabodetabek" class="group cursor-pointer bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-[#017249] mx-auto w-full max-w-sm">
                 <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#017249] to-[#015a3a] rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
@@ -29,7 +29,7 @@
             </div>
 
             <!-- Jawa Tengah & Timur Card -->
-            <div onclick="openModal('modalJawaTengahTimur')" class="group cursor-pointer bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-[#017249] mx-auto w-full max-w-sm">
+            <div data-open-modal="jawaTengahTimur" class="group cursor-pointer bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-[#017249] mx-auto w-full max-w-sm">
                 <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#017249] to-[#015a3a] rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
@@ -46,7 +46,7 @@
             </div>
 
             <!-- International Card -->
-            <div onclick="openModal('modalLuarNegeri')" class="group cursor-pointer bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-[#017249] mx-auto w-full max-w-sm">
+            <div data-open-modal="luarNegeri" class="group cursor-pointer bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-[#017249] mx-auto w-full max-w-sm">
                 <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#017249] to-[#015a3a] rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -70,15 +70,12 @@
                     <div class="bg-amber-500 rounded-full p-3">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.5 17h13m-13 0a2 2 0 01-2-2V9.5A2.5 2.5 0 016 7h12a2.5 2.5 0 012.5 2.5V15a2 2 0 01-2 2m-13 0a2 2 0 110-4m13 4a2 2 0 110-4M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2"></path>
                         </svg>
                     </div>
                 </div>
                 <div class="flex-1">
                     <h4 class="text-xl md:text-2xl font-bold text-gray-800 mb-2 flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                        </svg>
                         Layanan Penjemputan Bandara
                     </h4>
                     <p class="text-gray-700 text-sm md:text-base leading-relaxed mb-3">

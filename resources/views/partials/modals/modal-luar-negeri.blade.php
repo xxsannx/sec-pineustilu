@@ -1,6 +1,6 @@
 <!-- Modal Luar Negeri -->
-<div id="modalLuarNegeri" class="fixed inset-0 bg-white/20 backdrop-blur-md z-50 flex items-center justify-center p-4" style="display: none;">
-    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[85vh] overflow-hidden shadow-2xl animate-modal">
+<div id="modalLuarNegeri" class="fixed inset-0 backdrop-blur-sm bg-black/20 z-50 items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[85vh] overflow-hidden shadow-2xl">
         <!-- Modal Header -->
         <div class="sticky top-0 bg-white border-b-2 border-gray-100 p-6 md:p-8 flex justify-between items-start z-10">
             <div>
@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            <button onclick="closeModal('modalLuarNegeri')" class="bg-gray-100 hover:bg-[#017249] hover:text-white p-2.5 rounded-full transition-all duration-300">
+            <button data-close-modal="luarNegeri" class="bg-gray-100 hover:bg-[#017249] hover:text-white p-2.5 rounded-full transition-all duration-300 cursor-pointer">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -132,8 +132,8 @@
                 <div class="flex items-start gap-5">
                     <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 p-4 rounded-xl flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path>
+                            <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.5 17h13m-13 0a2 2 0 01-2-2V9.5A2.5 2.5 0 016 7h12a2.5 2.5 0 012.5 2.5V15a2 2 0 01-2 2m-13 0a2 2 0 110-4m13 4a2 2 0 110-4M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2"></path>
                         </svg>
                     </div>
                     <div class="flex-1">
