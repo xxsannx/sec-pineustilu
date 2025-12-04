@@ -29,7 +29,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
-                        <div id="area-dropdown-menu" class="hidden absolute left-1/2 -translate-x-1/2 mt-2 w-52 bg-white rounded-lg shadow-xl transition-all duration-300">
+                        <div id="area-dropdown-menu" class="opacity-0 invisible absolute left-1/2 -translate-x-1/2 mt-2 w-52 bg-white rounded-lg shadow-xl transition-all duration-300 transform -translate-y-2 scale-95">
                             <div class="py-2">
                                 <a href="/area/pineus-tilu-1" class="block px-4 py-3 text-[#017249] hover:bg-gray-100 hover:text-gray-700 transition-colors cursor-pointer">
                                     <div class="text-base font-semibold" style="font-family: 'Poppins', sans-serif;">Pineus Tilu 1</div>
@@ -78,7 +78,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
-                        <div id="reservasi-dropdown-menu" class="hidden absolute left-1/2 -translate-x-1/2 mt-2 w-52 bg-white rounded-lg shadow-xl transition-all duration-300">
+                        <div id="reservasi-dropdown-menu" class="opacity-0 invisible absolute left-1/2 -translate-x-1/2 mt-2 w-52 bg-white rounded-lg shadow-xl transition-all duration-300 transform -translate-y-2 scale-95">
                             <div class="py-2">
                                 <a href="/reservasi/glamping" class="block px-4 py-3 text-[#017249] hover:bg-gray-100 hover:text-gray-700 transition-colors cursor-pointer">
                                     <div class="flex items-center text-base font-semibold" style="font-family: 'Poppins', sans-serif;">
@@ -158,8 +158,8 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t max-h-[calc(100vh-5rem)] overflow-y-auto">
-            <div class="px-3 pt-2 pb-4 space-y-1">
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t overflow-hidden transition-all duration-300 ease-in-out transform origin-top" style="max-height: 0; opacity: 0;">
+            <div class="px-3 pt-2 pb-4 space-y-1 max-h-[calc(100vh-5rem)] overflow-y-auto">
                 <a href="{{ route('cerita') }}" class="block px-3 py-2 text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-sm font-semibold" style="font-family: 'Poppins', sans-serif;">
                     Cerita
                 </a>
@@ -175,7 +175,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div id="mobile-area-menu" class="hidden pl-3 mt-1 space-y-1">
+                    <div id="mobile-area-menu" class="hidden pl-3 mt-1 space-y-1 overflow-hidden transition-all duration-300" style="max-height: 0; opacity: 0;">
                         <a href="/area/pineus-tilu-1" class="block px-3 py-1.5 text-sm text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Poppins', sans-serif;">Pineus Tilu 1</a>
                         <a href="/area/pineus-tilu-2" class="block px-3 py-1.5 text-sm text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Poppins', sans-serif;">Pineus Tilu 2</a>
                         <a href="/area/pineus-tilu-3-vip" class="block px-3 py-1.5 text-sm text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Poppins', sans-serif;">Pineus Tilu 3 VIP</a>
@@ -205,7 +205,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div id="mobile-reservasi-menu" class="hidden pl-3 mt-1 space-y-1">
+                    <div id="mobile-reservasi-menu" class="hidden pl-3 mt-1 space-y-1 overflow-hidden transition-all duration-300" style="max-height: 0; opacity: 0;">
                         <a href="/reservasi/glamping" class="block px-3 py-1.5 text-sm text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Poppins', sans-serif;">Glamping</a>
                         <a href="/reservasi/outbond" class="block px-3 py-1.5 text-sm text-[#017249] hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Poppins', sans-serif;">Outbond</a>
                     </div>
@@ -257,85 +257,5 @@
         </div>
 </nav>
 
-<script>
-    // Desktop Area dropdown (click)
-    const areaDropdownBtn = document.getElementById('area-dropdown-btn');
-    const areaDropdownMenu = document.getElementById('area-dropdown-menu');
-    const areaDropdownIcon = document.getElementById('area-dropdown-icon');
-
-    if (areaDropdownBtn) {
-        areaDropdownBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            areaDropdownMenu.classList.toggle('hidden');
-            areaDropdownIcon.classList.toggle('rotate-180');
-            // Close reservasi dropdown
-            if (reservasiDropdownMenu) reservasiDropdownMenu.classList.add('hidden');
-            if (reservasiDropdownIcon) reservasiDropdownIcon.classList.remove('rotate-180');
-        });
-    }
-
-    // Desktop Reservasi dropdown (click)
-    const reservasiDropdownBtn = document.getElementById('reservasi-dropdown-btn');
-    const reservasiDropdownMenu = document.getElementById('reservasi-dropdown-menu');
-    const reservasiDropdownIcon = document.getElementById('reservasi-dropdown-icon');
-
-    if (reservasiDropdownBtn) {
-        reservasiDropdownBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            reservasiDropdownMenu.classList.toggle('hidden');
-            reservasiDropdownIcon.classList.toggle('rotate-180');
-            // Close area dropdown
-            if (areaDropdownMenu) areaDropdownMenu.classList.add('hidden');
-            if (areaDropdownIcon) areaDropdownIcon.classList.remove('rotate-180');
-        });
-    }
-
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', () => {
-        if (areaDropdownMenu) areaDropdownMenu.classList.add('hidden');
-        if (areaDropdownIcon) areaDropdownIcon.classList.remove('rotate-180');
-        if (reservasiDropdownMenu) reservasiDropdownMenu.classList.add('hidden');
-        if (reservasiDropdownIcon) reservasiDropdownIcon.classList.remove('rotate-180');
-    });
-
-    // Mobile menu toggle
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
-    const closeIcon = document.getElementById('close-icon');
-
-    mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        menuIcon.classList.toggle('hidden');
-        closeIcon.classList.toggle('hidden');
-    });
-
-    // Mobile Area dropdown
-    const mobileAreaButton = document.getElementById('mobile-area-button');
-    const mobileAreaMenu = document.getElementById('mobile-area-menu');
-    const mobileAreaIcon = document.getElementById('mobile-area-icon');
-
-    mobileAreaButton.addEventListener('click', () => {
-        mobileAreaMenu.classList.toggle('hidden');
-        mobileAreaIcon.classList.toggle('rotate-180');
-    });
-
-    // Mobile Reservasi dropdown
-    const mobileReservasiButton = document.getElementById('mobile-reservasi-button');
-    const mobileReservasiMenu = document.getElementById('mobile-reservasi-menu');
-    const mobileReservasiIcon = document.getElementById('mobile-reservasi-icon');
-
-    mobileReservasiButton.addEventListener('click', () => {
-        mobileReservasiMenu.classList.toggle('hidden');
-        mobileReservasiIcon.classList.toggle('rotate-180');
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
-            mobileMenu.classList.add('hidden');
-            menuIcon.classList.remove('hidden');
-            closeIcon.classList.add('hidden');
-        }
-    });
-</script>
+{{-- Navbar JavaScript --}}
+<script src="{{ asset('js/navbar.js') }}" defer></script>
