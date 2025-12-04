@@ -149,7 +149,7 @@
                                 value="{{ old('email') }}"
                                 required
                                 autocomplete="email"
-                                placeholder="nama@email.com"
+                                placeholder="email@domain.com"
                                 class="block w-full pl-14 sm:pl-16 pr-4 py-3 sm:py-3.5 text-sm sm:text-base text-gray-900 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#017249]/20 focus:border-[#017249] transition-all duration-200 placeholder-gray-400 hover:border-gray-300 cursor-text"
                             />
                         </div>
@@ -323,8 +323,8 @@
                     </div>
 
                     <!-- Google Registration Button -->
-                    <button
-                        type="button"
+                    <a
+                        href="{{ route('google.redirect') }}"
                         class="group w-full flex items-center justify-center gap-2 sm:gap-3 bg-white border-2 border-gray-200 hover:border-[#017249] hover:bg-gray-50 text-gray-700 font-semibold py-3 sm:py-3.5 px-4 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200 cursor-pointer"
                     >
                         <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none">
@@ -334,7 +334,7 @@
                             <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                         </svg>
                         Daftar dengan akun Google
-                    </button>
+                    </a>
 
                     <!-- Login Link -->
                     @if (Route::has('login'))

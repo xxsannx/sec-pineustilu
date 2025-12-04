@@ -50,6 +50,18 @@
             <!-- Session Status -->
             <x-auth-session-status class="text-center" :status="session('status')" />
 
+            <!-- Error Message -->
+            @if(session('error'))
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-lg">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                        <p class="text-red-700 text-sm font-medium">{{ session('error') }}</p>
+                    </div>
+                </div>
+            @endif
+
             <!-- Login Form -->
             <form method="POST" action="{{ route('login.store') }}" class="space-y-5">
                 @csrf
@@ -60,7 +72,7 @@
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
                             <div class="bg-[#017249]/10 p-1.5 sm:p-2 rounded-lg group-focus-within:bg-[#017249]/20 transition-colors duration-200">
-                                <svg class="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#017249]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#017249]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
                                 </svg>
                             </div>
@@ -73,7 +85,7 @@
                             required
                             autofocus
                             autocomplete="email"
-                            placeholder="nama@email.com"
+                            placeholder="email@domain.com"
                             class="block w-full pl-14 sm:pl-16 pr-4 py-3 sm:py-3.5 text-sm sm:text-base text-gray-900 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#017249]/20 focus:border-[#017249] transition-all duration-200 placeholder-gray-400 hover:border-gray-300 cursor-text"
                         />
                     </div>
@@ -93,7 +105,7 @@
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
                             <div class="bg-[#017249]/10 p-1.5 sm:p-2 rounded-lg group-focus-within:bg-[#017249]/20 transition-colors duration-200">
-                                <svg class="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#017249]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#017249]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                                 </svg>
                             </div>
@@ -112,7 +124,7 @@
                             onclick="togglePassword()"
                             class="absolute inset-y-0 right-0 pr-3 sm:pr-4 flex items-center hover:scale-110 transition-transform duration-200"
                         >
-                            <svg id="eye-icon" class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 hover:text-[#017249] transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg id="eye-icon" class="w-5 h-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                             </svg>
@@ -145,7 +157,7 @@
 
                     @if (Route::has('password.request'))
                         <a href="{{ route('password.request') }}" class="text-xs sm:text-sm text-[#017249] hover:text-[#015a3a] font-semibold transition-all duration-200 hover:underline">
-                            Lupa Password?
+                            Lupa password?
                         </a>
                     @endif
                 </div>
@@ -173,8 +185,8 @@
             </div>
 
             <!-- Google Login Button -->
-            <button
-                type="button"
+            <a
+                href="{{ route('google.redirect') }}"
                 class="w-full flex items-center justify-center gap-2 sm:gap-3 bg-white border-2 border-gray-200 hover:border-[#017249] text-gray-700 text-sm sm:text-base font-semibold py-3 sm:py-3.5 px-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 group cursor-pointer"
             >
                 <svg class="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-200" viewBox="0 0 24 24" fill="none">
@@ -184,7 +196,7 @@
                     <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                 </svg>
                 <span>Masuk dengan Google</span>
-            </button>
+            </a>
 
             <!-- Register Link -->
             @if (Route::has('register'))
@@ -193,7 +205,7 @@
                         <span class="text-gray-600">Belum punya akun?</span>
                         <a href="{{ route('register') }}" class="font-semibold text-[#017249] hover:text-[#015a3a] transition-all duration-200 hover:underline inline-flex items-center gap-1 group">
                             <span>Daftar sekarang</span>
-                            <svg class="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                             </svg>
                         </a>
