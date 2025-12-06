@@ -13,18 +13,17 @@ class Outbond extends Model
     protected $fillable = [
         'name',
         'description',
-        'pax',
         'min_participation',
         'max_participation',
         'duration',
-        'type',
+        'age',
     ];
 
     protected $casts = [
-        'pax' => 'integer',
         'min_participation' => 'integer',
         'max_participation' => 'integer',
         'duration' => 'integer',
+        'age' => 'integer',
     ];
 
     public function galleries(): HasMany

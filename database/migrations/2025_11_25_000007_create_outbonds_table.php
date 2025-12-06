@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('min_participation')->default(0);
             $table->integer('max_participation')->default(0);
             $table->integer('duration')->nullable(); // in minutes
-            $table->string('type')->nullable();
+            $table->integer('age')->nullable(); // minimum age requirement
             $table->timestamps();
         });
     }

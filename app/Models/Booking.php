@@ -14,25 +14,17 @@ class Booking extends Model
 
     protected $fillable = [
         'user_id',
+        'booking_type',
         'booking_date',
-        'redeem_code',
+        'token_code',
         'status',
         'guest_name',
         'guest_phone',
         'guest_email',
-        'check_out',
-        'number_of_people',
-        'total_charge',
-        'total_price',
-        'note',
     ];
 
     protected $casts = [
         'booking_date' => 'date',
-        'check_out' => 'boolean',
-        'number_of_people' => 'integer',
-        'total_charge' => 'decimal:2',
-        'total_price' => 'decimal:2',
     ];
 
     public function user(): BelongsTo

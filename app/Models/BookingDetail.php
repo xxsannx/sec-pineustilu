@@ -14,17 +14,19 @@ class BookingDetail extends Model
         'booking_id',
         'unit_id',
         'item_id',
+        'check_in',
         'check_out',
         'number_of_people',
-        'total_charge',
+        'total_extra_charge',
         'total_price',
         'note',
     ];
 
     protected $casts = [
-        'check_out' => 'boolean',
+        'check_in' => 'date',
+        'check_out' => 'date',
         'number_of_people' => 'integer',
-        'total_charge' => 'decimal:2',
+        'total_extra_charge' => 'decimal:2',
         'total_price' => 'decimal:2',
     ];
 

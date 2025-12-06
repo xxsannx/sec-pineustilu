@@ -14,7 +14,6 @@ class Gallery extends Model
         'area_id',
         'facility_id',
         'outbond_id',
-        'name',
         'image_path',
         'description',
         'type',

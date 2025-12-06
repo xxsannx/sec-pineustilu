@@ -13,7 +13,7 @@ class Facility extends Model
 
     protected $fillable = [
         'area_id',
-        'name',
+        'type',
         'description',
     ];
 
