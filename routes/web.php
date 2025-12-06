@@ -14,11 +14,24 @@ Route::view('/', 'dashboard')->name('home');
 Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
+Route::view('/area/pineus-tilu-1', 'area.pineus-tilu-1')->name('area.pineus-tilu-1');
+Route::view('/area/pineus-tilu-2', 'area.pineus-tilu-2')->name('area.pineus-tilu-2');
+Route::view('/area/pineus-tilu-3-vip', 'area.pineus-tilu-3-vip')->name('area.pineus-tilu-3-vip');
+Route::view('/area/pineus-tilu-4', 'area.pineus-tilu-4')->name('area.pineus-tilu-4');
+Route::view('/area/pineus-tilu-cabin', 'area.pineus-tilu-cabin')->name('area.pineus-tilu-cabin');
+
 Route::view('/aktivitas', 'aktivitas')->name('aktivitas');
 
 Route::view('/pedoman', 'pedoman')->name('pedoman');
 
 Route::view('/morikafe', 'morikafe')->name('morikafe');
+
+Route::view('/faq', 'faq')->name('faq');
+
+Route::view('/reservasi/glamping', 'reservasi.reservasi-glamping')->name('reservasi.glamping');
+Route::view('/reservasi/outbound', 'reservasi.reservasi-outbound')->name('reservasi.outbound');
+
+Route::view('/barang-tambahan', 'barang-tambahan')->name('barang-tambahan');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
