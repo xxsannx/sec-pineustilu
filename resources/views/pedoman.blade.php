@@ -11,10 +11,7 @@
         @include('partials.pedoman.syarat-ketentuan')
         @include('partials.pedoman.divider')
 
-        @include('partials.pedoman.kebijakan')
-        @include('partials.pedoman.divider')
-
-        @include('partials.pedoman.informasi')
+        @include('partials.pedoman.kebijakan-informasi')
         @include('partials.pedoman.divider')
 
         @include('partials.pedoman.parkir')
