@@ -17,8 +17,10 @@
                 @include('partials.cerita.content-english')
             </div>
         </section>
-
-        @include('partials.cerita.scripts')
         @include('partials.cerita.credit')
     </main>
+
+    @push('scripts')
+        @vite('resources/js/pages/cerita.js')
+    @endpush
 @endsection
