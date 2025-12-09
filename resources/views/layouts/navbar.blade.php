@@ -160,7 +160,7 @@
     </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t overflow-hidden transition-all duration-300 ease-in-out transform origin-top" style="max-height: 0; opacity: 0;">
+        <div id="mobile-menu" class="lg:hidden bg-white border-t overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-in-out transform origin-top scale-y-0">
             <div class="px-3 pt-2 pb-4 space-y-1 max-h-[calc(100vh-5rem)] overflow-y-auto">
                 <a href="{{ route('cerita') }}" class="block px-3 py-2 text-brand-primary hover:bg-gray-100 hover:text-gray-700 rounded-lg transition-colors text-sm font-semibold" style="font-family: 'Poppins', sans-serif;">
                     Cerita
@@ -177,7 +177,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div class="mobile-dropdown-menu hidden pl-3 mt-1 space-y-1 overflow-hidden transition-all duration-300" style="max-height: 0; opacity: 0;">
+                    <div class="mobile-dropdown-menu max-h-0 opacity-0 overflow-hidden transition-all duration-300 pl-3 mt-1 space-y-1">
                         <a href="/area/pineus-tilu-1" class="block px-3 py-1.5 text-sm text-brand-primary hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Poppins', sans-serif;">Pineus Tilu 1</a>
                         <a href="/area/pineus-tilu-2" class="block px-3 py-1.5 text-sm text-brand-primary hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Poppins', sans-serif;">Pineus Tilu 2</a>
                         <a href="/area/pineus-tilu-3-vip" class="block px-3 py-1.5 text-sm text-brand-primary hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Poppins', sans-serif;">Pineus Tilu 3 VIP</a>
@@ -207,7 +207,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-                    <div class="mobile-dropdown-menu hidden pl-3 mt-1 space-y-1 overflow-hidden transition-all duration-300" style="max-height: 0; opacity: 0;">
+                    <div class="mobile-dropdown-menu max-h-0 opacity-0 overflow-hidden transition-all duration-300 pl-3 mt-1 space-y-1">
                         <a href="/reservasi/glamping" class="block px-3 py-1.5 text-sm text-brand-primary hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Poppins', sans-serif;">Glamping</a>
                         <a href="/reservasi/outbond" class="block px-3 py-1.5 text-sm text-brand-primary hover:bg-gray-100 hover:text-gray-700 rounded-lg font-semibold" style="font-family: 'Poppins', sans-serif;">Outbond</a>
                     </div>
@@ -338,21 +338,26 @@
                 mobileMenuOpen = !mobileMenuOpen;
 
                 if (mobileMenuOpen) {
-                    mobileMenu.classList.remove('hidden');
-                    setTimeout(() => {
-                        mobileMenu.style.maxHeight = '100vh';
-                        mobileMenu.style.opacity = '1';
-                        mobileMenu.style.transform = 'scaleY(1)';
-                    }, 10);
+                    // Open menu
+                    mobileMenu.classList.remove('max-h-0', 'opacity-0', 'scale-y-0');
+                    mobileMenu.classList.add('max-h-screen', 'opacity-100', 'scale-y-100');
                     menuIcon.classList.add('hidden');
                     closeIcon.classList.remove('hidden');
                 } else {
-                    mobileMenu.style.maxHeight = '0';
-                    mobileMenu.style.opacity = '0';
-                    mobileMenu.style.transform = 'scaleY(0)';
-                    setTimeout(() => {
-                        mobileMenu.classList.add('hidden');
-                    }, 300);
+                    // Close menu
+                    mobileMenu.classList.remove('max-h-screen', 'opacity-100', 'scale-y-100');
+                    mobileMenu.classList.add('max-h-0', 'opacity-0', 'scale-y-0');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target) && mobileMenuOpen) {
+                    mobileMenuOpen = false;
+                    mobileMenu.classList.remove('max-h-screen', 'opacity-100', 'scale-y-100');
+                    mobileMenu.classList.add('max-h-0', 'opacity-0', 'scale-y-0');
                     menuIcon.classList.remove('hidden');
                     closeIcon.classList.add('hidden');
                 }
@@ -377,19 +382,17 @@
                 isOpen = !isOpen;
 
                 if (isOpen) {
-                    menu.classList.remove('hidden');
-                    setTimeout(() => {
-                        menu.style.maxHeight = menu.scrollHeight + 'px';
-                        menu.style.opacity = '1';
-                    }, 10);
+                    // Open submenu
+                    menu.style.maxHeight = menu.scrollHeight + 'px';
+                    menu.classList.remove('opacity-0');
+                    menu.classList.add('opacity-100');
                     if (icon) icon.style.transform = 'rotate(180deg)';
                 } else {
+                    // Close submenu
                     menu.style.maxHeight = '0';
-                    menu.style.opacity = '0';
+                    menu.classList.remove('opacity-100');
+                    menu.classList.add('opacity-0');
                     if (icon) icon.style.transform = 'rotate(0deg)';
-                    setTimeout(() => {
-                        menu.classList.add('hidden');
-                    }, 300);
                 }
             });
         });

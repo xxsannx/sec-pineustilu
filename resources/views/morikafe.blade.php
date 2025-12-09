@@ -3,7 +3,6 @@
 @section('title', 'Morikafe Pangalengan - Pineus Tilu - Glamping & Outbound')
 
 @section('content')
-    @include('layouts.navbar')
 
     @include('partials.morikafe.header')
     @include('partials.morikafe.sarapan')
