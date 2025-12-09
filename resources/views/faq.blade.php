@@ -14,5 +14,8 @@
     </main>
 
     @include('partials.faq.styles')
-    @include('partials.faq.scripts')
+    
+    @push('scripts')
+        @vite('resources/js/pages/faq.js')
+    @endpush
 @endsection
