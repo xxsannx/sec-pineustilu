@@ -1,36 +1,12 @@
 <style>
-    .out-cat-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 0.5rem;
-    }
-
-    .out-cat-btn {
-        background: transparent;
-        border: 0;
-        padding: 8px 10px;
-        color: #017249;
-        font-weight: 800;
-        cursor: pointer;
-        text-align: center;
-    }
-
-    .out-cat-btn[aria-pressed="true"] {
-        color: #0b5a3e;
-        text-decoration: underline;
-        text-underline-offset: 6px;
-    }
-
     .out-track {
         height: 6px;
         background: #e6f6ef;
         border-radius: 999px;
         position: relative;
-        margin: 10px 0 18px;
     }
 
-    .out-knob {
+    #outKnob {
         width: 20px;
         height: 20px;
         border-radius: 999px;
@@ -38,55 +14,119 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+        transition: left .32s;
         box-shadow: 0 2px 6px rgba(1, 50, 30, .18);
-        transition: left .28s;
     }
 
-    .out-main {
+    /* SEBAR MERATA: grid kolom tetap agar kiri-kanan setara */
+    .out-cat-list {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        column-gap: 0;
+        row-gap: 0;
+        align-items: start;
+        margin-top: 12px;
+        user-select: none;
         width: 100%;
+    }
+
+    .out-cat-btn {
+        justify-self: center;
+        /* tombol di tengah tiap kolom */
+        background: #E7F4EF;
+        border: 0;
+        padding: 12px 16px;
+        color: #017249;
+        font-weight: 800;
+        cursor: pointer;
+        text-align: center;
         border-radius: 12px;
-        background: #fff;
-        border: 2px solid #0b5a3e1a;
-        box-shadow: 0 8px 24px rgba(3, 7, 18, .06);
+        transition: background .2s ease, box-shadow .2s ease;
+        min-width: 110px;
     }
 
-    .out-preview {
-        padding: 16px;
+    .out-cat-btn:hover {
+        background: #d9efe7;
     }
 
-    .main-image {
+    .out-cat-btn[aria-pressed="true"] {
+        color: #fff;
+        background: #017249;
+        box-shadow: 0 2px 8px rgba(1, 50, 30, .12);
+    }
+
+    /* Responsive: pecah jadi 3 dan 2 kolom */
+    @media (max-width: 1024px) {
+        .out-cat-list {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            row-gap: .75rem;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .out-cat-list {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            row-gap: .75rem;
+        }
+
+        .out-cat-btn {
+            min-width: 96px;
+            font-size: .85rem;
+            padding: 10px 12px;
+        }
+    }
+
+    /* galeri tetap */
+    :root {
+        --preview-height: 360px;
+    }
+
+    .gallery-col {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .gallery-inner {
         width: 100%;
-        height: 240px;
-        background: #f3f5f6;
-        border: 1px dashed #e6e9ea;
-        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        height: 100%;
+    }
+
+    #outMainImage {
+        width: 100%;
+        height: 220px;
+        border-radius: .5rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
+        background: #f2f7f5;
+        color: #9aa5a4;
     }
 
-    .main-image img {
+    #outMainImage img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: .5rem;
     }
 
-    .thumbs {
+    #outThumbs {
         display: flex;
         gap: .5rem;
         flex-wrap: wrap;
-        margin-top: 10px;
+        margin-top: .75rem;
     }
 
     .thumb {
-        width: 92px;
+        width: 96px;
         height: 56px;
-        border-radius: 10px;
-        overflow: hidden;
-        border: 1px solid #e9ebec;
+        border-radius: .5rem;
         background: #f6f7f8;
-        cursor: pointer;
+        border: 1px solid #e9ebec;
+        overflow: hidden;
     }
 
     .thumb img {
@@ -95,28 +135,9 @@
         object-fit: cover;
     }
 
-    .out-helper {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-top: 10px;
-        color: #017249;
-        font-size: .9rem;
-    }
-
-    .out-helper .info {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        border: 1px solid #93c5b1;
-    }
-
-    @media(min-width:768px) {
-        .main-image {
-            height: 320px;
+    @media (min-width:768px) {
+        #outMainImage {
+            height: var(--preview-height);
         }
     }
 </style>
