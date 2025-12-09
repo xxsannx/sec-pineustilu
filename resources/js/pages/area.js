@@ -1,4 +1,3 @@
-<script>
 document.addEventListener('DOMContentLoaded', function () {
     const toggles = Array.from(document.querySelectorAll('.ft-toggle'));
 
@@ -43,4 +42,3 @@ document.addEventListener('DOMContentLoaded', function () {
         if (icon) icon.style.transform = 'rotate(180deg)';
     });
 });
-</script>

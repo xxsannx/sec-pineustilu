@@ -10,5 +10,7 @@
     @include('partials.area.pt-1.fasilitas')
     @include('partials.area.pt-1.galeri')
     @include('partials.area.pt-1.reservasi-cta')
-    @include('partials.area.pt-1.scripts')
+    @push('scripts')
+        @vite('resources/js/pages/area.js')
+    @endpush
 @endsection
