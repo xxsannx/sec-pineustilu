@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('area_id')->constrained()->cascadeOnDelete();
-            $table->string('type'); // bathroom, kitchen, parking, etc
+            $table->string('name');
+            $table->string('type'); //Pribadi atau Umum
+            $table->string('icon')->nullable(); // icon for the facility
             $table->text('description')->nullable();
             $table->timestamps();
         });

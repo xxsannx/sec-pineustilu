@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('extra_charge', 15, 2)->default(0);
+            $table->decimal('extra_charge_full', 15, 2)->default(0);
+            $table->decimal('extra_charge_breakfast', 15, 2)->default(0);
             $table->timestamps();
         });
     }
