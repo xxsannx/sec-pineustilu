@@ -1,9 +1,8 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Barang Tambahan - Pineus Tilu - Glamping & Outbound')
 
 @section('content')
-    @include('layouts.navbar')
 
     <section class="py-12 bg-white">
         @include('partials.barang-tambahan.header')
