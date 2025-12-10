@@ -74,7 +74,7 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
@@ -86,3 +86,480 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+
+/* =========================
+   [Reservasi Outbound Styles]
+   Sumber: resources/views/partials/reservasi-outbound/styles.blade.php
+   ========================= */
+@layer components {
+    .out-track {
+        height: 6px;
+        background: #e6f6ef;
+        border-radius: 999px;
+        position: relative;
+    }
+
+    #outKnob {
+        width: 20px;
+        height: 20px;
+        border-radius: 999px;
+        background: #017249;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: left .32s;
+        box-shadow: 0 2px 6px rgba(1, 50, 30, .18);
+    }
+
+    /* SEBAR MERATA: grid kolom tetap agar kiri-kanan setara */
+    .out-cat-list {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        column-gap: 0;
+        row-gap: 0;
+        align-items: start;
+        margin-top: 12px;
+        user-select: none;
+        width: 100%;
+    }
+
+    .out-cat-btn {
+        justify-self: center;
+        background: #E7F4EF;
+        border: 0;
+        padding: 12px 16px;
+        color: #017249;
+        font-weight: 800;
+        cursor: pointer;
+        text-align: center;
+        border-radius: 12px;
+        transition: background .2s ease, box-shadow .2s ease;
+        min-width: 110px;
+    }
+
+    .out-cat-btn:hover {
+        background: #d9efe7;
+    }
+
+    .out-cat-btn[aria-pressed="true"] {
+        color: #fff;
+        background: #017249;
+        box-shadow: 0 2px 8px rgba(1, 50, 30, .12);
+    }
+
+    /* Responsive: pecah jadi 3 dan 2 kolom */
+    @media (max-width: 1024px) {
+        .out-cat-list {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            row-gap: .75rem;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .out-cat-list {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            row-gap: .75rem;
+        }
+
+        .out-cat-btn {
+            min-width: 96px;
+            font-size: .85rem;
+            padding: 10px 12px;
+        }
+    }
+
+    /* galeri tetap */
+    :root {
+        --preview-height: 360px;
+    }
+
+    .gallery-col {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .gallery-inner {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        height: 100%;
+    }
+
+    #outMainImage {
+        width: 100%;
+        height: 220px;
+        border-radius: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f2f7f5;
+        color: #9aa5a4;
+    }
+
+    #outMainImage img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: .5rem;
+    }
+
+    #outThumbs {
+        display: flex;
+        gap: .5rem;
+        flex-wrap: wrap;
+        margin-top: .75rem;
+    }
+
+    .thumb {
+        width: 96px;
+        height: 56px;
+        border-radius: .5rem;
+        background: #f6f7f8;
+        border: 1px solid #e9ebec;
+        overflow: hidden;
+    }
+
+    .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    @media (min-width:768px) {
+        #outMainImage {
+            height: var(--preview-height);
+        }
+    }
+}
+
+
+/* =========================
+   [Reservasi Glamping Styles]
+   Sumber: resources/views/partials/reservasi-glamping/styles.blade.php
+   ========================= */
+@layer components {
+
+    /* area selector */
+    .area-track {
+        height: 6px;
+        background: #e6f6ef;
+        border-radius: 999px;
+        position: relative;
+    }
+
+    .area-knob {
+        width: 20px;
+        height: 20px;
+        border-radius: 999px;
+        background: #017249;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: left .32s;
+        box-shadow: 0 2px 6px rgba(1, 50, 30, .18);
+    }
+
+    /* Catatan: awalnya flex + space-between; biar setara bisa ubah ke grid di markup bila diperlukan */
+    .area-items {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 12px;
+        gap: 0;
+        user-select: none;
+    }
+
+    .area-item {
+        background: transparent;
+        border: 0;
+        padding: 6px 8px;
+        color: #017249;
+        font-weight: 700;
+        cursor: pointer;
+        text-align: center;
+        min-width: 100px;
+    }
+
+    .area-item .num {
+        font-size: 1.1rem;
+        font-weight: 800;
+    }
+
+    .area-item[aria-pressed="true"] {
+        color: #fff;
+        background: #017249;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(1, 50, 30, .12);
+    }
+
+    @media (max-width:640px) {
+        .area-item {
+            min-width: 64px;
+            font-size: .85rem
+        }
+    }
+
+    /* layout preview/map */
+    :root {
+        --preview-height: 360px;
+    }
+
+    .gallery-col,
+    .map-col {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .gallery-inner {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        height: 100%;
+    }
+
+    .main-preview {
+        width: 100%;
+        height: 220px;
+        border-radius: .5rem;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .thumbs {
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .thumb {
+        width: 96px;
+        height: 56px;
+        min-width: 96px;
+        border-radius: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* desktop equal heights */
+    @media (min-width:768px) {
+        .main-preview {
+            height: var(--preview-height);
+        }
+
+        .map-column {
+            height: var(--preview-height);
+        }
+    }
+
+    /* visuals */
+    .main-preview,
+    .map-column {
+        background: #f3f5f6;
+        border: 1px dashed #e6e9ea;
+        color: #9aa5a4;
+        border-radius: .5rem;
+    }
+
+    .thumb {
+        background: #f6f7f8;
+        border: 1px solid #e9ebec;
+        color: #9aa5a4;
+        border-radius: .5rem;
+    }
+}
+
+
+/* =========================
+   [FAQ Styles]
+   Sumber: resources/views/partials/faq/styles.blade.php
+   ========================= */
+@layer components {
+
+    /* gunakan satu kolom (lebih lebar tiap item) */
+    .faq-list {
+        margin-top: 8px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    /* card */
+    .faq-item {
+        background: #fff;
+        border: 1px solid #e6e6e6;
+        border-radius: 14px;
+        padding: 0;
+        overflow: hidden;
+        box-shadow: 0 8px 26px rgba(3, 7, 18, 0.05);
+        transition: transform .12s ease, box-shadow .12s ease;
+        align-self: start;
+        min-height: 72px;
+    }
+
+    .faq-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 36px rgba(3, 7, 18, 0.07);
+    }
+
+    .faq-q {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 18px 22px;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 16px;
+        text-align: left;
+    }
+
+    .faq-q:focus {
+        outline: 3px solid rgba(59, 130, 246, 0.12);
+        border-radius: 10px;
+    }
+
+    .icon-chevron {
+        transition: transform .25s ease;
+        color: #6b7280;
+    }
+
+    .icon-area {
+        transition: background-color .18s ease, color .18s ease, transform .18s ease;
+        border-radius: 10px;
+        display: inline-flex;
+    }
+
+    .faq-title {
+        display: block;
+        color: #0f172a;
+    }
+
+    /* answer */
+    .faq-a {
+        padding: 0 22px 18px 22px;
+        color: #374151;
+        font-size: 14.5px;
+        line-height: 1.6;
+    }
+
+    .faq-a p {
+        margin: 8px 0;
+    }
+
+    /* opened state */
+    .faq-item[aria-open="true"] {
+        border-color: rgba(1, 120, 82, 0.12);
+        box-shadow: 0 18px 44px rgba(1, 120, 82, 0.06);
+    }
+
+    .faq-item[aria-open="true"] .icon-chevron {
+        transform: rotate(180deg);
+        color: #065f46;
+    }
+
+    .faq-item[aria-open="true"] .icon-area {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(1, 120, 82, 0.06);
+    }
+
+    @media (max-width:640px) {
+        .faq-q {
+            padding: 14px;
+            font-size: 15px;
+        }
+
+        .icon-area {
+            width: 44px;
+            height: 44px;
+        }
+    }
+}
+
+
+/* =========================
+   [Cerita Styles]
+   Sumber: resources/views/partials/cerita/styles.blade.php
+   ========================= */
+@layer components {
+    .story-grid {
+        display: block;
+        gap: 24px;
+    }
+
+    .story-box {
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0 0 18px 0;
+    }
+
+    /* per-box text alignment (kept for potential styling) */
+    .story-box--left,
+    .story-box--center,
+    .story-box--right {
+        text-align: left;
+    }
+
+    /* visual box style */
+    .story-box-inner {
+        background: #ffffff;
+        border: 1px solid rgba(1, 80, 46, 0.06);
+        border-radius: 8px;
+        padding: 22px;
+        color: #0b5a3e;
+    }
+
+    /* heading */
+    .story-box h2 {
+        color: #017249;
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+    }
+
+    /* ensure long content flows naturally */
+    .story-box p {
+        margin: 0 0 1rem 0;
+        line-height: 1.5;
+        font-size: 0.92rem;
+    }
+
+    /* helper to hide non-selected language */
+    .is-hidden {
+        display: none !important;
+    }
+
+    /* language switcher */
+    .lang-switcher {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 18px;
+    }
+
+    .lang-switcher button {
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(1, 80, 46, 0.12);
+        background: #fff;
+        color: #017249;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .lang-switcher button[aria-pressed="true"] {
+        background: #017249;
+        color: #fff;
+    }
+}

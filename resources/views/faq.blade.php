@@ -3,7 +3,6 @@
 @section('title', 'Frequently Asked Questions - Pineus Tilu - Glamping & Outbound')
 
 @section('content')
-
     <main class="pt-24 w-full max-w-screen-xl mx-auto px-6 pb-28 bg-[#f6fbf8]">
         @include('partials.faq.header')
 
@@ -13,8 +12,6 @@
         </div>
     </main>
 
-    @include('partials.faq.styles')
-    
     @push('scripts')
         @vite('resources/js/pages/faq.js')
     @endpush
