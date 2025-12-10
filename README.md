@@ -1,4 +1,3 @@
-````markdown
 # 🌲 PineusTilu — Website Reservasi Glamping & Outbound
 
 Proyek website resmi Pineus Tilu untuk informasi dan pemesanan aktivitas Glamping dan Outbound. Dibangun dengan Laravel, Vite, Tailwind, dan Blade.
