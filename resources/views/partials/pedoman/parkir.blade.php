@@ -4,7 +4,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
             <div>
-                <img src="{{ asset('images/aktivitas/parkir.jpg') }}" alt="Parkir"
+                <img src="{{ asset('images/pedoman-galeri/parkir.jpeg') }}" alt="Parkir"
                     class="w-full rounded-2xl object-cover h-80 shadow-md">
             </div>
 
