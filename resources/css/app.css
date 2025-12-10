@@ -562,13 +562,57 @@ select:focus[data-flux-control] {
 }
 
 /* =========================
-   [Aktivitas Outdoor Styles]
-   Sumber: resources/views/aktivitas.blade.php + partials/aktivitas/*
-   Sederhana, ramah pengguna, konsisten dengan tema hijau
+   [Aktivitas: Styling tanpa ubah layout]
+   Menargetkan markup yang sudah ada (section/div grid) agar konsisten
    ========================= */
-
 @layer components {
-    /* Divider antar blok */
+    /* Kontainer kartu umum (bg-white rounded-lg p-6) */
+    .bg-white.rounded-lg.shadow-sm.overflow-hidden.p-6 {
+        border: 1px solid rgba(1, 114, 73, 0.12);
+        box-shadow: 0 10px 28px rgba(3, 7, 18, 0.06);
+        transition: transform 0.12s ease, box-shadow 0.12s ease,
+            border-color 0.12s ease;
+    }
+    .bg-white.rounded-lg.shadow-sm.overflow-hidden.p-6:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 18px 40px rgba(3, 7, 18, 0.08);
+        border-color: rgba(1, 114, 73, 0.18);
+    }
+
+    /* Media image di kartu aktivitas (h-56 pada gambar) */
+    .object-cover.h-56 {
+        border-radius: 12px;
+        border: 1px solid #e6ece9;
+        background: #f3f6f5;
+    }
+
+    /* Header judul aktivitas */
+    .text-xl.font-extrabold.text-\[\#017249\],
+    .text-2xl.font-extrabold.text-\[\#017249\],
+    .text-sm.font-extrabold.text-\[\#017249\] {
+        letter-spacing: 0.02em;
+    }
+
+    /* Deskripsi teks aktivitas */
+    .text-\[\#0b5a3e\] {
+        opacity: 0.95;
+    }
+
+    /* List informasi (ul tanpa bullets) */
+    .list-none.space-y-1 li {
+        margin: 6px 0;
+        color: #305647;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Grid pasangan kartu agar rapi di desktop (sudah ada utility, tambahkan gap halus) */
+    .grid.grid-cols-1.md\:grid-cols-2 {
+        gap: 2rem;
+        align-items: start;
+    }
+
+    /* Divider */
     .activity-divider {
         width: 100%;
         height: 1px;
@@ -576,167 +620,38 @@ select:focus[data-flux-control] {
         margin: 22px 0;
     }
 
-    /* Grid responsif untuk pasangan section */
-    .activity-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        align-items: start;
-    }
-    @media (min-width: 768px) {
-        .activity-grid {
-            grid-template-columns: 1fr 1fr;
-        }
+    /* Bagian informasi (kotak bawah) */
+    .rounded-b-lg.border-l.border-r.border-\[\#e6f3ec\].p-8 {
+        border-color: rgba(1, 114, 73, 0.14);
+        box-shadow: 0 8px 24px rgba(3, 7, 18, 0.06);
     }
 
-    /* Kartu konten aktivitas */
-    .activity-card {
-        background: #ffffff;
+    /* Kartu “Aktivitas di Sekitar” */
+    article.bg-white.rounded-lg.shadow-sm.overflow-hidden {
         border: 1px solid rgba(1, 114, 73, 0.12);
-        border-radius: 14px;
-        box-shadow: 0 10px 28px rgba(3, 7, 18, 0.06);
-        padding: 18px;
         transition: transform 0.12s ease, box-shadow 0.12s ease,
             border-color 0.12s ease;
     }
-    .activity-card:hover {
+    article.bg-white.rounded-lg.shadow-sm.overflow-hidden:hover {
         transform: translateY(-3px);
         box-shadow: 0 18px 40px rgba(3, 7, 18, 0.08);
         border-color: rgba(1, 114, 73, 0.18);
     }
-
-    /* Gambar header (jika ada) */
-    .activity-media {
-        width: 100%;
-        height: 200px;
-        border-radius: 12px;
-        overflow: hidden;
+    /* Media area dalam kartu “Aktivitas di Sekitar” */
+    .w-full.h-48.md\:h-40.lg\:h-44.overflow-hidden {
         background: #f3f6f5;
-        border: 1px solid #e6ece9;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #83a69a;
-        margin-bottom: 14px;
+        border: 1px dashed #e6e9ea;
+        border-radius: 12px;
     }
-    .activity-media img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    @media (min-width: 768px) {
-        .activity-media {
-            height: 240px;
-        }
-    }
-
-    /* Judul + subjudul */
-    .activity-title {
-        font-weight: 800;
-        font-size: 1.1rem;
-        letter-spacing: 0.02em;
-        color: #017249;
-        margin-bottom: 6px;
-    }
-    .activity-subtitle {
-        font-weight: 600;
-        font-size: 0.95rem;
-        color: #0b5a3e;
-        opacity: 0.9;
-        margin-bottom: 10px;
-    }
-
-    /* Deskripsi */
-    .activity-desc {
-        color: #365a4a;
-        font-size: 0.95rem;
-        line-height: 1.65;
-    }
-    .activity-desc p {
-        margin: 8px 0;
-    }
-
-    /* List poin (jika ada) */
-    .activity-list {
-        margin-top: 10px;
-        padding-left: 18px;
-        color: #305647;
-        font-size: 0.95rem;
-    }
-    .activity-list li {
-        margin: 6px 0;
-    }
-
-    /* CTA */
-    .activity-actions {
-        display: flex;
-        gap: 10px;
-        margin-top: 14px;
-        flex-wrap: wrap;
-    }
-    .activity-btn {
-        appearance: none;
-        border: 0;
+    .w-full.h-full.object-cover.rounded-md {
         border-radius: 10px;
-        padding: 10px 14px;
-        font-weight: 800;
-        cursor: pointer;
-        transition: background 0.18s ease, box-shadow 0.18s ease,
-            transform 0.06s ease;
-    }
-    .activity-btn--primary {
-        background: #017249;
-        color: #ffffff;
-        box-shadow: 0 8px 22px rgba(1, 114, 73, 0.18);
-    }
-    .activity-btn--primary:hover {
-        background: #016b45;
-    }
-    .activity-btn--primary:active {
-        transform: translateY(1px);
     }
 
-    .activity-btn--ghost {
-        background: #e7f4ef;
-        color: #017249;
-        box-shadow: 0 6px 18px rgba(1, 114, 73, 0.1);
-    }
-    .activity-btn--ghost:hover {
-        background: #d9efe7;
-    }
-    .activity-btn--ghost:active {
-        transform: translateY(1px);
-    }
-
-    /* Badge mini */
-    .activity-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: #eaf6f1;
-        color: #0b5a3e;
-        font-weight: 700;
-        font-size: 0.82rem;
-    }
-
-    /* Layout mini: judul + icon di atas */
-    .activity-header {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        margin-bottom: 6px;
-    }
-    .activity-icon {
-        width: 36px;
-        height: 36px;
-        border-radius: 10px;
-        background: #e7f4ef;
-        color: #017249;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+    /* Heading besar halaman (AKTIVITAS OUTDOOR / INFORMASI / AKTIVITAS DI SEKITAR) */
+    .text-center.text-2xl.font-extrabold.text-\[\#017249\],
+    .text-center.text-3xl.font-extrabold.text-\[\#017249\],
+    .text-center.text-4xl.font-extrabold.text-\[\#017249\] {
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
     }
 }
 
