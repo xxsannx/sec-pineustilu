@@ -3,15 +3,11 @@
 
 Proyek website resmi Pineus Tilu untuk informasi dan pemesanan aktivitas Glamping dan Outbound. Dibangun dengan Laravel, Vite, Tailwind, dan Blade.
 
----
-
 ## ✨ Fitur Utama
 - Reservasi Glamping: selector area, galeri, dan peta.
 - Reservasi Outbound: kategori aktivitas, galeri, dan detail info.
 - Komponen UI konsisten: track + knob, tombol kategori/area, main image + thumbnails.
 - Build tooling Vite untuk aset CSS/JS modern.
-
----
 
 ## 🛠️ Teknologi
 - Backend: PHP 8.2+, Laravel 10+
@@ -19,14 +15,10 @@ Proyek website resmi Pineus Tilu untuk informasi dan pemesanan aktivitas Glampin
 - View: Blade Templates
 - Database: MySQL/SQLite (opsional)
 
----
-
 ## ⚙️ Persyaratan
 - Composer, PHP 8.2+
 - Node.js 18+ dan npm
 - Database (opsional, jika data dinamis)
-
----
 
 ## 🚀 Setup Lokal (Windows)
 1) Clone & masuk folder:
