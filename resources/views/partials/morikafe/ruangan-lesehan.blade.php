@@ -4,12 +4,12 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
             <div class="col-span-2 overflow-hidden rounded-2xl shadow-lg">
-                <img src="{{ asset('images/morikafe/lesehan-layout.jpg') }}" alt="lesehan layout"
+                <img src="{{ asset('images/morikafe-galeri/lesehan.jpeg') }}" alt="lesehan layout"
                     class="w-full h-64 md:h-[480px] lg:h-[560px] object-cover rounded-2xl">
             </div>
 
             <div class="col-span-1 overflow-hidden rounded-2xl shadow-lg">
-                <img src="{{ asset('images/morikafe/lesehan-people.jpg') }}" alt="pengunjung"
+                <img src="{{ asset('images/morikafe-galeri/lesehan2.jpeg') }}" alt="pengunjung"
                     class="w-full h-64 md:h-[480px] lg:h-[560px] object-cover rounded-2xl">
             </div>
         </div>

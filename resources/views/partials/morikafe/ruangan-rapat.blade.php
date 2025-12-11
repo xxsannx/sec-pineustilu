@@ -5,7 +5,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @for($i = 1; $i <= 3; $i++)
                 <div class="overflow-hidden rounded-2xl shadow-lg bg-gray-50">
-                    <img src="{{ asset('images/morikafe/meeting-' . $i . '.jpg') }}" alt="meeting {{$i}}"
+                    <img src="{{ asset('images/morikafe-galeri/meeting' . $i . '.jpg') }}" alt="meeting {{$i}}"
                         class="w-full h-72 md:h-80 lg:h-96 object-cover rounded-2xl">
                 </div>
             @endfor
@@ -14,7 +14,7 @@
         <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
             @for($i = 4; $i <= 6; $i++)
                 <div class="overflow-hidden rounded-2xl shadow-lg bg-gray-50">
-                    <img src="{{ asset('images/morikafe/meeting-' . $i . '.jpg') }}" alt="meeting {{$i}}"
+                    <img src="{{ asset('images/morikafe-galeri/meeting' . $i . '.jpg') }}" alt="meeting {{$i}}"
                         class="w-full h-72 md:h-80 lg:h-96 object-cover rounded-2xl">
                 </div>
             @endfor
