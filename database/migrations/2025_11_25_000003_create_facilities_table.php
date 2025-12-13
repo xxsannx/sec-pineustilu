@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('area_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('area_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('outbond_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->string('type'); //Pribadi atau Umum
+            $table->string('type'); //Pribadi, umum dan outbond
             $table->string('icon')->nullable(); // icon for the facility
             $table->text('description')->nullable();
             $table->timestamps();
