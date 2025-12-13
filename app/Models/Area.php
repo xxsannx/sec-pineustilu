@@ -13,11 +13,13 @@ class Area extends Model
     protected $fillable = [
         'name',
         'description',
-        'extra_charge',
+        'extra_charge_full',
+        'extra_charge_breakfast',
     ];
 
     protected $casts = [
-        'extra_charge' => 'decimal:2',
+        'extra_charge_full' => 'decimal:2',
+        'extra_charge_breakfast' => 'decimal:2',
     ];
 
     public function facilities(): HasMany
