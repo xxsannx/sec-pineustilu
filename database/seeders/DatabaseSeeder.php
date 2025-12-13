@@ -22,7 +22,13 @@ class DatabaseSeeder extends Seeder
             TentPriceSeeder::class,
             ItemSeeder::class,
             ItemPriceSeeder::class,
+
+            // Outbond data
             OutbondSeeder::class,
+            OutbondVariantSeeder::class,
+            OutbondVariantPriceSeeder::class,
+            OutbondPriceSeeder::class,
+
             PineusTilu1Seeder::class,
             PineusTilu2Seeder::class,
             PineusTilu3Seeder::class,
