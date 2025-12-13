@@ -69,6 +69,11 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
     }
+
+    /* Hilangkan celah baseline pada img */
+    img {
+        display: block;
+    }
 }
 
 [data-flux-field]:not(ui-radio, ui-checkbox) {
@@ -85,13 +90,8 @@ select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
 
-/* \[:where(&)\]:size-4 {
-    @apply size-4;
-} */
-
 /* =========================
    [Reservasi Outbound Styles]
-   Sumber: resources/views/partials/reservasi-outbound/styles.blade.php
    ========================= */
 @layer components {
     .out-track {
@@ -113,7 +113,6 @@ select:focus[data-flux-control] {
         box-shadow: 0 2px 6px rgba(1, 50, 30, 0.18);
     }
 
-    /* SEBAR MERATA: grid kolom tetap agar kiri-kanan setara */
     .out-cat-list {
         display: grid;
         grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -149,7 +148,6 @@ select:focus[data-flux-control] {
         box-shadow: 0 2px 8px rgba(1, 50, 30, 0.12);
     }
 
-    /* Responsive: pecah jadi 3 dan 2 kolom */
     @media (max-width: 1024px) {
         .out-cat-list {
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -170,7 +168,6 @@ select:focus[data-flux-control] {
         }
     }
 
-    /* galeri tetap */
     :root {
         --preview-height: 360px;
     }
@@ -238,10 +235,8 @@ select:focus[data-flux-control] {
 
 /* =========================
    [Reservasi Glamping Styles]
-   Sumber: resources/views/partials/reservasi-glamping/styles.blade.php
    ========================= */
 @layer components {
-    /* area selector */
     .area-track {
         height: 6px;
         background: #e6f6ef;
@@ -261,7 +256,6 @@ select:focus[data-flux-control] {
         box-shadow: 0 2px 6px rgba(1, 50, 30, 0.18);
     }
 
-    /* Catatan: awalnya flex + space-between; biar setara bisa ubah ke grid di markup bila diperlukan */
     .area-items {
         display: flex;
         justify-content: space-between;
@@ -300,7 +294,6 @@ select:focus[data-flux-control] {
         }
     }
 
-    /* layout preview/map */
     :root {
         --preview-height: 360px;
     }
@@ -348,7 +341,6 @@ select:focus[data-flux-control] {
         justify-content: center;
     }
 
-    /* desktop equal heights */
     @media (min-width: 768px) {
         .main-preview {
             height: var(--preview-height);
@@ -359,7 +351,6 @@ select:focus[data-flux-control] {
         }
     }
 
-    /* visuals */
     .main-preview,
     .map-column {
         background: #f3f5f6;
@@ -378,10 +369,8 @@ select:focus[data-flux-control] {
 
 /* =========================
    [FAQ Styles]
-   Sumber: resources/views/partials/faq/styles.blade.php
    ========================= */
 @layer components {
-    /* gunakan satu kolom (lebih lebar tiap item) */
     .faq-list {
         margin-top: 8px;
         display: grid;
@@ -389,7 +378,6 @@ select:focus[data-flux-control] {
         gap: 18px;
     }
 
-    /* card */
     .faq-item {
         background: #fff;
         border: 1px solid #e6e6e6;
@@ -444,7 +432,6 @@ select:focus[data-flux-control] {
         color: #0f172a;
     }
 
-    /* answer */
     .faq-a {
         padding: 0 22px 18px 22px;
         color: #374151;
@@ -456,7 +443,6 @@ select:focus[data-flux-control] {
         margin: 8px 0;
     }
 
-    /* opened state */
     .faq-item[aria-open="true"] {
         border-color: rgba(1, 120, 82, 0.12);
         box-shadow: 0 18px 44px rgba(1, 120, 82, 0.06);
@@ -487,7 +473,6 @@ select:focus[data-flux-control] {
 
 /* =========================
    [Cerita Styles]
-   Sumber: resources/views/partials/cerita/styles.blade.php
    ========================= */
 @layer components {
     .story-grid {
@@ -501,14 +486,12 @@ select:focus[data-flux-control] {
         margin: 0 0 18px 0;
     }
 
-    /* per-box text alignment (kept for potential styling) */
     .story-box--left,
     .story-box--center,
     .story-box--right {
         text-align: left;
     }
 
-    /* visual box style */
     .story-box-inner {
         background: #ffffff;
         border: 1px solid rgba(1, 80, 46, 0.06);
@@ -517,7 +500,6 @@ select:focus[data-flux-control] {
         color: #0b5a3e;
     }
 
-    /* heading */
     .story-box h2 {
         color: #017249;
         font-weight: 700;
@@ -525,19 +507,16 @@ select:focus[data-flux-control] {
         margin-bottom: 12px;
     }
 
-    /* ensure long content flows naturally */
     .story-box p {
         margin: 0 0 1rem 0;
         line-height: 1.5;
         font-size: 0.92rem;
     }
 
-    /* helper to hide non-selected language */
     .is-hidden {
         display: none !important;
     }
 
-    /* language switcher */
     .lang-switcher {
         display: flex;
         gap: 8px;
@@ -562,11 +541,9 @@ select:focus[data-flux-control] {
 }
 
 /* =========================
-   [Aktivitas: Styling tanpa ubah layout]
-   Menargetkan markup yang sudah ada (section/div grid) agar konsisten
+   [Aktivitas: tanpa ubah layout]
    ========================= */
 @layer components {
-    /* Kontainer kartu umum (bg-white rounded-lg p-6) */
     .bg-white.rounded-lg.shadow-sm.overflow-hidden.p-6 {
         border: 1px solid rgba(1, 114, 73, 0.12);
         box-shadow: 0 10px 28px rgba(3, 7, 18, 0.06);
@@ -579,26 +556,28 @@ select:focus[data-flux-control] {
         border-color: rgba(1, 114, 73, 0.18);
     }
 
-    /* Media image di kartu aktivitas (h-56 pada gambar) */
+    /* Hapus frame putih di gambar kartu aktivitas */
     .object-cover.h-56 {
         border-radius: 12px;
-        border: 1px solid #e6ece9;
-        background: #f3f6f5;
+        border: 0;
+        background: transparent;
     }
 
     /* Header judul aktivitas */
-    .text-xl.font-extrabold.text-\[\#017249\],
-    .text-2xl.font-extrabold.text-\[\#017249\],
+    .text-xl.font-extrabold.text-\[\#017249\] {
+        letter-spacing: 0.02em;
+    }
+    .text-2xl.font-extrabold.text-\[\#017249\] {
+        letter-spacing: 0.02em;
+    }
     .text-sm.font-extrabold.text-\[\#017249\] {
         letter-spacing: 0.02em;
     }
 
-    /* Deskripsi teks aktivitas */
     .text-\[\#0b5a3e\] {
         opacity: 0.95;
     }
 
-    /* List informasi (ul tanpa bullets) */
     .list-none.space-y-1 li {
         margin: 6px 0;
         color: #305647;
@@ -606,13 +585,11 @@ select:focus[data-flux-control] {
         line-height: 1.6;
     }
 
-    /* Grid pasangan kartu agar rapi di desktop (sudah ada utility, tambahkan gap halus) */
     .grid.grid-cols-1.md\:grid-cols-2 {
         gap: 2rem;
         align-items: start;
     }
 
-    /* Divider */
     .activity-divider {
         width: 100%;
         height: 1px;
@@ -620,13 +597,11 @@ select:focus[data-flux-control] {
         margin: 22px 0;
     }
 
-    /* Bagian informasi (kotak bawah) */
     .rounded-b-lg.border-l.border-r.border-\[\#e6f3ec\].p-8 {
         border-color: rgba(1, 114, 73, 0.14);
         box-shadow: 0 8px 24px rgba(3, 7, 18, 0.06);
     }
 
-    /* Kartu “Aktivitas di Sekitar” */
     article.bg-white.rounded-lg.shadow-sm.overflow-hidden {
         border: 1px solid rgba(1, 114, 73, 0.12);
         transition: transform 0.12s ease, box-shadow 0.12s ease,
@@ -637,7 +612,7 @@ select:focus[data-flux-control] {
         box-shadow: 0 18px 40px rgba(3, 7, 18, 0.08);
         border-color: rgba(1, 114, 73, 0.18);
     }
-    /* Media area dalam kartu “Aktivitas di Sekitar” */
+
     .w-full.h-48.md\:h-40.lg\:h-44.overflow-hidden {
         background: #f3f6f5;
         border: 1px dashed #e6e9ea;
@@ -647,9 +622,13 @@ select:focus[data-flux-control] {
         border-radius: 10px;
     }
 
-    /* Heading besar halaman (AKTIVITAS OUTDOOR / INFORMASI / AKTIVITAS DI SEKITAR) */
-    .text-center.text-2xl.font-extrabold.text-\[\#017249\],
-    .text-center.text-3xl.font-extrabold.text-\[\#017249\],
+    /* Heading besar halaman */
+    .text-center.text-2xl.font-extrabold.text-\[\#017249\] {
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+    .text-center.text-3xl.font-extrabold.text-\[\#017249\] {
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
     .text-center.text-4xl.font-extrabold.text-\[\#017249\] {
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
     }
@@ -657,11 +636,8 @@ select:focus[data-flux-control] {
 
 /* =========================
    [Barang Tambahan Styles]
-   Sumber: resources/views/partials/barang-tambahan/*
-   Konsisten dengan tema hijau & gaya activity-card
    ========================= */
 @layer components {
-    /* Grid konten barang tambahan */
     .extras-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -674,7 +650,6 @@ select:focus[data-flux-control] {
         }
     }
 
-    /* Kartu konten (serupa activity-card) */
     .extras-card {
         background: #ffffff;
         border: 1px solid rgba(1, 114, 73, 0.12);
@@ -690,7 +665,6 @@ select:focus[data-flux-control] {
         border-color: rgba(1, 114, 73, 0.18);
     }
 
-    /* Header kartu */
     .extras-title {
         font-weight: 800;
         font-size: 1.05rem;
@@ -705,13 +679,11 @@ select:focus[data-flux-control] {
         margin-bottom: 8px;
     }
 
-    /* Daftar item */
     .extras-list {
         display: grid;
         gap: 0.5rem;
     }
 
-    /* Baris item */
     .extras-row {
         display: flex;
         align-items: flex-start;
@@ -723,7 +695,6 @@ select:focus[data-flux-control] {
         border-bottom: 0;
     }
 
-    /* Detail item kiri */
     .extras-info {
         padding-right: 1rem;
     }
@@ -738,7 +709,6 @@ select:focus[data-flux-control] {
         color: #6b7280;
     }
 
-    /* Harga kanan */
     .extras-price {
         font-weight: 800;
         font-size: 0.95rem;
@@ -751,7 +721,6 @@ select:focus[data-flux-control] {
         text-align: center;
     }
 
-    /* Bagian “Saus & Pelengkap” */
     .extras-section {
         margin-top: 0.75rem;
         padding-top: 0.75rem;
@@ -766,17 +735,15 @@ select:focus[data-flux-control] {
 }
 
 /* =========================
-   [Pedoman Styles] — Alignment fix untuk Syarat & Ketentuan
+   [Pedoman Styles]
    ========================= */
 @layer components {
-    /* Header pedoman (selector valid satu baris) */
     header.text-center.py-10
         h1.text-4xl.md\:text-5xl.font-extrabold.text-\[\#017249\].tracking-wider {
         letter-spacing: 0.04em;
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
     }
 
-    /* Card pedoman umum */
     .bg-white.rounded-lg.shadow-sm.overflow-hidden.p-8 {
         border: 1px solid rgba(1, 114, 73, 0.12);
         border-radius: 14px;
@@ -791,46 +758,43 @@ select:focus[data-flux-control] {
         border-color: rgba(1, 114, 73, 0.18);
     }
 
-    /* Judul section */
     .text-3xl.md\:text-4xl.font-extrabold.text-center.text-\[\#017249\] {
         letter-spacing: 0.03em;
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
     }
 
-    /* Subjudul */
-    .text-xl.font-extrabold.text-\[\#017249\],
+    .text-xl.font-extrabold.text-\[\#017249\] {
+        letter-spacing: 0.02em;
+    }
     .text-2xl.font-extrabold.text-\[\#017249\] {
         letter-spacing: 0.02em;
     }
 
-    /* Body teks */
     .text-\[\#0b5a3e\] {
         opacity: 0.95;
         line-height: 1.7;
     }
 
-    /* List kebijakan/parkir (list-disc) */
     .list-disc.list-inside.marker\:text-\[\#017249\] li {
         margin: 6px 0;
         color: #305647;
     }
 
-    /* ALIGNMENT FIX: baris syarat-ketentuan (ikon “?” + teks) */
     .grid.grid-cols-1.md\:grid-cols-2.gap-8.text-\[\#0b5a3e\]
         .flex.items-start.gap-4 {
-        align-items: center; /* ikon & teks sejajar vertikal */
-        gap: 14px; /* jarak horizontal konsisten */
-        padding: 2px 0; /* ruang vertikal tipis */
+        align-items: center;
+        gap: 14px;
+        padding: 2px 0;
     }
 
     .grid.grid-cols-1.md\:grid-cols-2.gap-8.text-\[\#0b5a3e\] .w-12.h-12 {
         min-width: 48px;
         min-height: 48px;
         border-radius: 10px;
-        background: #ecfdf5; /* hijau muda netral */
+        background: #ecfdf5;
         color: #017249;
         font-weight: 800;
-        display: flex; /* jaga konten center */
+        display: flex;
         align-items: center;
         justify-content: center;
         box-shadow: 0 6px 18px rgba(3, 7, 18, 0.06);
@@ -840,10 +804,9 @@ select:focus[data-flux-control] {
     .grid.grid-cols-1.md\:grid-cols-2.gap-8.text-\[\#0b5a3e\] .font-semibold {
         line-height: 1.6;
         color: #305647;
-        margin-top: 2px; /* sedikit offset optik agar rata */
+        margin-top: 2px;
     }
 
-    /* Jika ada subteks hijau setelah judul di dalam satu blok teks, beri jarak kecil */
     .grid.grid-cols-1.md\:grid-cols-2.gap-8.text-\[\#0b5a3e\]
         .flex.items-start.gap-4
         > div
@@ -852,7 +815,6 @@ select:focus[data-flux-control] {
         margin-top: 4px;
     }
 
-    /* Responsive: lebih kompak di layar kecil */
     @media (max-width: 640px) {
         .grid.grid-cols-1.md\:grid-cols-2.gap-8.text-\[\#0b5a3e\]
             .flex.items-start.gap-4 {
@@ -864,7 +826,6 @@ select:focus[data-flux-control] {
         }
     }
 
-    /* Gambar besar (parkir/asuransi) */
     .rounded-2xl.object-cover.h-80.shadow-md {
         border-radius: 16px;
         border: 1px solid #e6ece9;
@@ -872,15 +833,164 @@ select:focus[data-flux-control] {
         box-shadow: 0 10px 26px rgba(3, 7, 18, 0.08);
     }
 
-    /* Daftar bernomor di asuransi (ol) */
     .list-decimal.list-inside li {
         margin: 6px 0;
         color: #305647;
     }
 
-    /* Divider pedoman */
     .max-w-screen-xl.mx-auto .border-t-4.border-\[\#017249\].my-8 {
         border-color: #017249;
         filter: drop-shadow(0 2px 4px rgba(3, 7, 18, 0.06));
+    }
+}
+
+/* =========================
+   [Area Styles]
+   ========================= */
+@layer components {
+    .text-center.text-3xl.font-extrabold.text-\[\#017249\] {
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+        letter-spacing: 0.03em;
+    }
+    .text-center.text-4xl.font-extrabold.text-\[\#017249\] {
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+        letter-spacing: 0.03em;
+    }
+
+    .bg-white.rounded-lg.shadow-sm.overflow-hidden.p-6,
+    .bg-white.rounded-lg.shadow-sm.overflow-hidden.p-8 {
+        border: 1px solid rgba(1, 114, 73, 0.12);
+        border-radius: 14px;
+        box-shadow: 0 10px 28px rgba(3, 7, 18, 0.06);
+        transition: transform 0.12s ease, box-shadow 0.12s ease,
+            border-color 0.12s ease;
+        background: #ffffff;
+        align-self: start;
+    }
+    .bg-white.rounded-lg.shadow-sm.overflow-hidden.p-6:hover,
+    .bg-white.rounded-lg.shadow-sm.overflow-hidden.p-8:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 18px 40px rgba(3, 7, 18, 0.08);
+        border-color: rgba(1, 114, 73, 0.18);
+    }
+
+    .grid.grid-cols-1.md\:grid-cols-2 {
+        gap: 2rem;
+        align-items: start;
+    }
+
+    .text-sm.font-extrabold.text-\[\#017249\] {
+        letter-spacing: 0.02em;
+    }
+    .text-xl.font-extrabold.text-\[\#017249\] {
+        letter-spacing: 0.02em;
+    }
+    .text-2xl.font-extrabold.text-\[\#017249\] {
+        letter-spacing: 0.02em;
+    }
+
+    .text-\[\#0b5a3e\] {
+        opacity: 0.95;
+        line-height: 1.7;
+    }
+
+    .list-none.space-y-1 li {
+        margin: 6px 0;
+        color: #305647;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Hapus frame putih di galeri area */
+    .object-cover.h-48 {
+        border-radius: 12px;
+        border: 0;
+        background: transparent;
+    }
+    .object-cover.h-56 {
+        border-radius: 12px;
+        border: 0;
+        background: transparent;
+    }
+    .object-cover.h-64 {
+        border-radius: 12px;
+        border: 0;
+        background: transparent;
+    }
+
+    /* Paksa gambar di section hijau tidak punya border/background */
+    section.bg-\[\#0b5a3e\] .grid img {
+        border: 0 !important;
+        background: transparent !important;
+    }
+
+    /* Grid galeri: pecah jadi aturan terpisah (hindari error koma) */
+    .grid.grid-cols-2.md\:grid-cols-3 {
+        gap: 0.75rem;
+    }
+    .grid.grid-cols-2.md\:grid-cols-4 {
+        gap: 0.75rem;
+    }
+
+    .bg-\[\#f0fdf4\].rounded-lg.p-6,
+    .bg-\[\#f0fdf4\].rounded-lg.p-8 {
+        border: 1px dashed #cdeadc;
+        box-shadow: 0 8px 24px rgba(3, 7, 18, 0.05);
+    }
+
+    .flex.items-center.gap-3 .px-4.py-2.bg-\[\#017249\].text-white.rounded-lg,
+    .flex.items-center.gap-3 .px-5.py-3.bg-\[\#017249\].text-white.rounded-lg {
+        box-shadow: 0 8px 20px rgba(1, 114, 73, 0.25);
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+        font-weight: 700;
+    }
+    .flex.items-center.gap-3
+        .px-4.py-2.bg-\[\#017249\].text-white.rounded-lg:hover,
+    .flex.items-center.gap-3
+        .px-5.py-3.bg-\[\#017249\].text-white.rounded-lg:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 28px rgba(1, 114, 73, 0.28);
+    }
+
+    .inline-flex.items-center.gap-2.bg-\[\#e7f4ef\].text-\[\#065f46\].px-3.py-1.rounded-md {
+        border: 1px solid rgba(1, 114, 73, 0.16);
+        font-weight: 700;
+    }
+
+    .activity-divider {
+        width: 100%;
+        height: 1px;
+        background: rgba(1, 114, 73, 0.12);
+        margin: 22px 0;
+    }
+}
+
+/* =========================
+   [Area Media Fit]
+   ========================= */
+@layer components {
+    .w-full.max-w-2xl.h-64.md\:h-80.lg\:h-96.bg-gray-100.border-2.border-dashed.border-gray-200.rounded-md.flex.items-center.justify-center {
+        height: auto !important;
+        padding: 8px;
+        overflow: visible;
+    }
+
+    .mx-auto.w-full.max-w-sm.h-48.bg-gray-100.border-2.border-dashed.border-gray-200.rounded-md.flex.items-center.justify-center {
+        height: auto !important;
+        padding: 8px;
+        overflow: visible;
+    }
+
+    /* Selector gabungan untuk img dalam container */
+    .w-full.max-w-2xl.bg-gray-100.border-2.border-dashed.border-gray-200.rounded-md.flex.items-center.justify-center
+        img,
+    .mx-auto.w-full.max-w-sm.bg-gray-100.border-2.border-dashed.border-gray-200.rounded-md.flex.items-center.justify-center
+        img {
+        display: block;
+        width: 100%;
+        height: auto !important;
+        object-fit: contain;
+        border-radius: 8px;
+        max-height: 70vh;
     }
 }
