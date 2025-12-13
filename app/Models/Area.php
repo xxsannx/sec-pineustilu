@@ -12,6 +12,7 @@ class Area extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'description',
         'extra_charge_full',
         'extra_charge_breakfast',
