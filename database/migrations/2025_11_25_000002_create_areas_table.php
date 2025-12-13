@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->decimal('extra_charge_full', 15, 2)->default(0);
             $table->decimal('extra_charge_breakfast', 15, 2)->default(0);
