@@ -15,10 +15,33 @@ return new class extends Migration
             $table->id();
             $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
             $table->foreignId('outbond_id')->constrained('outbonds')->cascadeOnDelete();
+            $table->foreignId('outbond_variant_id')->nullable()->constrained('outbond_variants')->nullOnDelete();            
+            // Schedule
             $table->date('schedule_date')->nullable();
             $table->time('schedule_time')->nullable();
-            $table->integer('number_of_people')->default(0);
-            $table->decimal('total_price', 15, 2)->default(0);
+            
+            // Quantity based on pricing_type
+            // If per_pax: total_participants
+            // If per_unit: number_of_units (boats/cars) + participants_per_unit
+            $table->integer('number_of_units')->default(1); // jumlah perahu/mobil
+            $table->integer('participants_per_unit')->nullable(); // jumlah orang per perahu/mobil
+            $table->integer('total_participants')->default(1); // total orang
+            
+            // Add-ons
+            $table->boolean('add_documentation')->default(false);
+            $table->integer('additional_documentation')->default(0); // jumlah dokumentasi tambahan
+            $table->decimal('documentation_fee', 15, 2)->default(0);
+            
+            // Transportation (only if outbond.requires_transportation = true)
+            $table->boolean('need_transportation')->default(false);
+            $table->integer('transportation_vehicles')->default(0);
+            $table->decimal('transportation_fee', 15, 2)->default(0); // Rp 200k/mobil, max 10 orang
+            
+            // Price breakdown
+            $table->decimal('base_price', 15, 2)->default(0); // from prices table
+            $table->decimal('subtotal', 15, 2)->default(0); // base_price * quantity
+            $table->decimal('total_price', 15, 2)->default(0); // subtotal + fees
+            
             $table->text('note')->nullable();
             $table->timestamps();
         });
