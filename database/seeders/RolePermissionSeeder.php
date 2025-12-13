@@ -154,7 +154,7 @@ class RolePermissionSeeder extends Seeder
             'view payments',
         ]);
 
-        // Customer Role - basic permissions
+        // Customer/User Role - basic permissions
         $customerRole = Role::firstOrCreate(
             ['name' => 'customer'],
             ['guard_name' => 'web']
@@ -169,6 +169,23 @@ class RolePermissionSeeder extends Seeder
             'create bookings',
             'view bookings', // only their own bookings
             'view payments', // only their own payments
+        ]);
+
+        // User Role - alias for customer
+        $userRole = Role::firstOrCreate(
+            ['name' => 'user'],
+            ['guard_name' => 'web']
+        );
+        $userRole->givePermissionTo([
+            'view areas',
+            'view facilities',
+            'view galleries',
+            'view items',
+            'view outbonds',
+            'view prices',
+            'create bookings',
+            'view bookings',
+            'view payments',
         ]);
 
         // Guest Role - view only

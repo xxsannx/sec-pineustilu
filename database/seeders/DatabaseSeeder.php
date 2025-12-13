@@ -16,6 +16,24 @@ class DatabaseSeeder extends Seeder
         // Call RolePermissionSeeder first to create roles and permissions
         $this->call([
             RolePermissionSeeder::class,
+            AreaSeeder::class,
+            AreaUnitSeeder::class,
+            SeasonDateSeeder::class,
+            TentPriceSeeder::class,
+            ItemSeeder::class,
+            ItemPriceSeeder::class,
+
+            // Outbond data
+            OutbondSeeder::class,
+            OutbondVariantSeeder::class,
+            OutbondVariantPriceSeeder::class,
+            OutbondPriceSeeder::class,
+
+            PineusTilu1Seeder::class,
+            PineusTilu2Seeder::class,
+            PineusTilu3Seeder::class,
+            PineusTilu4Seeder::class,
+            PineusTiluCabinSeeder::class,
         ]);
 
         // User::factory(10)->create();

@@ -14,6 +14,7 @@ class Price extends Model
         'unit_id',
         'item_id',
         'outbond_id',
+        'outbond_variant_id',
         'season_id',
         'price',
     ];
@@ -35,6 +36,11 @@ class Price extends Model
     public function outbond(): BelongsTo
     {
         return $this->belongsTo(Outbond::class);
+    }
+
+    public function outbondVariant(): BelongsTo
+    {
+        return $this->belongsTo(OutbondVariant::class);
     }
 
     public function season(): BelongsTo

@@ -13,9 +13,20 @@ class BookingOutbond extends Model
     protected $fillable = [
         'booking_id',
         'outbond_id',
+        'outbond_variant_id',
         'schedule_date',
         'schedule_time',
-        'number_of_people',
+        'number_of_units',
+        'participants_per_unit',
+        'total_participants',
+        'add_documentation',
+        'additional_documentation',
+        'documentation_fee',
+        'need_transportation',
+        'transportation_vehicles',
+        'transportation_fee',
+        'base_price',
+        'subtotal',
         'total_price',
         'note',
     ];
@@ -23,7 +34,17 @@ class BookingOutbond extends Model
     protected $casts = [
         'schedule_date' => 'date',
         'schedule_time' => 'datetime:H:i',
-        'number_of_people' => 'integer',
+        'number_of_units' => 'integer',
+        'participants_per_unit' => 'integer',
+        'total_participants' => 'integer',
+        'add_documentation' => 'boolean',
+        'additional_documentation' => 'integer',
+        'documentation_fee' => 'decimal:2',
+        'need_transportation' => 'boolean',
+        'transportation_vehicles' => 'integer',
+        'transportation_fee' => 'decimal:2',
+        'base_price' => 'decimal:2',
+        'subtotal' => 'decimal:2',
         'total_price' => 'decimal:2',
     ];
 
@@ -35,5 +56,10 @@ class BookingOutbond extends Model
     public function outbond(): BelongsTo
     {
         return $this->belongsTo(Outbond::class);
+    }
+
+    public function outbondVariant(): BelongsTo
+    {
+        return $this->belongsTo(OutbondVariant::class);
     }
 }

@@ -3,21 +3,21 @@
 @section('title', 'Pedoman - Pineus Tilu - Glamping & Outbound')
 
 @section('content')
-    @include('layouts.navbar')
+    <main class="min-h-screen pt-30 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-8">
+                @include('partials.pedoman.syarat-ketentuan')
+                @include('partials.pedoman.divider')
 
-    <main class="pt-24 w-full max-w-screen-xl mx-auto px-6 pb-28 bg-[#f6fbf8]">
-        @include('partials.pedoman.header')
+                @include('partials.pedoman.kebijakan-informasi')
+                <x-reschedule-cancellation-cta/>
+                @include('partials.pedoman.divider')
 
-        @include('partials.pedoman.syarat-ketentuan')
-        @include('partials.pedoman.divider')
+                @include('partials.pedoman.parkir')
+                @include('partials.pedoman.divider')
 
-        @include('partials.pedoman.kebijakan-informasi')
-        @include('partials.pedoman.divider')
-
-        @include('partials.pedoman.parkir')
-        @include('partials.pedoman.divider')
-
-        @include('partials.pedoman.asuransi')
-        @include('partials.pedoman.divider')
+                @include('partials.pedoman.asuransi')
+            </div>
+        </div>
     </main>
 @endsection

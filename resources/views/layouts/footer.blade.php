@@ -1,14 +1,14 @@
-<footer class="bg-white border-t border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<footer class="bg-white border-t border-gray-200 overflow-x-hidden w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 w-full" data-aos="fade-up" data-aos-duration="800">
             <!-- Logo Section -->
-            <div class="col-span-1">
+            <div class="col-span-1" data-aos="fade-up" data-aos-delay="100">
                 <img src="{{ asset('images/logo.png') }}" alt="Pineus Tilu Logo" class="h-24 mb-2">
                 <p class="text-sm text-gray-600">© 2024. Pineus Tilu, All Rights Reserved.</p>
             </div>
 
             <!-- Pertanyaan Umum -->
-            <div>
+            <div data-aos="fade-up" data-aos-delay="200">
                 <h3 class="text-[#017249] font-semibold mb-4">Pertanyaan Umum</h3>
                 <ul class="space-y-1 text-sm">
                     <li><a href="#" class="text-gray-600 hover:text-[#017249] transition-colors">Penjadwalan Ulang</a></li>
@@ -17,7 +17,7 @@
             </div>
 
             <!-- Kontak -->
-            <div>
+            <div data-aos="fade-up" data-aos-delay="300">
                 <h3 class="text-[#017249] font-semibold mb-4">Kontak</h3>
                 <div class="space-y-2 text-sm text-gray-600">
                     <div class="flex items-center gap-2">
@@ -48,7 +48,7 @@
             </div>
 
             <!-- Saran -->
-            <div>
+            <div data-aos="fade-up" data-aos-delay="400">
                 <h3 class="text-[#017249] font-semibold mb-4">Saran</h3>
                 <p class="text-gray-600 text-sm mb-3">Masukkan alamat email</p>
                 <div class="space-y-2">

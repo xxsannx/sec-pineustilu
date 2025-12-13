@@ -50,12 +50,17 @@ class CreateNewUser implements CreatesNewUsers
             'password.confirmed' => 'Konfirmasi password tidak cocok.',
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'country_code' => $input['country_code'],
             'phone' => $input['phone'],
             'password' => $input['password'],
         ]);
+
+        // Assign user role to new registered user
+        $user->assignRole('user');
+
+        return $user;
     }
 }
