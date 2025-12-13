@@ -47,9 +47,9 @@
             
             {{-- Image & Notes - Left Side --}}
             <div data-aos="fade-right" data-aos-duration="800">
-                <div class="space-y-6">
+                <div class="flex flex-col h-full gap-6">
                     {{-- Image --}}
-                    <div class="rounded-2xl overflow-hidden shadow-lg border-2 border-gray-100 bg-gradient-to-br from-gray-100 to-gray-200">
+                    <div class="rounded-2xl overflow-hidden shadow-lg border-2 border-gray-100 bg-gradient-to-br from-gray-100 to-gray-200 flex-1">
                         <div class="aspect-[4/3] w-full flex items-center justify-center">
                             <span class="text-gray-400 text-lg">Image Placeholder</span>
                         </div>
@@ -71,9 +71,9 @@
 
             {{-- Parking Info - Right Side --}}
             <div data-aos="fade-left" data-aos-duration="800">
-                <div class="space-y-6">
+                <div class="flex flex-col h-full gap-6">
                     {{-- Parkir Menginap --}}
-                    <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border-2 border-gray-100">
+                    <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border-2 border-gray-100 flex-1">
                         <h3 class="text-xl md:text-2xl font-bold text-[#017249] mb-5 flex items-center gap-2">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M13.5 3C8.257 3 4 7.03 4 12c0 4.97 4.257 9 9.5 9 5.244 0 9.5-4.03 9.5-9 0-4.97-4.256-9-9.5-9zm2.334 9.27h-1.417v4.482h-1.834V12.27H11.17V10.73h4.664v1.54z"/>
