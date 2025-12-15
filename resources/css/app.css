@@ -122,7 +122,7 @@
 
 [data-flux-label] {
     @apply !mb-0 !leading-tight;
-}
+} 
 
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
