@@ -1,4 +1,3 @@
-<script>
 document.addEventListener('DOMContentLoaded', function () {
     const items = Array.from(document.querySelectorAll('.faq-item'));
     const search = document.getElementById('faq-search');
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 content.hidden = true;
                 item.setAttribute('aria-open', 'false');
             } else {
-                // close other items (optional: keep only one open)
                 items.forEach(i => {
                     if (i !== item) {
                         i.querySelector('.faq-a').hidden = true;
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
                 content.hidden = false;
                 item.setAttribute('aria-open', 'true');
-                // pastikan item terlihat
                 const rect = item.getBoundingClientRect();
                 if (rect.top < 80 || rect.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
                     item.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -33,20 +30,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // keyboard support (Enter / Space)
-    document.querySelectorAll('.faq-q').forEach(btn=>{
-        btn.addEventListener('keydown', (e)=>{
-            if(e.key === 'Enter' || e.key === ' '){
+    document.querySelectorAll('.faq-q').forEach(btn => {
+        btn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 btn.click();
             }
         });
     });
 
-    // simple search/filter by keywords attribute or visible text
     function filterFaq(q) {
         const term = (q || '').trim().toLowerCase();
-        items.forEach(item=>{
+        items.forEach(item => {
             const keywords = (item.dataset.keywords || '').toLowerCase();
             const text = item.textContent.toLowerCase();
             const match = !term || keywords.includes(term) || text.includes(term);
@@ -54,8 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    search.addEventListener('input', (e)=> filterFaq(e.target.value));
-    clearBtn.addEventListener('click', ()=> { search.value=''; filterFaq(''); search.focus(); });
-
+    search.addEventListener('input', (e) => filterFaq(e.target.value));
+    clearBtn.addEventListener('click', () => { search.value = ''; filterFaq(''); search.focus(); });
 });
-</script>

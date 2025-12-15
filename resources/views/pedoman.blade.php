@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Pedoman - Pineus Tilu - Glamping & Outbound')
 

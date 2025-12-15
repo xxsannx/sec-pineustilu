@@ -4,7 +4,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                 <!-- Gambar kiri -->
                 <div>
-                    <img src="{{ asset('images/aktivitas/team-building.jpg') }}" alt="Team Building" class="w-full rounded-lg shadow-md object-cover h-56">
+                    <img src="{{ asset('images/aktivitas/team-building.jpg') }}" alt="Team Building"
+                        class="w-full rounded-lg shadow-md object-cover h-56">
                 </div>
 
                 <!-- Teks kanan -->
@@ -15,7 +16,8 @@
                     <p class="text-sm mb-2"><strong>Rp 175.000</strong>/pax</p>
 
                     <h4 class="text-sm font-extrabold text-[#017249] mb-1">FASILITAS</h4>
-                    <p class="text-sm leading-relaxed mb-2">Peralatan, termasuk instruktur, sound system &amp; Kotak P3K/Peralatan keselamatan.</p>
+                    <p class="text-sm leading-relaxed mb-2">Peralatan, termasuk instruktur, sound system &amp; Kotak
+                        P3K/Peralatan keselamatan.</p>
 
                     <h4 class="text-sm font-extrabold text-[#017249] mb-1">DURASI</h4>
                     <p class="text-sm mb-1">~120 menit</p>

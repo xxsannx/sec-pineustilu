@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Cerita - Pineus Tilu - Glamping & Outbound')
 
@@ -33,6 +33,10 @@
             @include('partials.cerita.credit')
         </div>
     </main>
+
+    @push('scripts')
+        <script src="{{ asset('js/cerita.js') }}" defer></script>
+    @endpush
 @endsection
 
 @push('scripts')

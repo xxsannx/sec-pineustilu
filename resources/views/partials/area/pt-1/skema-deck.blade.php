@@ -14,7 +14,10 @@
         <div class="bg-white rounded-lg shadow-lg p-6">
             <div class="flex flex-col items-center">
                 <div class="w-full max-w-2xl h-64 md:h-80 lg:h-96 bg-gray-100 border-2 border-dashed border-gray-200 rounded-md flex items-center justify-center"
-                    role="img" aria-label="Placeholder untuk skema deck (kosong)">
+                    role="img" aria-label="Skema Deck PT-1">
+                    <!-- DenahPT1.jpg -->
+                    <img src="{{ asset('images/area-galeri/pt-1/DenahPT1.jpg') }}" alt="Denah Pineus Tilu I (PT-1)"
+                        class="w-full h-full object-contain rounded-md">
                 </div>
             </div>
         </div>

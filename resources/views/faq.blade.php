@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Frequently Asked Questions - Pineus Tilu - Glamping & Outbound')
 
@@ -13,6 +13,7 @@
         </div>
     </main>
 
-    @include('partials.faq.styles')
-    @include('partials.faq.scripts')
+    @push('scripts')
+        <script src="{{ asset('js/faq.js') }}" defer></script>
+    @endpush
 @endsection
