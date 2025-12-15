@@ -11,6 +11,6 @@
     </main>
 
     @push('scripts')
-        @vite('resources/js/pages/reservasi-outbound.js')
+        <script src="{{ asset('js/reservasi-outbound.js') }}" defer></script>
     @endpush
 @endsection

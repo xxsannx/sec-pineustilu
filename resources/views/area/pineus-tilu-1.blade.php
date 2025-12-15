@@ -12,31 +12,31 @@
 
         <!-- Blok teks diposisikan absolut di tengah-atas -->
         <div class="absolute w-full text-white text-center" style="
-                    top: clamp(72px, 10vh, 120px);
-                    left: 0;
-                    padding: 0 clamp(16px, 6vw, 120px);
-                    pointer-events: none;
-                ">
-            <h1 class="mb-1 leading-tight font-bold tracking-wide" style="
-                        font-size: clamp(28px, 5vw, 64px);
-                        text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
-                        font-weight: 400;
-                        letter-spacing: 0;
-                        text-rendering: optimizeLegibility;
-                        -webkit-font-smoothing: antialiased;
-                        -moz-osx-font-smoothing: grayscale;
+                        top: clamp(72px, 10vh, 120px);
+                        left: 0;
+                        padding: 0 clamp(16px, 6vw, 120px);
+                        pointer-events: none;
                     ">
+            <h1 class="mb-1 leading-tight font-bold tracking-wide" style="
+                            font-size: clamp(28px, 5vw, 64px);
+                            text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+                            font-weight: 400;
+                            letter-spacing: 0;
+                            text-rendering: optimizeLegibility;
+                            -webkit-font-smoothing: antialiased;
+                            -moz-osx-font-smoothing: grayscale;
+                        ">
                 <span style="font-family: 'Bizon', 'Poppins', ui-sans-serif, system-ui; font-weight: 400;">PINEUS
                     TILU</span>
                 <span class="italic"
                     style="font-family: 'Poppins', ui-sans-serif, system-ui; font-style: italic; font-weight: 600;">1</span>
             </h1>
             <p class="italic" style="
-                        font-family: 'Poppins', ui-sans-serif, system-ui; font-style: italic;
-                        font-size: clamp(14px, 2.2vw, 22px);
-                        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-                        margin-top: 4px;
-                    ">
+                            font-family: 'Poppins', ui-sans-serif, system-ui; font-style: italic;
+                            font-size: clamp(14px, 2.2vw, 22px);
+                            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+                            margin-top: 4px;
+                        ">
                 RestoreYourLife
             </p>
         </div>
@@ -52,6 +52,6 @@
     @include('partials.area.pt-1.galeri')
     @include('partials.area.pt-1.reservasi-cta')
     @push('scripts')
-        @vite('resources/js/pages/area.js')
+        <script src="{{ asset('js/area.js') }}" defer></script>
     @endpush
 @endsection

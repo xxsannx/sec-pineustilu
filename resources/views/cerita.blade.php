@@ -19,6 +19,6 @@
     </main>
 
     @push('scripts')
-        @vite('resources/js/pages/cerita.js')
+        <script src="{{ asset('js/cerita.js') }}" defer></script>
     @endpush
 @endsection

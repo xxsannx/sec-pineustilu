@@ -13,6 +13,6 @@
     </main>
 
     @push('scripts')
-        @vite('resources/js/pages/faq.js')
+        <script src="{{ asset('js/faq.js') }}" defer></script>
     @endpush
 @endsection

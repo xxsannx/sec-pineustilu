@@ -11,6 +11,6 @@
     </main>
 
     @push('scripts')
-        @vite('resources/js/pages/reservasi-glamping.js')
+        <script src="{{ asset('js/reservasi-glamping.js') }}" defer></script>
     @endpush
 @endsection
