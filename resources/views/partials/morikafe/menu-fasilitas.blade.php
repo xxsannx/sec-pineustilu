@@ -24,7 +24,7 @@
             <div class="grid grid-cols-2 gap-6">
                 @for($i = 1; $i <= 6; $i++)
                     <div class="rounded-2xl overflow-hidden shadow-md">
-                        <img src="{{ asset('images/morikafe/facility-' . $i . '.jpg') }}" alt="fasilitas {{$i}}"
+                        <img src="{{ asset('images/morikafe-galeri/fasilitas' . $i . '.jpg') }}" alt="fasilitas {{$i}}"
                             class="w-full h-48 md:h-[240px] lg:h-[280px] object-cover rounded-2xl transition-transform duration-300 hover:scale-105">
                     </div>
                 @endfor

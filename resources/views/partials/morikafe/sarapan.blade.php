@@ -115,9 +115,22 @@
         </div>
 
         <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            @for($i=1;$i<=6;$i++)
-                <img src="{{ asset('images/morikafe/gallery-'.$i.'.jpg') }}" alt="foto {{$i}}" class="w-full h-44 object-cover rounded-2xl shadow-md">
-            @endfor
+            @php
+                $images = [
+                    'sarapan1.jpg',
+                    'drink.jpg',
+                    'topdownview1.jpg',
+                    'topdownview2.jpg',
+                    'prasmanan.jpg',
+                    'sarapan2.jpg'
+                ];
+            @endphp
+
+            @foreach($images as $img)
+                <img src="{{ asset('images/morikafe-galeri/' . $img) }}"
+                    alt="galeri morikafe"
+                    class="w-full h-44 object-cover rounded-2xl shadow-md">
+             @endforeach
         </div>
     </div>
 </section>
