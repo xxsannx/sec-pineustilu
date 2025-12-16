@@ -39,7 +39,7 @@ class Booking extends Model
 
     public function bookingOutbonds(): HasMany
     {
-        return $this->hasMany(BookingOutbond::class);
+        return $this->hasMany(BookingOutbound::class);
     }
 
     public function payments(): HasMany

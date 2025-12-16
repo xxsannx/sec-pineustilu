@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('area_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('facility_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignId('outbond_id')->nullable()->constrained('outbonds')->cascadeOnDelete();
+            $table->foreignId('outbound_id')->nullable()->constrained('outbounds')->cascadeOnDelete();
             $table->string('image_path');
             $table->text('description')->nullable();
             $table->string('type')->nullable(); // image, video

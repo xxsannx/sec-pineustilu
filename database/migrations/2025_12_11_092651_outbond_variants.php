@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('outbond_variants', function (Blueprint $table) {
+        Schema::create('outbound_variants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('outbond_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('outbound_id')->constrained()->cascadeOnDelete();
             
             $table->string('variant_type')->nullable(); // 'single', 'double', 'capacity_based'
             $table->string('variant_label'); // 'Single (1 pax)', '1 Perahu 4 orang'
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('outbond_variants');
+        Schema::dropIfExists('outbound_variants');
     }
 };

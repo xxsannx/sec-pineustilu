@@ -17,8 +17,8 @@
             </div>
 
             <div>
-                <label class="block text-sm text-gray-600 mb-2" for="outSelectedCat">Outbond Yang Dipilih :</label>
-                <input id="outSelectedCat" name="selectedOutbond" type="text" readonly
+                <label class="block text-sm text-gray-600 mb-2" for="outSelectedCat">Outbound Yang Dipilih :</label>
+                <input id="outSelectedCat" name="selectedOutbound" type="text" readonly
                     class="w-full rounded-lg border px-3 py-2 bg-gray-50" value="Arung Jeram">
             </div>
 

@@ -10,21 +10,20 @@
         </div>
 
         <div class="space-y-8 md:space-y-12">
-            <!-- Map (full width, di atas) -->
-            <div data-aos="fade-up" data-aos-duration="800">
-                <div class="bg-white rounded-2xl p-4 md:p-6 shadow-xl">
+            <div data-aos="fade-up" class="flex justify-center" data-aos-duration="800">
+                <div class="bg-white rounded-2xl p-2 md:p-4 shadow-xl overflow-hidden w-full lg:w-auto md:max-w-[820px] mx-auto">
                     <div class="flex items-center gap-2 mb-4">
                         <svg class="w-6 h-6 text-[#017249]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
                         </svg>
-                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Peta Area Camping</h3>
+                        <h3 class="text-xl md:text-2xl font-bold text-[#017249]">Peta Area Camping</h3>
                     </div>
 
                     <div data-open-modal="map" class="cursor-pointer group relative rounded-2xl shadow-md">
-                        <div class="w-full flex items-center justify-center p-4 md:p-6">
+                        <div class="flex items-center justify-center p-0 md:p-2 w-full">
                             <img src="/images/fullmap.jpeg"
                                  alt="Peta Pineus Tilu Camp Ground"
-                                 class="max-w-full max-h-[320px] md:max-h-[420px] lg:max-h-[520px] object-contain rounded-2xl relative z-[1]">
+                                 class="w-full h-auto max-h-[320px] md:max-h-[420px] lg:max-h-[520px] object-contain rounded-2xl relative z-[1]">
                         </div>
 
                         <div class="absolute inset-0 bg-transparent group-hover:bg-black group-hover:bg-opacity-20 transition-colors duration-300 flex items-center justify-center pointer-events-none z-[2] rounded-2xl">
@@ -50,10 +49,10 @@
             </div>
 
             <!-- Location (di bawah peta) -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-stretch">
                 <!-- Address Card -->
                 <div data-aos="fade-right" data-aos-duration="800">
-                    <div class="bg-white rounded-2xl p-6 md:p-8 shadow-xl">
+                    <div class="bg-white rounded-2xl p-6 md:p-8 shadow-xl h-full flex flex-col justify-between min-h-[220px] md:min-h-[300px] lg:min-h-[360px]">
                         <div class="flex items-start gap-3 mb-4">
                             <div class="bg-[#017249] rounded-full p-2.5 flex-shrink-0">
                                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,16 +88,16 @@
 
                 <!-- Google Maps Embed -->
                 <div data-aos="fade-left" data-aos-duration="800">
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-xl">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-xl h-full min-h-[220px] md:min-h-[300px] lg:min-h-[360px]">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.8579874598244!2d107.54241099999999!3d-7.1819655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e689144cb1ebb5d%3A0x5e98bae230f55aaf!2sPineus%20Tilu%20Camp%20Ground!5e0!3m2!1sen!2sid!4v1732528234567!5m2!1sen!2sid"
-                            class="w-full h-[220px] md:h-[300px] lg:h-[360px]"
+                            class="w-full h-full"
                             style="border:0;"
                             allowfullscreen=""
                             loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"
                             title="Peta Lokasi Pineus Tilu Camp Ground">
-                        </iframe>   
+                        </iframe>
                     </div>
                 </div>
             </div>

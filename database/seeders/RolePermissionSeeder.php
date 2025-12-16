@@ -59,10 +59,10 @@ class RolePermissionSeeder extends Seeder
             'delete items',
             
             // Outbound Management
-            'view outbonds',
-            'create outbonds',
-            'edit outbonds',
-            'delete outbonds',
+            'view outbounds',
+            'create outbounds',
+            'edit outbounds',
+            'delete outbounds',
             
             // Price Management
             'view prices',
@@ -124,9 +124,9 @@ class RolePermissionSeeder extends Seeder
             'view items',
             'create items',
             'edit items',
-            'view outbonds',
-            'create outbonds',
-            'edit outbonds',
+            'view outbounds',
+            'create outbounds',
+            'edit outbounds',
             'view prices',
             'create prices',
             'edit prices',
@@ -149,7 +149,7 @@ class RolePermissionSeeder extends Seeder
             'view facilities',
             'view galleries',
             'view items',
-            'view outbonds',
+            'view outbounds',
             'view prices',
             'view payments',
         ]);
@@ -164,7 +164,7 @@ class RolePermissionSeeder extends Seeder
             'view facilities',
             'view galleries',
             'view items',
-            'view outbonds',
+            'view outbounds',
             'view prices',
             'create bookings',
             'view bookings', // only their own bookings
@@ -181,7 +181,7 @@ class RolePermissionSeeder extends Seeder
             'view facilities',
             'view galleries',
             'view items',
-            'view outbonds',
+            'view outbounds',
             'view prices',
             'create bookings',
             'view bookings',
@@ -198,7 +198,7 @@ class RolePermissionSeeder extends Seeder
             'view facilities',
             'view galleries',
             'view items',
-            'view outbonds',
+            'view outbounds',
             'view prices',
         ]);
 

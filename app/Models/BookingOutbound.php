@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class BookingOutbond extends Model
+class BookingOutbound extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'booking_id',
-        'outbond_id',
-        'outbond_variant_id',
+        'outbound_id',
+        'outbound_variant_id',
         'schedule_date',
         'schedule_time',
         'number_of_units',
@@ -53,13 +53,13 @@ class BookingOutbond extends Model
         return $this->belongsTo(Booking::class);
     }
 
-    public function outbond(): BelongsTo
+    public function outbound(): BelongsTo
     {
-        return $this->belongsTo(Outbond::class);
+        return $this->belongsTo(Outbound::class);
     }
 
-    public function outbondVariant(): BelongsTo
+    public function outboundVariant(): BelongsTo
     {
-        return $this->belongsTo(OutbondVariant::class);
+        return $this->belongsTo(OutboundVariant::class);
     }
 }

@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class OutbondVariant extends Model
+class OutboundVariant extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'outbond_id',
+        'outbound_id',
         'variant_type',
         'variant_label',
         'min_pax_per_unit',
@@ -30,9 +30,9 @@ class OutbondVariant extends Model
         'sort_order' => 'integer',
     ];
 
-    public function outbond(): BelongsTo
+    public function outbound(): BelongsTo
     {
-        return $this->belongsTo(Outbond::class);
+        return $this->belongsTo(Outbound::class);
     }
 
     public function prices(): HasMany
@@ -40,8 +40,8 @@ class OutbondVariant extends Model
         return $this->hasMany(Price::class);
     }
 
-    public function bookingOutbonds(): HasMany
+    public function bookingOutbounds(): HasMany
     {
-        return $this->hasMany(BookingOutbond::class);
+        return $this->hasMany(BookingOutbound::class);
     }
 }

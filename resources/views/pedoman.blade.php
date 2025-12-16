@@ -7,14 +7,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="space-y-8">
                 @include('partials.pedoman.syarat-ketentuan')
-                @include('partials.pedoman.divider')
 
                 @include('partials.pedoman.kebijakan-informasi')
-                <x-reschedule-cancellation-cta/>
-                @include('partials.pedoman.divider')
+                <x-reschedule-cancellation-cta />
 
                 @include('partials.pedoman.parkir')
-                @include('partials.pedoman.divider')
 
                 @include('partials.pedoman.asuransi')
             </div>

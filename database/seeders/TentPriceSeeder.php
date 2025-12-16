@@ -40,7 +40,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekdaySeasonId,
                 'price' => 750000,
                 'created_at' => Carbon::now(),
@@ -51,7 +51,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekdaySeasonId,
                 'price' => 650000,
                 'created_at' => Carbon::now(),
@@ -64,7 +64,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekendSeasonId,
                 'price' => 950000,
                 'created_at' => Carbon::now(),
@@ -75,7 +75,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekendSeasonId,
                 'price' => 900000,
                 'created_at' => Carbon::now(),
@@ -89,7 +89,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $highSeasonId,
                 'price' => 1100000,
                 'created_at' => Carbon::now(),
@@ -115,7 +115,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekdaySeasonId,
                 'price' => 650000,
                 'created_at' => Carbon::now(),
@@ -126,7 +126,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekdaySeasonId,
                 'price' => 750000,
                 'created_at' => Carbon::now(),
@@ -139,7 +139,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekendSeasonId,
                 'price' => 900000,
                 'created_at' => Carbon::now(),
@@ -150,7 +150,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekendSeasonId,
                 'price' => 950000,
                 'created_at' => Carbon::now(),
@@ -164,7 +164,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $highSeasonId,
                 'price' => 1100000,
                 'created_at' => Carbon::now(),
@@ -190,7 +190,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekdaySeasonId,
                 'price' => 1600000,
                 'created_at' => Carbon::now(),
@@ -201,7 +201,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekdaySeasonId,
                 'price' => 1500000,
                 'created_at' => Carbon::now(),
@@ -214,7 +214,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekendSeasonId,
                 'price' => 2000000,
                 'created_at' => Carbon::now(),
@@ -225,7 +225,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekendSeasonId,
                 'price' => 1900000,
                 'created_at' => Carbon::now(),
@@ -238,7 +238,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $highSeasonId,
                 'price' => 2300000,
                 'created_at' => Carbon::now(),
@@ -249,7 +249,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $highSeasonId,
                 'price' => 2200000,
                 'created_at' => Carbon::now(),
@@ -269,7 +269,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekdaySeasonId,
                 'price' => 750000,
                 'created_at' => Carbon::now(),
@@ -282,7 +282,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $weekendSeasonId,
                 'price' => 950000,
                 'created_at' => Carbon::now(),
@@ -295,7 +295,7 @@ class TentPriceSeeder extends Seeder
             $prices[] = [
                 'unit_id' => $unitId,
                 'item_id' => null,
-                'outbond_id' => null,
+                'outbound_id' => null,
                 'season_id' => $highSeasonId,
                 'price' => 1100000,
                 'created_at' => Carbon::now(),
@@ -315,7 +315,7 @@ class TentPriceSeeder extends Seeder
         $prices[] = [
             'unit_id' => $cabin_id,
             'item_id' => null,
-            'outbond_id' => null,
+            'outbound_id' => null,
             'season_id' => $weekdaySeasonId,
             'price' => 1500000,
             'created_at' => Carbon::now(),
@@ -326,7 +326,7 @@ class TentPriceSeeder extends Seeder
         $prices[] = [
             'unit_id' => $cabin_id,
             'item_id' => null,
-            'outbond_id' => null,
+            'outbound_id' => null,
             'season_id' => $weekendSeasonId,
             'price' => 1900000,
             'created_at' => Carbon::now(),
@@ -337,7 +337,7 @@ class TentPriceSeeder extends Seeder
         $prices[] = [
             'unit_id' => $cabin_id,
             'item_id' => null,
-            'outbond_id' => null,
+            'outbound_id' => null,
             'season_id' => $highSeasonId,
             'price' => 2200000,
             'created_at' => Carbon::now(),

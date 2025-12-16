@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Outbond extends Model
+class Outbound extends Model
 {
     use HasFactory;
 
@@ -45,7 +45,7 @@ class Outbond extends Model
 
     public function variants(): HasMany
     {
-        return $this->hasMany(OutbondVariant::class);
+        return $this->hasMany(OutboundVariant::class);
     }
 
     public function facilities(): HasMany
@@ -58,9 +58,9 @@ class Outbond extends Model
         return $this->hasMany(Gallery::class);
     }
 
-    public function bookingOutbonds(): HasMany
+    public function bookingOutbounds(): HasMany
     {
-        return $this->hasMany(BookingOutbond::class);
+        return $this->hasMany(BookingOutbound::class);
     }
 
     public function prices(): HasMany

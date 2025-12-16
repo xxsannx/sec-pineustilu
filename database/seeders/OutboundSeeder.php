@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class OutbondSeeder extends Seeder
+class OutboundSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class OutbondSeeder extends Seeder
     {
         $now = Carbon::now();
 
-        $outbonds = [
+        $outbounds = [
             [
                 'name' => 'Arung Jeram',
                 'slug' => 'arung-jeram',
@@ -139,6 +139,6 @@ class OutbondSeeder extends Seeder
             ],
         ];
 
-        DB::table('outbonds')->insert($outbonds);
+        DB::table('outbounds')->insert($outbounds);
     }
 }

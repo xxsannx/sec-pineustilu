@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class OutbondVariantSeeder extends Seeder
+class OutboundVariantSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,16 +16,16 @@ class OutbondVariantSeeder extends Seeder
     {
         $now = Carbon::now();
 
-        // Find outbond IDs by slug to avoid hardcoding IDs (assumes OutbondSeeder ran first)
-        $arungId = DB::table('outbonds')->where('slug', 'arung-jeram')->value('id');
-        $atvId = DB::table('outbonds')->where('slug', 'fun-atv')->value('id');
+        // Find Outbound IDs by slug to avoid hardcoding IDs (assumes outboundSeeder ran first)
+        $arungId = DB::table('outbounds')->where('slug', 'arung-jeram')->value('id');
+        $atvId = DB::table('outbounds')->where('slug', 'fun-atv')->value('id');
 
         $variants = [];
 
         if ($arungId) {
             // Arung Jeram variants (capacity-based)
             $variants[] = [
-                'outbond_id' => $arungId,
+                'outbound_id' => $arungId,
                 'variant_type' => 'capacity_based',
                 'variant_label' => '1 Perahu < 4 orang',
                 'min_pax_per_unit' => 1,
@@ -37,7 +37,7 @@ class OutbondVariantSeeder extends Seeder
                 'updated_at' => $now,
             ];
             $variants[] = [
-                'outbond_id' => $arungId,
+                'outbound_id' => $arungId,
                 'variant_type' => 'capacity_based',
                 'variant_label' => '1 Perahu 4 orang',
                 'min_pax_per_unit' => 4,
@@ -49,7 +49,7 @@ class OutbondVariantSeeder extends Seeder
                 'updated_at' => $now,
             ];
             $variants[] = [
-                'outbond_id' => $arungId,
+                'outbound_id' => $arungId,
                 'variant_type' => 'capacity_based',
                 'variant_label' => '1 Perahu 5 orang',
                 'min_pax_per_unit' => 5,
@@ -61,7 +61,7 @@ class OutbondVariantSeeder extends Seeder
                 'updated_at' => $now,
             ];
             $variants[] = [
-                'outbond_id' => $arungId,
+                'outbound_id' => $arungId,
                 'variant_type' => 'capacity_based',
                 'variant_label' => '1 Perahu 6 orang',
                 'min_pax_per_unit' => 6,
@@ -77,7 +77,7 @@ class OutbondVariantSeeder extends Seeder
         if ($atvId) {
             // Fun ATV variants (single/double)
             $variants[] = [
-                'outbond_id' => $atvId,
+                'outbound_id' => $atvId,
                 'variant_type' => 'single',
                 'variant_label' => 'Single (1 pax)',
                 'min_pax_per_unit' => 1,
@@ -89,7 +89,7 @@ class OutbondVariantSeeder extends Seeder
                 'updated_at' => $now,
             ];
             $variants[] = [
-                'outbond_id' => $atvId,
+                'outbound_id' => $atvId,
                 'variant_type' => 'double',
                 'variant_label' => 'Double (2 pax)',
                 'min_pax_per_unit' => 2,
@@ -103,7 +103,7 @@ class OutbondVariantSeeder extends Seeder
         }
 
         if (!empty($variants)) {
-            DB::table('outbond_variants')->insert($variants);
+            DB::table('outbound_variants')->insert($variants);
         }
     }
 }

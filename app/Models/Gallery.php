@@ -13,7 +13,7 @@ class Gallery extends Model
     protected $fillable = [
         'area_id',
         'facility_id',
-        'outbond_id',
+        'outbound_id',
         'image_path',
         'description',
         'type',
@@ -29,8 +29,8 @@ class Gallery extends Model
         return $this->belongsTo(Facility::class);
     }
 
-    public function outbond(): BelongsTo
+    public function outbound(): BelongsTo
     {
-        return $this->belongsTo(Outbond::class);
+        return $this->belongsTo(Outbound::class);
     }
 }

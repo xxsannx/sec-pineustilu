@@ -13,7 +13,7 @@ class Facility extends Model
 
     protected $fillable = [
         'area_id',
-        'outbond_id',
+        'outbound_id',
         'name',
         'type',
         'icon',

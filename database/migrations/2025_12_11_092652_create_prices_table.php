@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
-            // One of these must be filled: unit_id (for glamping), item_id (for additional items), or outbond_id (for outbond activities)
+            // One of these must be filled: unit_id (for glamping), item_id (for additional items), or outbound_id (for outbound activities)
             $table->foreignId('unit_id')->nullable()->constrained('area_units')->cascadeOnDelete();
             $table->foreignId('item_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignId('outbond_id')->nullable()->constrained('outbonds')->cascadeOnDelete();
-            $table->foreignID('outbond_variant_id')->nullable()->constrained('outbond_variants')->cascadeOnDelete();
+            $table->foreignId('outbound_id')->nullable()->constrained('outbounds')->cascadeOnDelete();
+            $table->foreignID('outbound_variant_id')->nullable()->constrained('outbound_variants')->cascadeOnDelete();
             $table->foreignId('season_id')->nullable()->constrained('season_dates')->cascadeOnDelete();
             $table->decimal('price', 15, 2);
             $table->timestamps();

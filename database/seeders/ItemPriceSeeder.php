@@ -59,7 +59,7 @@ class ItemPriceSeeder extends Seeder
                 $prices[] = [
                     'item_id' => $items[$itemName]->id,
                     'unit_id' => null,
-                    'outbond_id' => null,
+                    'outbound_id' => null,
                     'season_id' => null,
                     'price' => $price,
                     'created_at' => $now,

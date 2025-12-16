@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('booking_outbonds', function (Blueprint $table) {
+        Schema::create('booking_outbounds', function (Blueprint $table) {
             $table->id();
             $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
-            $table->foreignId('outbond_id')->constrained('outbonds')->cascadeOnDelete();
-            $table->foreignId('outbond_variant_id')->nullable()->constrained('outbond_variants')->nullOnDelete();            
+            $table->foreignId('outbound_id')->constrained('outbounds')->cascadeOnDelete();
+            $table->foreignId('outbound_variant_id')->nullable()->constrained('outbound_variants')->nullOnDelete();            
             // Schedule
             $table->date('schedule_date')->nullable();
             $table->time('schedule_time')->nullable();
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->integer('additional_documentation')->default(0); // jumlah dokumentasi tambahan
             $table->decimal('documentation_fee', 15, 2)->default(0);
             
-            // Transportation (only if outbond.requires_transportation = true)
+            // Transportation (only if outbound.requires_transportation = true)
             $table->boolean('need_transportation')->default(false);
             $table->integer('transportation_vehicles')->default(0);
             $table->decimal('transportation_fee', 15, 2)->default(0); // Rp 200k/mobil, max 10 orang
@@ -52,6 +52,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('booking_outbonds');
+        Schema::dropIfExists('booking_outbounds');
     }
 };
