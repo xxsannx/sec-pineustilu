@@ -1,101 +1,55 @@
-<div class="extras-card">
-    <h3 class="extras-title">Daging & Saus</h3>
+<section class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100" aria-labelledby="daging-heading" role="region">
+    <h3 id="daging-heading" class="text-[#017249] font-semibold mb-4 text-lg md:text-xl" data-aos="fade-down" data-aos-duration="700">Daging & Saus</h3>
 
-    <div class="extras-list">
-        <div class="extras-row">
-            <div class="extras-info">
-                <div class="extras-name">Beef Sirloin</div>
-                <div class="extras-note">(4 pcs / 500g)</div>
-            </div>
-            <div class="extras-price">98k</div>
-        </div>
+    <ul class="space-y-3 divide-y divide-gray-100">
+        @forelse($daging ?? [] as $item)
+            <li class="py-3" data-aos="fade-up" data-aos-duration="700" data-aos-delay="{{ 50 * $loop->index }}">
+                <div class="flex items-start justify-between gap-4">
+                    <div class="min-w-0">
+                        <div class="text-base md:text-lg font-semibold text-gray-800 truncate">{{ $item['name'] }}</div>
+                        @if(!empty($item['description']))
+                            <div class="text-sm md:text-base text-gray-500 mt-1">{{ $item['description'] }}</div>
+                        @endif
+                    </div>
 
-        <div class="extras-row">
-            <div class="extras-info">
-                <div class="extras-name">Beef Slice Short Plate</div>
-                <div class="extras-note">(500g)</div>
-            </div>
-            <div class="extras-price">79k</div>
-        </div>
+                    <div class="flex-shrink-0">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full bg-green-50 text-[#017249] border border-green-100 font-semibold text-sm md:text-base">
+                            {{ $item['price_display'] ?? '—' }}
+                        </span>
+                    </div>
+                </div>
+            </li>
+        @empty
+            <li class="py-6" data-aos="fade-up" data-aos-duration="700">
+                <div class="text-center text-sm md:text-base text-gray-500">
+                    Belum ada produk daging tersedia saat ini.
+                </div>
+            </li>
+        @endforelse
+    </ul>
 
-        <div class="extras-row">
-            <div class="extras-info">
-                <div class="extras-name">Beef Slice Low Fat</div>
-                <div class="extras-note">(500g)</div>
-            </div>
-            <div class="extras-price">85k</div>
-        </div>
+    <div class="mt-6" data-aos="fade-up" data-aos-duration="700" >
+        <h4 class="text-base md:text-lg font-semibold text-[#017249] mb-3">Saus & Pelengkap</h4>
 
-        <div class="extras-row">
-            <div class="extras-info">
-                <div class="extras-name">Sosis Cocktail Original</div>
-                <div class="extras-note">(ukuran kecil 500g)</div>
-            </div>
-            <div class="extras-price">29k</div>
-        </div>
-
-        <div class="extras-row">
-            <div class="extras-info">
-                <div class="extras-name">Sosis Beef Frank Original</div>
-                <div class="extras-note">(ukuran sedang 500g)</div>
-            </div>
-            <div class="extras-price">29k</div>
-        </div>
-
-        <div class="extras-row">
-            <div class="extras-info">
-                <div class="extras-name">Super Meatball</div>
-                <div class="extras-note">(35 – 38 pcs / 500g)</div>
-            </div>
-            <div class="extras-price">35k</div>
-        </div>
+        <ul class="space-y-3 divide-y divide-gray-100">
+            @forelse($saus ?? [] as $item)
+                <li class="py-3" data-aos="fade-up" data-aos-duration="700" data-aos-delay="{{ 50 * $loop->index }}">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="min-w-0 text-base md:text-lg text-gray-800 truncate">
+                            {{ $item['name'] }} @if(!empty($item['description'])) <span class="text-sm md:text-base text-gray-500">({{ $item['description'] }})</span> @endif
+                        </div>
+                        <div class="flex-shrink-0">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full bg-green-50 text-[#017249] border border-green-100 font-semibold text-sm md:text-base">{{ $item['price_display'] ?? '—' }}</span>
+                        </div>
+                    </div>
+                </li>
+            @empty
+                <li class="py-6" data-aos="fade-up" data-aos-duration="700">
+                    <div class="text-center text-sm md:text-base text-gray-500">
+                        Belum ada saus atau pelengkap yang terdaftar.
+                    </div>
+                </li>
+            @endforelse
+        </ul>
     </div>
-
-    <div class="extras-section">
-        <h4 class="extras-section-title">Saus & Pelengkap</h4>
-
-        <div class="extras-list">
-            <div class="extras-row">
-                <div class="extras-name">
-                    BBQ Sauce <span class="extras-note">(300ml)</span>
-                </div>
-                <div class="extras-price">39k</div>
-            </div>
-
-            <div class="extras-row">
-                <div class="extras-name">
-                    Bulgogi Sauce <span class="extras-note">(300ml)</span>
-                </div>
-                <div class="extras-price">39k</div>
-            </div>
-
-            <div class="extras-row">
-                <div class="extras-name">
-                    Gochujang Sauce <span class="extras-note">(300ml)</span>
-                </div>
-                <div class="extras-price">39k</div>
-            </div>
-
-            <div class="extras-row">
-                <div class="extras-name">
-                    Blackpepper Teriyaki Sauce <span class="extras-note">(300ml)</span>
-                </div>
-                <div class="extras-price">29k</div>
-            </div>
-
-            <div class="extras-row">
-                <div class="extras-name">
-                    Garlic Teriyaki Sauce <span class="extras-note">(300ml)</span>
-                </div>
-                <div class="extras-price">29k</div>
-            </div>
-
-            <div class="extras-row">
-                <div class="extras-name">
-                    Korean BBQ Sauce <span class="extras-note">(500ml)</span>
-                </div>
-                <div class="extras-price">55k</div>
-            </div>
-        </div>
-    </div>
-</div>
+</section>

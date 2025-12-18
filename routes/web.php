@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\ItemController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -32,7 +33,7 @@ Route::view('/faq', 'faq')->name('faq');
 Route::view('/reservasi/glamping', 'reservasi.reservasi-glamping')->name('reservasi.glamping');
 Route::view('/reservasi/outbound', 'reservasi.reservasi-outbound')->name('reservasi.outbound');
 
-Route::view('/barang-tambahan', 'barang-tambahan')->name('barang-tambahan');
+Route::get('/barang-tambahan', [ItemController::class, 'index'])->name('barang-tambahan');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
