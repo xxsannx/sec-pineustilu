@@ -719,7 +719,7 @@ select:focus[data-flux-control] {
 /* =========================
    [Area Styles]
    ========================= */
-@layer components {
+/* @layer components {
     .text-center.text-3xl.font-extrabold.text-\[\#017249\] {
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
         letter-spacing: 0.03em;
@@ -772,8 +772,6 @@ select:focus[data-flux-control] {
         font-size: 0.95rem;
         line-height: 1.6;
     }
-
-    /* Hapus frame putih di galeri area */
     .object-cover.h-48 {
         border-radius: 12px;
         border: 0;
@@ -790,13 +788,11 @@ select:focus[data-flux-control] {
         background: transparent;
     }
 
-    /* Paksa gambar di section hijau tidak punya border/background */
     section.bg-\[\#0b5a3e\] .grid img {
         border: 0 !important;
         background: transparent !important;
     }
 
-    /* Grid galeri: pecah jadi aturan terpisah (hindari error koma) */
     .grid.grid-cols-2.md\:grid-cols-3 {
         gap: 0.75rem;
     }
@@ -839,7 +835,7 @@ select:focus[data-flux-control] {
 
 /* =========================
    [Area Media Fit]
-   ========================= */
+   ========================= 
 @layer components {
     .w-full.max-w-2xl.h-64.md\:h-80.lg\:h-96.bg-gray-100.border-2.border-dashed.border-gray-200.rounded-md.flex.items-center.justify-center {
         height: auto !important;
@@ -853,7 +849,6 @@ select:focus[data-flux-control] {
         overflow: visible;
     }
 
-    /* Selector gabungan untuk img dalam container */
     .w-full.max-w-2xl.bg-gray-100.border-2.border-dashed.border-gray-200.rounded-md.flex.items-center.justify-center
         img,
     .mx-auto.w-full.max-w-sm.bg-gray-100.border-2.border-dashed.border-gray-200.rounded-md.flex.items-center.justify-center
@@ -865,4 +860,4 @@ select:focus[data-flux-control] {
         border-radius: 8px;
         max-height: 70vh;
     }
-}
+} */

@@ -1,44 +1,80 @@
 document.addEventListener('DOMContentLoaded', function () {
     const toggles = Array.from(document.querySelectorAll('.ft-toggle'));
 
+    function openPanel(panel, icon) {
+        if (!panel) return;
+        panel.style.display = 'block';
+        panel.style.removeProperty('max-height');
+        const height = panel.scrollHeight + 'px';
+        panel.style.maxHeight = '0';
+        panel.style.opacity = '0';
+        panel.offsetHeight;
+        panel.style.transition = 'max-height 320ms ease, opacity 320ms ease';
+        panel.style.maxHeight = height;
+        panel.style.opacity = '1';
+        if (icon) icon.style.transform = 'rotate(180deg)';
+        panel.dataset.open = 'true';
+        panel.setAttribute('aria-hidden', 'false');
+        setTimeout(() => {
+            if (panel.dataset.open === 'true') panel.style.maxHeight = 'none';
+        }, 350);
+    }
+
+    function closePanel(panel, icon) {
+        if (!panel) return;
+        panel.style.removeProperty('max-height');
+        const height = panel.scrollHeight + 'px';
+        panel.style.maxHeight = height;
+        panel.offsetHeight;
+        panel.style.transition = 'max-height 320ms ease, opacity 320ms ease';
+        panel.style.maxHeight = '0';
+        panel.style.opacity = '0';
+        if (icon) icon.style.transform = 'rotate(0deg)';
+        panel.dataset.open = 'false';
+        panel.setAttribute('aria-hidden', 'true');
+        setTimeout(() => {
+            if (panel.dataset.open === 'false') panel.style.maxHeight = '0';
+        }, 350);
+    }
+
     toggles.forEach(btn => {
         btn.addEventListener('click', () => {
             const targetId = btn.dataset.target;
-            const group = btn.dataset.group;
             const panel = document.getElementById(targetId);
+            const icon = btn.querySelector('.ft-icon');
             const isExpanded = btn.getAttribute('aria-expanded') === 'true';
 
-            if (group) {
-                const groupButtons = Array.from(document.querySelectorAll(`.ft-toggle[data-group="${group}"]`));
-                groupButtons.forEach(gb => {
-                    const gid = gb.dataset.target;
-                    const gp = document.getElementById(gid);
-                    if (gb !== btn) {
-                        gb.setAttribute('aria-expanded', 'false');
-                        gp?.classList.add('hidden');
-                        const gi = gb.querySelector('.ft-icon');
-                        if (gi) gi.style.transform = 'rotate(0deg)';
-                    }
-                });
-                const newState = (!isExpanded).toString();
-                btn.setAttribute('aria-expanded', newState);
-                panel?.classList.toggle('hidden', isExpanded);
-                const icon = btn.querySelector('.ft-icon');
-                if (icon) icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+            btn.setAttribute('aria-expanded', (!isExpanded).toString());
+            if (isExpanded) {
+                closePanel(panel, icon);
             } else {
-                btn.setAttribute('aria-expanded', (!isExpanded).toString());
-                panel?.classList.toggle('hidden');
-                const icon = btn.querySelector('.ft-icon');
-                if (icon) icon.style.transform = !isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+                openPanel(panel, icon);
             }
         });
     });
 
-    Array.from(document.querySelectorAll('.ft-toggle[aria-expanded="true"]')).forEach(btn => {
+    // Initialize panels that should be open (aria-expanded="true")
+    toggles.forEach(btn => {
         const pid = btn.dataset.target;
-        const p = document.getElementById(pid);
-        p?.classList.remove('hidden');
+        const panel = document.getElementById(pid);
         const icon = btn.querySelector('.ft-icon');
-        if (icon) icon.style.transform = 'rotate(180deg)';
+        if (btn.getAttribute('aria-expanded') === 'true') {
+            if (panel) {
+                panel.style.display = 'block';
+                panel.style.opacity = '1';
+                panel.style.maxHeight = 'none';
+                if (icon) icon.style.transform = 'rotate(180deg)';
+                panel.dataset.open = 'true';
+                panel.setAttribute('aria-hidden', 'false');
+            }
+        } else {
+            if (panel) {
+                panel.style.display = 'block';
+                panel.style.maxHeight = '0';
+                panel.style.opacity = '0';
+                panel.dataset.open = 'false';
+                panel.setAttribute('aria-hidden', 'true');
+            }
+        }
     });
 });
