@@ -3,31 +3,8 @@
 
     <form class="grid grid-cols-1 md:grid-cols-2 gap-6" id="reservasiForm" autocomplete="off" novalidate>
         <div class="space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-sm text-gray-600 mb-2" for="checkin">Tanggal Check-In</label>
-                    <input id="checkin" name="checkin" type="date"
-                        class="w-full rounded-lg border px-3 py-2 bg-white" />
-                </div>
-                <div>
-                    <label class="block text-sm text-gray-600 mb-2" for="checkout">Tanggal Check-Out</label>
-                    <input id="checkout" name="checkout" type="date"
-                        class="w-full rounded-lg border px-3 py-2 bg-white" />
-                </div>
-            </div>
-
-            <div>
-                <label class="block text-sm text-gray-600 mb-2" for="selectedArea">Area Yang Dipilih</label>
-                <input id="selectedArea" name="selectedArea" type="text" readonly
-                    class="w-full rounded-lg border px-3 py-2 bg-gray-50" value="PINEUS TILU 1">
-            </div>
-
-            <div>
-                <label class="block text-sm text-gray-600 mb-2" for="selectedUnit">Unit Yang Dipilih</label>
-                <input id="selectedUnit" name="selectedUnit" type="text" readonly
-                    class="w-full rounded-lg border px-3 py-2 bg-gray-50" value="DECK 1 (dummy)">
-            </div>
-
+            <!-- Catatan: bagian Tanggal & pilihan Area/Unit dipindah ke bawah map (detail partial)
+                 Input-input tersebut tetap terhubung ke form lewat atribut `form="reservasiForm"` -->
             <div class="grid grid-cols-3 gap-3 items-center">
                 <label class="text-sm text-gray-600">Jumlah Pengunjung</label>
                 <div class="col-span-2 flex items-center gap-2">
