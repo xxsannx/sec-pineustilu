@@ -9,10 +9,10 @@
 
     <h2 class="text-2xl md:text-3xl font-extrabold text-[#065f46] text-center mb-6" style="font-family: 'Bizon', sans-serif;" data-aos="fade-down" data-aos-duration="700">SKEMA DECK</h2>
 
-    <div class="bg-[#0b6a48] rounded-2xl shadow-xl p-6 md:p-8 border border-[#074b36] mx-auto" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+    <div class=" rounded-2xl shadow-xl p-6 md:p-8  mx-auto" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
       <div class="flex flex-col items-center">
         <div class="w-full max-w-2xl h-64 md:h-80 lg:h-96 bg-gray-50 rounded-2xl overflow-hidden flex items-center justify-center border border-gray-100" role="img" aria-label="Skema Deck PT-2" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="150">
-          <img src="{{ asset('images/area-galeri/pt-1/DenahPT1.jpg') }}" alt="Denah Pineus Tilu II (PT-2)" class="w-full h-full object-contain rounded-md">
+          <img src="{{ asset('images/deck/pt-2.png') }}" alt="Denah Pineus Tilu II (PT-2)" class="w-full h-full object-contain rounded-md">
         </div>
       </div>
     </div>

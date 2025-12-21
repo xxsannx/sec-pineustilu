@@ -4,7 +4,7 @@
 
 @section('content')
    <section class="relative bg-gray-800 min-h-screen">
-    <img src="{{ asset('images/area-galeri/pt-2/PT2.webp') }}" alt="Pineus Tilu II"
+    <img src="{{ asset('images/area-galeri/pt-2/main.jpg') }}" alt="Pineus Tilu II"
         class="absolute inset-0 w-full h-full object-cover">
     <div class="absolute inset-0 bg-black/35"></div>
 
@@ -25,12 +25,14 @@
     </div>
 </section>
 
-    @include('partials.area.pt-2.skema-deck')
-    @include('partials.area.pt-2.harga-kapasitas')
-    @include('partials.area.pt-2.promo-ramadhan')
-    @include('partials.area.pt-2.fasilitas')
-    @include('partials.area.pt-2.galeri')
-    <x-reservation-cta/>
+    <div class="max-w-6xl mx-auto sm:px-6 md:px-8">
+        @include('partials.area.pt-2.skema-deck')
+        @include('partials.area.pt-2.harga-kapasitas')
+        @include('partials.area.pt-2.promo-ramadhan')
+        @include('partials.area.pt-2.fasilitas')
+        @include('partials.area.pt-2.galeri')
+        <x-reservation-cta/>
+    </div>
     @push('scripts')
         <script src="{{ asset('js/area.js') }}" defer></script>
     @endpush

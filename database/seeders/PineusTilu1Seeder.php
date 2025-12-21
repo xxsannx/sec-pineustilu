@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Area;
+use Illuminate\Support\Str;
 
 class PineusTilu1Seeder extends Seeder
 {
@@ -190,6 +191,74 @@ class PineusTilu1Seeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
+
+        // Try to auto-detect icon files in public/images/icons/area using flexible matching.
+        // Strategies tried (in order):
+        // 1) exact slug of full name
+        // 2) slug after removing parenthesis content
+        // 3) slug after removing digits
+        // 4) slug after removing digits & parenthesis
+        // 5) fallback: search filenames that contain one of the important keywords
+        $extensions = ['svg', 'png', 'webp', 'jpg', 'jpeg'];
+        $iconDir = public_path('images/icons/area');
+        $availableFiles = [];
+        if (is_dir($iconDir)) {
+            foreach (scandir($iconDir) as $f) {
+                if (in_array($f, ['.', '..'])) continue;
+                $availableFiles[] = $f;
+            }
+        }
+
+        foreach ($facilities as &$fac) {
+            if (!empty($fac['icon'])) continue;
+
+            $name = $fac['name'];
+            $candidates = [];
+
+            // full slug
+            $candidates[] = Str::slug($name);
+            // remove parenthesis content
+            $noParen = preg_replace('/\s*\([^)]*\)/', '', $name);
+            $candidates[] = Str::slug($noParen);
+            // remove digits
+            $noDigits = preg_replace('/\b\d+\b/', '', $name);
+            $candidates[] = Str::slug($noDigits);
+            // remove digits + parenthesis
+            $candidates[] = Str::slug(preg_replace('/\s*\([^)]*\)/', '', $noDigits));
+
+            $found = null;
+            // try slug candidates
+            foreach ($candidates as $cand) {
+                $cand = trim($cand, '-');
+                if ($cand === '') continue;
+                foreach ($extensions as $ext) {
+                    $file = $cand . '.' . $ext;
+                    if (in_array($file, $availableFiles)) {
+                        $found = 'images/icons/area/' . $file;
+                        break 2;
+                    }
+                }
+            }
+
+            // fallback: keyword match (pick first available file that contains a keyword)
+            if (!$found && !empty($availableFiles)) {
+                // build keywords (alphanumeric words length>2)
+                $clean = preg_replace('/[^A-Za-z0-9 ]/', ' ', $name);
+                $words = array_filter(array_map('trim', explode(' ', $clean)), function ($w) { return strlen($w) > 2; });
+                foreach ($availableFiles as $file) {
+                    $lower = strtolower($file);
+                    foreach ($words as $w) {
+                        if (strpos($lower, strtolower($w)) !== false) {
+                            $found = 'images/icons/area/' . $file;
+                            break 2;
+                        }
+                    }
+                }
+            }
+
+            $fac['icon'] = $found; // null if not found
+        }
+        unset($fac);
 
         DB::table('facilities')->insert($facilities);
 
