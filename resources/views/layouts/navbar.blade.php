@@ -5,7 +5,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="/" class="flex items-center">
-                        <img src="{{ asset('images/logo.png') }}" alt="Pineus Tilu Logo" class="h-16 w-auto">
+                        <img src="{{ asset('images/dashboard/logo.png') }}" alt="Pineus Tilu Logo" class="h-16 w-auto">
                     </a>
                 </div>
 

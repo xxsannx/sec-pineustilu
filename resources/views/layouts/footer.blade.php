@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 w-full" data-aos="fade-up" data-aos-duration="800">
             <!-- Logo Section -->
             <div class="col-span-1" data-aos="fade-up" data-aos-delay="100">
-                <img src="{{ asset('images/logo.png') }}" alt="Pineus Tilu Logo" class="h-24 mb-2">
+                <img src="{{ asset('images/dashboard/logo.png') }}" alt="Pineus Tilu Logo" class="h-24 mb-2">
                 <p class="text-sm text-gray-600">© 2024. Pineus Tilu, All Rights Reserved.</p>
             </div>
 

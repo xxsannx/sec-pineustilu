@@ -21,7 +21,7 @@
 
                     <div data-open-modal="map" class="cursor-pointer group relative rounded-2xl shadow-md">
                         <div class="flex items-center justify-center p-0 md:p-2 w-full">
-                            <img src="/images/fullmap.jpeg"
+                            <img src="/images/dashboard/fullmap.jpeg"
                                  alt="Peta Pineus Tilu Camp Ground"
                                  class="w-full h-auto max-h-[320px] md:max-h-[420px] lg:max-h-[520px] object-contain rounded-2xl relative z-[1]">
                         </div>

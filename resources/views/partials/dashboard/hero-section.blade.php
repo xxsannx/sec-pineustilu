@@ -1,7 +1,7 @@
 <!-- Hero Section with Video Background Placeholder -->
 <section
     class="relative px-4 min-h-screen flex items-start pt-32 md:pt-40 bg-[#1a1a1a] bg-cover bg-center bg-no-repeat overflow-hidden w-full"
-    style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/images/suasana.jpg');">
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/images/dashboard/suasana.jpg');">
     <div class="absolute inset-0 brightness-110"></div>
     <div class="max-w-7xl mx-auto relative z-10 w-full overflow-hidden">
         <div class="text-center" data-aos="fade-up" data-aos-duration="1000">

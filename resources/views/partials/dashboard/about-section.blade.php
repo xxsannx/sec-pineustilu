@@ -9,7 +9,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-12">
                         <div class="md:col-span-5 relative overflow-hidden flex items-center justify-center">
                             <div class="aspect-[4/3] bg-transparent relative flex items-center justify-center">
-                                <img src="{{ asset('images/logo.png') }}" alt="logo"
+                                <img src="{{ asset('images/dashboard/logo.png') }}" alt="logo"
                                     class="h-24 md:h-40 object-contain group-hover:scale-110 transition-transform duration-500">
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-12">
                         <div class="md:col-span-5 relative overflow-hidden">
                             <div class="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 relative">
-                                <img src="{{ asset('images/tenda.jpg') }}" alt="Tenda Glamping"
+                                <img src="{{ asset('images/dashboard/tenda.jpg') }}" alt="Tenda Glamping"
                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                 <button
                                     class="absolute top-4 left-4  bg-[#017249] text-white px-4 py-2 rounded-full flex items-center gap-2 shadow-lg transition-all duration-300 z-10">
@@ -68,7 +68,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-12">
                         <div class="md:col-span-5 md:order-2 relative overflow-hidden">
                             <div class="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 relative">
-                                <img src="{{ asset('images/pemulihan.jpg') }}" alt="Ruang Pemulihan"
+                                <img src="{{ asset('images/dashboard/pemulihan.jpg') }}" alt="Ruang Pemulihan"
                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                 <button
                                     class="absolute top-4 right-4 bg-[#017249] hover:bg-[#015a39] text-white px-4 py-2 rounded-full flex items-center gap-2 shadow-lg transition-all duration-300 z-10">
@@ -100,7 +100,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-12">
                         <div class="md:col-span-5 relative overflow-hidden">
                             <div class="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 relative">
-                                <img src="{{ asset('images/suasana.jpg') }}" alt="Suasana Camp Ground"
+                                <img src="{{ asset('images/dashboard/suasana.jpg') }}" alt="Suasana Camp Ground"
                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                 <button
                                     class="absolute top-4 left-4 bg-[#017249] hover:bg-[#015a39] text-white px-4 py-2 rounded-full flex items-center gap-2 shadow-lg transition-all duration-300 z-10">
@@ -132,7 +132,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-12">
                         <div class="md:col-span-5 md:order-2 relative overflow-hidden">
                             <div class="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 relative">
-                                <img src="{{ asset('images/apiunggun.jpg') }}" alt="Api Unggun"
+                                <img src="{{ asset('images/dashboard/apiunggun.jpg') }}" alt="Api Unggun"
                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                 <button
                                     class="absolute top-4 right-4 bg-[#017249] hover:bg-[#015a39] text-white px-4 py-2 rounded-full flex items-center gap-2 shadow-lg transition-all duration-300 z-10">
@@ -166,7 +166,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-12">
                         <div class="md:col-span-5 relative overflow-hidden">
                             <div class="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 relative">
-                                <img src="{{ asset('images/aktifitas.JPG') }}" alt="Aktivitas"
+                                <img src="{{ asset('images/dashboard/aktifitas.JPG') }}" alt="Aktivitas"
                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                 <button
                                     class="absolute top-4 left-4 bg-[#017249] hover:bg-[#015a39] text-white px-4 py-2 rounded-full flex items-center gap-2 shadow-lg transition-all duration-300 z-10">
