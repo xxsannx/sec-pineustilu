@@ -142,7 +142,8 @@
         </div>
     </div>
 
-    <!-- User Form -->
+    <!-- User Form: hide contact fields when rescheduling (use original booking credentials) -->
+    @unless($hideContactFields ?? false)
     <div class="space-y-3 pt-4 border-t border-gray-200 mb-6">
         <div>
             <label class="block text-xs text-gray-600 font-medium mb-1.5" for="name">Full Name</label>
@@ -184,6 +185,7 @@
             </div>
         </div>
     </div>
+    @endunless
 
     <!-- Number of Guests -->
     <div class="space-y-1.5 mb-6">
