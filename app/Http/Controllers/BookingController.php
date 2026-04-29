@@ -1401,6 +1401,121 @@ class BookingController extends Controller
     }
 
     /**
+     * Show confirmation page that summarizes refund and booking details.
+     */
+    public function showCancellationConfirmPage(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+    {
+        if (Auth::check()) {
+            return redirect()->route('profile', ['tab' => 'cancellation']);
+        }
+
+        $code = $request->input('code');
+        if (!$code) {
+            return redirect()->route('cancellation')->with('error', 'Kode booking tidak disediakan.');
+        }
+
+        $booking = Booking::with([
+            'bookingDetails.unit.area',
+            'bookingOutbounds.outbound',
+            'bookingOutbounds.outboundVariant',
+        ])->where('token_code', strtoupper(trim($code)))->first();
+
+        if (!$booking) {
+            return redirect()->route('cancellation')->with('error', 'Kode booking tidak ditemukan.');
+        }
+
+        if (!$booking->canBeCancelled()) {
+            return redirect()->route('cancellation')->with('error', 'Booking dengan status "' . $booking->status->label() . '" tidak dapat dibatalkan.');
+        }
+
+        $cancellationFee = 0.0;
+        $refundAmount = 0.0;
+
+        if ($booking->booking_type === 'glamping' && $booking->bookingDetails->first()) {
+            $detail = $booking->bookingDetails->first();
+            $total = (float) ($detail->total_price ?? 0.0);
+            $cancellationFee = 0.0; // adjust business rule if needed
+            $refundAmount = max(0.0, $total - $cancellationFee);
+        } elseif ($booking->booking_type === 'outbound' && $booking->bookingOutbounds->first()) {
+            $out = $booking->bookingOutbounds->first();
+            $total = (float) ($out->total_price ?? 0.0);
+            $cancellationFee = 0.0;
+            $refundAmount = max(0.0, $total - $cancellationFee);
+        }
+
+        return view('cancellation_confirm', [
+            'booking' => $booking,
+            'code' => strtoupper(trim($code)),
+            'cancellation_fee' => $cancellationFee,
+            'refund_amount' => $refundAmount,
+        ]);
+    }
+
+    /**
+     * Process refund after user confirms on the confirmation page.
+     */
+    public function processRefund(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $request->validate([
+            'code' => 'required|string|max:50',
+            'reason' => 'nullable|string|max:500',
+            'accept_terms' => 'accepted',
+        ]);
+
+        $code = strtoupper(trim($request->input('code')));
+        $booking = Booking::with(['bookingDetails', 'bookingOutbounds'])->where('token_code', $code)->first();
+
+        if (!$booking) {
+            return redirect()->route('cancellation')->with('error', 'Kode booking tidak ditemukan.');
+        }
+
+        if (!$booking->canBeCancelled()) {
+            return redirect()->route('cancellation')->with('error', 'Booking dengan status "' . $booking->status->label() . '" tidak dapat dibatalkan.');
+        }
+
+        $cancellationFee = 0.0;
+        $refundAmount = 0.0;
+
+        if ($booking->booking_type === 'glamping' && $booking->bookingDetails->first()) {
+            $detail = $booking->bookingDetails->first();
+            $total = (float) ($detail->total_price ?? 0.0);
+            $refundAmount = max(0.0, $total - $cancellationFee);
+        } elseif ($booking->booking_type === 'outbound' && $booking->bookingOutbounds->first()) {
+            $out = $booking->bookingOutbounds->first();
+            $total = (float) ($out->total_price ?? 0.0);
+            $refundAmount = max(0.0, $total - $cancellationFee);
+        }
+
+        DB::transaction(function () use ($booking, $request, $cancellationFee, $refundAmount) {
+            Cancellation::create([
+                'booking_id' => $booking->id,
+                'cancellation_date' => now(),
+                'cancelled_by' => 'guest',
+                'reason' => $request->input('reason', 'Guest requested cancellation'),
+                'status' => 'approved',
+                'cancellation_fee' => $cancellationFee,
+                'total_refund' => $refundAmount,
+                'refund_status' => 'completed',
+            ]);
+
+            $booking->status = BookingStatus::DIBATALKAN;
+            $booking->save();
+
+            // TODO: enqueue refund job / integrate payment gateway if required
+        });
+
+        return redirect()->route('cancellation.success')->with('success', 'Pembatalan dan pengembalian dana berhasil diproses.');
+    }
+
+    /**
+     * Show a simple success page after refund + cancellation.
+     */
+    public function showCancellationSuccessPage(Request $request): \Illuminate\Contracts\View\View
+    {
+        return view('cancellation_success');
+    }
+
+    /**
      * Process booking cancellation for guest users.
      */
     public function processCancellation(Request $request): \Illuminate\Http\RedirectResponse
