@@ -16,7 +16,8 @@
                                 d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
                     </div>
-                    <span class="text-sm font-medium group-hover:text-[#017249] transition-colors duration-200">Back</span>
+                    <span
+                        class="text-sm font-medium group-hover:text-[#017249] transition-colors duration-200">Back</span>
                 </a>
                 <!-- Logo & Title -->
                 <div class="text-center space-y-3 sm:space-y-4 pt-10 sm:pt-12">
@@ -34,20 +35,20 @@
 
                 <!-- Error Message -->
                 @if (session('error'))
-                <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-2xl">
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <p class="text-red-700 text-sm font-medium">{{ session('error') }}</p>
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-2xl">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <p class="text-red-700 text-sm font-medium">{{ session('error') }}</p>
+                        </div>
                     </div>
-                </div>
                 @endif
 
                 <!-- Login Form -->
-                <form method="POST" action="{{ route('login.store') }}" class="space-y-5">
+                <form method="POST" action="{{ route('login.otp.start') }}" class="space-y-5">
                     @csrf
 
                     <!-- Email Input -->
@@ -57,26 +58,26 @@
                             <div class="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
                                 <div
                                     class="bg-[#017249]/10 p-1.5 sm:p-2 rounded-2xl group-focus-within:bg-[#017249]/20 transition-colors duration-200">
-                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#017249]" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#017249]" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                                     </svg>
                                 </div>
                             </div>
-                            <input id="email" name="email" type="email" value="{{ old('email') }}" required
-                                autofocus autocomplete="email" placeholder="email@domain.com"
+                            <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus
+                                autocomplete="email" placeholder="email@domain.com"
                                 class="block w-full pl-14 sm:pl-16 pr-4 py-3 sm:py-3.5 text-sm sm:text-base text-gray-900 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#017249]/20 focus:border-[#017249] transition-all duration-200 placeholder-gray-400 hover:border-gray-300 cursor-text" />
                         </div>
                         @error('email')
-                        <p class="text-red-500 text-xs mt-1 flex items-center gap-1">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            {{ $message }}
-                        </p>
+                            <p class="text-red-500 text-xs mt-1 flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
 
@@ -88,8 +89,8 @@
                             <div class="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
                                 <div
                                     class="bg-[#017249]/10 p-1.5 sm:p-2 rounded-2xl group-focus-within:bg-[#017249]/20 transition-colors duration-200">
-                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#017249]" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#017249]" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                     </svg>
@@ -111,22 +112,21 @@
                             </button>
                         </div>
                         @error('password')
-                        <p class="text-red-500 text-xs mt-1 flex items-center gap-1">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            {{ $message }}
-                        </p>
+                            <p class="text-red-500 text-xs mt-1 flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
 
                     <!-- Remember Me & Forgot Password -->
                     <div class="flex items-center justify-between pt-1">
                         <div class="flex items-center group cursor-pointer">
-                            <input id="remember" name="remember" type="checkbox"
-                                {{ old('remember') ? 'checked' : '' }}
+                            <input id="remember" name="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}
                                 class="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#017249] focus:ring-[#017249] border-gray-300 rounded cursor-pointer transition-all duration-200" />
                             <label for="remember"
                                 class="ml-2 block text-xs sm:text-sm text-gray-600 group-hover:text-gray-800 cursor-pointer transition-colors duration-200">
@@ -135,11 +135,30 @@
                         </div>
 
                         @if (Route::has('password.request'))
-                        <a href="{{ route('password.request') }}"
-                            class="text-xs sm:text-sm text-[#017249] hover:text-[#015a3a] font-semibold transition-all duration-200 hover:underline">
-                            Forgot password?
-                        </a>
+                            <a href="{{ route('password.request') }}"
+                                class="text-xs sm:text-sm text-[#017249] hover:text-[#015a3a] font-semibold transition-all duration-200 hover:underline">
+                                Forgot password?
+                            </a>
                         @endif
+                    </div>
+
+                    <!-- OTP Method -->
+                    <div class="space-y-2">
+                        <label class="block text-xs sm:text-sm font-semibold text-gray-700">Metode OTP</label>
+                        <div class="flex items-center space-x-4 mt-1">
+                            <label class="inline-flex items-center cursor-pointer group">
+                                <input type="radio" name="otp_method" value="whatsapp"
+                                    class="form-radio text-[#017249] focus:ring-[#017249]" {{ old('otp_method', 'whatsapp') == 'whatsapp' ? 'checked' : '' }}>
+                                <span
+                                    class="ml-2 text-sm text-gray-700 group-hover:text-gray-900 transition-colors">WhatsApp</span>
+                            </label>
+                            <label class="inline-flex items-center cursor-pointer group">
+                                <input type="radio" name="otp_method" value="email"
+                                    class="form-radio text-[#017249] focus:ring-[#017249]" {{ old('otp_method') == 'email' ? 'checked' : '' }}>
+                                <span
+                                    class="ml-2 text-sm text-gray-700 group-hover:text-gray-900 transition-colors">Email</span>
+                            </label>
+                        </div>
                     </div>
 
                     <!-- Submit Button -->
@@ -186,21 +205,21 @@
                 </a>
 
                 <!-- Register Link -->
-                @if (Route::has('register'))
-                <div class="text-center pt-3 sm:pt-4 pb-2">
-                    <div class="inline-flex flex-wrap items-center justify-center gap-1 text-xs sm:text-sm">
-                        <span class="text-gray-600">Don't have an account?</span>
-                        <a href="{{ route('register') }}"
-                            class="font-semibold text-[#017249] hover:text-[#015a3a] transition-all duration-200 hover:underline inline-flex items-center gap-1 group">
-                            <span>Register now</span>
-                            <svg class="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-200"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                        </a>
+                @if (Route::has('register.otp'))
+                    <div class="text-center pt-3 sm:pt-4 pb-2">
+                        <div class="inline-flex flex-wrap items-center justify-center gap-1 text-xs sm:text-sm">
+                            <span class="text-gray-600">Don't have an account?</span>
+                            <a href="{{ route('register.otp') }}"
+                                class="font-semibold text-[#017249] hover:text-[#015a3a] transition-all duration-200 hover:underline inline-flex items-center gap-1 group">
+                                <span>Register now</span>
+                                <svg class="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-200"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                </div>
                 @endif
             </div>
         </div>

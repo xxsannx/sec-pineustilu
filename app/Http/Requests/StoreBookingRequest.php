@@ -34,11 +34,12 @@ class StoreBookingRequest extends FormRequest
             'checkout' => ['required', 'date', 'after:checkin'],
             'guestCount' => ['required', 'integer', 'min:1', 'max:20'],
             'name' => [$isAuthenticated ? 'nullable' : 'required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'min:8', 'max:20'],
+            'phone' => ['required', 'string', 'regex:/^\+?[1-9]\d{7,15}$/'],
             'email' => [$isAuthenticated ? 'nullable' : 'required', 'email', 'max:255'],
             'amenities' => ['nullable', 'array'],
             'amenities.*' => ['integer', 'min:0'],
             'extra_charge_mode' => ['nullable', 'in:full,breakfast'],
+            'special_notes' => ['nullable', 'string', 'max:500'],
             'agree' => ['accepted'],
         ];
     }
@@ -71,12 +72,12 @@ class StoreBookingRequest extends FormRequest
             'name.max' => 'Name maximum 255 characters.',
             
             'phone.required' => 'Phone number is required.',
-            'phone.min' => 'Phone number minimum 8 digits.',
-            'phone.max' => 'Phone number maximum 20 digits.',
+            'phone.regex' => 'Please enter a valid international phone number (e.g. +628123456789 or 81234567890).',
             
             'email.required' => 'Email is required.',
             'email.email' => 'Invalid email format.',
             
+            'special_notes.max' => 'Special notes maximum 500 characters.',
             'agree.accepted' => 'You must agree to the terms and conditions.',
         ];
     }
@@ -96,6 +97,7 @@ class StoreBookingRequest extends FormRequest
             'name' => 'name',
             'phone' => 'phone number',
             'email' => 'email',
+            'special_notes' => 'special notes',
             'agree' => 'agreement',
         ];
     }

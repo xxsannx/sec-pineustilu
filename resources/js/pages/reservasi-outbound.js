@@ -594,6 +594,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (checkinInput) checkinInput.addEventListener('change', syncDateInputs);
 
+    // ========== SPECIAL NOTES CHARACTER COUNTER ==========
+    const outSpecialNotesEl = document.getElementById('outSpecialNotes');
+    const outSpecialNotesCharsEl = document.getElementById('outSpecialNotesChars');
+    if (outSpecialNotesEl && outSpecialNotesCharsEl) {
+        const updateOutCounter = () => {
+            const len = outSpecialNotesEl.value.length;
+            outSpecialNotesCharsEl.textContent = len;
+            outSpecialNotesCharsEl.parentElement.classList.toggle('text-red-500', len >= 480);
+            outSpecialNotesCharsEl.parentElement.classList.toggle('text-gray-400', len < 480);
+        };
+        outSpecialNotesEl.addEventListener('input', updateOutCounter);
+        updateOutCounter(); // init
+    }
+
+    // ========== PHONE & EMAIL REGEX ==========
+    const PHONE_REGEX = /^\+?[1-9]\d{7,15}$/;
+    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     // form validation
     const form = document.getElementById('outReservasiForm');
     if (form) {
@@ -628,10 +646,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Validate email format
+            if (email?.value.trim() && !EMAIL_REGEX.test(email.value.trim())) {
+                e.preventDefault();
+                alert('Please enter a valid email address (e.g. name@domain.com).');
+                email?.focus();
+                return;
+            }
+
             if (!phone?.value.trim()) {
                 e.preventDefault();
                 alert('Please enter your phone number.');
                 phone?.focus(); 
+                return;
+            }
+
+            // Validate phone format (international)
+            if (phone?.value.trim() && !PHONE_REGEX.test(phone.value.trim())) {
+                e.preventDefault();
+                alert('Please enter a valid phone number (e.g. +628123456789 or 81234567890).');
+                phone?.focus();
                 return;
             }
 

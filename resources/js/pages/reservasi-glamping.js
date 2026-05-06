@@ -1374,6 +1374,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial preview update
     if (typeof globalThis.updatePreview === 'function') globalThis.updatePreview();
 
+    // ========== SPECIAL NOTES CHARACTER COUNTER ==========
+    const specialNotesEl = document.getElementById('special_notes');
+    const specialNotesCharsEl = document.getElementById('specialNotesChars');
+    if (specialNotesEl && specialNotesCharsEl) {
+        const updateCounter = () => {
+            const len = specialNotesEl.value.length;
+            specialNotesCharsEl.textContent = len;
+            specialNotesCharsEl.parentElement.classList.toggle('text-red-500', len >= 480);
+            specialNotesCharsEl.parentElement.classList.toggle('text-gray-400', len < 480);
+        };
+        specialNotesEl.addEventListener('input', updateCounter);
+        updateCounter(); // init
+    }
+
+    // ========== PHONE REGEX (International) ==========
+    const PHONE_REGEX = /^\+?[1-9]\d{7,15}$/;
+    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     // Ensure required reservation fields are present before submit (client-side hint only)
     if (form) {
         form.addEventListener('submit', function (e) {
@@ -1382,8 +1400,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const checkoutVal = document.getElementById('checkout')?.value;
             const countryCodeEl = document.getElementById('country_code');
             const phoneEl = document.getElementById('phone');
+            const nameEl = document.getElementById('name');
+            const emailEl = document.getElementById('email');
             const agree = document.getElementById('agree');
 
+            // Normalize phone number (add country code prefix)
             if (phoneEl && countryCodeEl) {
                 const rawPhone = String(phoneEl.value || '').trim();
                 const rawCode = String(countryCodeEl.value || '+62').trim();
@@ -1392,6 +1413,41 @@ document.addEventListener('DOMContentLoaded', () => {
                     const phoneDigits = rawPhone.replaceAll(/\D+/g, '').replaceAll(/^0+/, '');
                     const codeDigits = rawCode.replaceAll(/\D+/g, '') || '62';
                     phoneEl.value = phoneDigits ? (`+${codeDigits}${phoneDigits}`) : rawPhone;
+                }
+            }
+
+            // Validate name (required for non-authenticated users)
+            if (nameEl && !nameEl.readOnly && !nameEl.value.trim()) {
+                e.preventDefault();
+                setBookingFlowMessage('Please enter your full name.');
+                nameEl.focus();
+                return;
+            }
+
+            // Validate email format
+            if (emailEl && !emailEl.readOnly && emailEl.value.trim()) {
+                if (!EMAIL_REGEX.test(emailEl.value.trim())) {
+                    e.preventDefault();
+                    setBookingFlowMessage('Please enter a valid email address.');
+                    emailEl.focus();
+                    return;
+                }
+            }
+
+            // Validate phone format (international)
+            if (phoneEl && !phoneEl.readOnly) {
+                const phoneVal = String(phoneEl.value || '').trim();
+                if (!phoneVal) {
+                    e.preventDefault();
+                    setBookingFlowMessage('Please enter your phone number.');
+                    phoneEl.focus();
+                    return;
+                }
+                if (!PHONE_REGEX.test(phoneVal)) {
+                    e.preventDefault();
+                    setBookingFlowMessage('Please enter a valid phone number (e.g. +628123456789).');
+                    phoneEl.focus();
+                    return;
                 }
             }
 

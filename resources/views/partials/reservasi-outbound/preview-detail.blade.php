@@ -99,6 +99,18 @@
         </div>
     </div>
 
+    <!-- Special Notes -->
+    <div class="space-y-1.5 mb-5">
+        <label class="block text-xs text-gray-500 mb-1" for="outSpecialNotes">Catatan Khusus <span class="text-gray-400 font-normal">(opsional)</span></label>
+        <textarea id="outSpecialNotes" name="special_notes" rows="3" maxlength="500"
+            class="w-full rounded-xl border-2 border-gray-200 px-3 py-2.5 bg-white focus:border-[#017249] focus:ring-2 focus:ring-[#017249]/20 transition-all duration-200 placeholder-gray-400 text-sm resize-none"
+            placeholder="Contoh: Peserta ada yang alergi makanan tertentu, bawa anak kecil, dll...">{{ old('special_notes') }}</textarea>
+        <div class="flex justify-between items-center">
+            <p class="text-[10px] text-gray-400">Permintaan khusus untuk aktivitas</p>
+            <span class="text-[10px] text-gray-400"><span id="outSpecialNotesChars">0</span>/500</span>
+        </div>
+    </div>
+
     <!-- Terms & Submit -->
     <div>
         <div class="flex items-start gap-2 mb-4">

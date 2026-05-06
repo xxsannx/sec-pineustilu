@@ -185,6 +185,18 @@
         </div>
     </div>
 
+    <!-- Special Notes -->
+    <div class="space-y-1.5 mb-6">
+        <label class="block text-xs text-gray-600 font-medium" for="special_notes">Special Notes <span class="text-gray-400 font-normal">(optional)</span></label>
+        <textarea id="special_notes" name="special_notes" rows="3" maxlength="500"
+            class="w-full rounded-xl border-2 border-gray-200 px-3 py-2.5 bg-white focus:border-[#017249] focus:ring-2 focus:ring-[#017249]/20 transition-all duration-200 placeholder-gray-400 text-sm resize-none"
+            placeholder="e.g. Late check-in at 22:00, extra bed needed, romantic setup, best view request...">{{ old('special_notes') }}</textarea>
+        <div class="flex justify-between items-center">
+            <p class="text-[10px] text-gray-400">Any special requests for your stay</p>
+            <span id="specialNotesCount" class="text-[10px] text-gray-400"><span id="specialNotesChars">0</span>/500</span>
+        </div>
+    </div>
+
     <!-- Number of Guests -->
     <div class="space-y-1.5 mb-6">
         <label class="block text-xs text-gray-600 font-medium" for="guestCount">Number of Guests</label>

@@ -62,8 +62,9 @@ class OutboundController extends Controller
             'guest_count' => 'required|integer|min:1',
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:20',
+            'phone' => ['required', 'string', 'regex:/^\+?[1-9]\d{7,15}$/'],
             'extras' => 'nullable|array',
+            'special_notes' => 'nullable|string|max:500',
             'agree' => 'required|accepted',
         ]);
 
@@ -123,8 +124,9 @@ class OutboundController extends Controller
             $booking = Booking::create([
                 'user_id' => auth()->id(),
                 'token_code' => $tokenCode,
-                'guest_name' => $validated['name'],
+                'guest_name' => strip_tags($validated['name']),
                 'guest_email' => $validated['email'],
+                'special_notes' => $validated['special_notes'] ?? null,
                 'guest_phone' => $validated['phone'],
                 'booking_type' => 'outbound',
                 'booking_date' => now()->toDateString(),

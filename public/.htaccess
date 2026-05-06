@@ -1,3 +1,15 @@
+# Memblokir akses ke semua file hidden (termasuk .htaccess, .env, dll)
+# Ini mencegah Security Misconfiguration (OWASP A05) dengan mengembalikan HTTP 403 Forbidden
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
@@ -19,7 +31,9 @@
     RewriteRule ^ %1 [L,R=301]
 
     # Send Requests To Front Controller...
+    # Modifikasi: Lempar request file hidden (diawali titik) ke index.php agar Middleware BlockHiddenFiles berjalan
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-f [OR]
+    RewriteCond %{REQUEST_URI} "(^|/)\."
     RewriteRule ^ index.php [L]
 </IfModule>

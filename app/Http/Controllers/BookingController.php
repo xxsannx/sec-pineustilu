@@ -577,10 +577,10 @@ class BookingController extends Controller
         $this->assertUnitCapacity($unit, $people);
         $this->assertUnitAvailable($unit->id, $checkin, $checkout);
 
-        // Determine guest identity rules
-        $guestName = $authUser?->name ?? $data['name'];
+        $guestName = strip_tags($authUser?->name ?? $data['name']);
         $guestEmail = $authUser?->email ?? $data['email'];
         $guestPhone = $data['phone'];
+        $specialNotes = $data['special_notes'] ?? null;
 
         $this->persistGoogleUserPhoneIfNeeded($authUser, $guestPhone);
 
@@ -699,7 +699,8 @@ class BookingController extends Controller
             $breakfastRate,
             $selectedExtraRate,
             $extraChargeGuestMode,
-            $extraChargeMode
+            $extraChargeMode,
+            $specialNotes
         ) {
             $booking = Booking::create([
                 'user_id' => $authUser?->id,
@@ -710,6 +711,7 @@ class BookingController extends Controller
                 'guest_name' => (string) $guestName,
                 'guest_phone' => (string) $guestPhone,
                 'guest_email' => (string) $guestEmail,
+                'special_notes' => $specialNotes,
             ]);
 
             BookingDetail::create([
