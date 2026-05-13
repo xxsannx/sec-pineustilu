@@ -20,11 +20,17 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_authenticate_using_the_login_screen(): void
     {
-        $user = User::factory()->withoutTwoFactor()->create();
+        $plainPassword = 'password';
+
+        $user = User::factory()
+            ->withoutTwoFactor()
+            ->create([
+                'password' => bcrypt($plainPassword),
+            ]);
 
         $response = $this->post(route('login.store'), [
             'email' => $user->email,
-            'password' => 'password',
+            'password' => $plainPassword,
         ]);
 
         $response
@@ -36,11 +42,16 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_not_authenticate_with_invalid_password(): void
     {
-        $user = User::factory()->create();
+        $correctPassword = 'password';
+        $invalidPassword = 'wrong-password';
+
+        $user = User::factory()->create([
+            'password' => bcrypt($correctPassword),
+        ]);
 
         $response = $this->post(route('login.store'), [
             'email' => $user->email,
-            'password' => 'wrong-password',
+            'password' => $invalidPassword,
         ]);
 
         $response->assertSessionHasErrorsIn('email');
@@ -53,19 +64,25 @@ class AuthenticationTest extends TestCase
         if (! Features::canManageTwoFactorAuthentication()) {
             $this->markTestSkipped('Two-factor authentication is not enabled.');
         }
+
         Features::twoFactorAuthentication([
             'confirm' => true,
             'confirmPassword' => true,
         ]);
 
-        $user = User::factory()->create();
+        $plainPassword = 'password';
+
+        $user = User::factory()->create([
+            'password' => bcrypt($plainPassword),
+        ]);
 
         $response = $this->post(route('login.store'), [
             'email' => $user->email,
-            'password' => 'password',
+            'password' => $plainPassword,
         ]);
 
         $response->assertRedirect(route('two-factor.login'));
+
         $this->assertGuest();
     }
 
@@ -76,6 +93,7 @@ class AuthenticationTest extends TestCase
         $response = $this->actingAs($user)->post(route('logout'));
 
         $response->assertRedirect(route('home'));
+
         $this->assertGuest();
     }
 }
