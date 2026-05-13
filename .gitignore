@@ -21,3 +21,14 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+# Cookies & testing files
+cookies*
+cook*
+resp*
+response*
+result*
+
+# Text & html hasil testing
+*.txt
+*.html

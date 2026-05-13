@@ -27,7 +27,15 @@ class RegisterRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'country_code' => ['required', 'string', 'max:5'],
             'phone' => ['required', 'string', 'min:8', 'max:13', 'regex:/^[0-9]+$/'],
-            'password' => ['required', 'confirmed', Password::min(8)],
+            'password' => [
+                'required',
+                'confirmed',
+                Password::min(8)
+                    ->letters()
+                    ->mixedCase()
+                    ->numbers()
+                    ->symbols(),
+            ],
         ];
     }
 
@@ -39,24 +47,28 @@ class RegisterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Full name is required.',
-            'name.string' => 'Name must be text.',
-            'name.max' => 'Name maximum 255 characters.',
+            'name.required' => 'Nama lengkap wajib diisi.',
+            'name.string' => 'Nama harus berupa teks.',
+            'name.max' => 'Nama maksimal 255 karakter.',
             
-            'email.required' => 'Email is required.',
-            'email.email' => 'Invalid email format.',
-            'email.unique' => 'Email is already registered.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah terdaftar.',
             
-            'country_code.required' => 'Country code is required.',
+            'country_code.required' => 'Kode negara wajib diisi.',
             
-            'phone.required' => 'Phone number is required.',
-            'phone.min' => 'Phone number minimum 8 digits.',
-            'phone.max' => 'Phone number maximum 13 digits.',
-            'phone.regex' => 'Phone number can only contain numbers.',
+            'phone.required' => 'Nomor telepon wajib diisi.',
+            'phone.min' => 'Nomor telepon minimal 8 digit.',
+            'phone.max' => 'Nomor telepon maksimal 13 digit.',
+            'phone.regex' => 'Nomor telepon hanya boleh berisi angka.',
             
             'password.required' => 'Password is required.',
             'password.confirmed' => 'Password confirmation does not match.',
-            'password.min' => 'Password minimum 8 characters.',
+            'password.min' => 'Password must be at least 8 characters.',
+            'password.letters' => 'Password must contain at least one letter.',
+            'password.mixed' => 'Password must contain both uppercase and lowercase letters.',
+            'password.numbers' => 'Password must contain at least one number.',
+            'password.symbols' => 'Password must contain at least one symbol (e.g. !@#$%^&*).',
         ];
     }
 

@@ -27,10 +27,18 @@ class OTPController extends Controller
             return redirect()->route('register.otp')->withErrors(['phone' => 'Sesi verifikasi telah berakhir. Silakan login atau register ulang.']);
         }
         
-        // Keep the phone number and method in session until verification succeeds
-        session()->keep(['verify_phone', 'verify_email', 'verify_otp_method']);
+        // Calculate remaining cooldown from the latest OTP record for frontend sync
+        $cooldownSeconds = 0;
+        $phone = session('verify_phone');
+        if ($phone) {
+            $lastOtp = OtpVerification::where('phone_number', $phone)->latest()->first();
+            if ($lastOtp) {
+                $elapsed = (int) abs(now()->diffInSeconds($lastOtp->created_at));
+                $cooldownSeconds = max(0, 60 - $elapsed);
+            }
+        }
 
-        return view('auth.verify-otp');
+        return view('auth.verify-otp', ['cooldownSeconds' => $cooldownSeconds]);
     }
 
     public function verify(Request $request)
@@ -106,13 +114,16 @@ class OTPController extends Controller
 
         $lastOtp = OtpVerification::where('phone_number', $phone)->latest()->first();
 
-        if ($lastOtp && now()->diffInSeconds($lastOtp->created_at) < 60) {
-            $secondsLeft = 60 - now()->diffInSeconds($lastOtp->created_at);
-            return response()->json([
-                'success' => false, 
-                'message' => "Silakan tunggu {$secondsLeft} detik lagi untuk mengirim ulang OTP.",
-                'retry_after' => $secondsLeft,
-            ], 429);
+        if ($lastOtp) {
+            $elapsedSeconds = (int) abs(now()->diffInSeconds($lastOtp->created_at));
+            if ($elapsedSeconds < 60) {
+                $secondsLeft = 60 - $elapsedSeconds;
+                return response()->json([
+                    'success' => false, 
+                    'message' => "Silakan tunggu {$secondsLeft} detik lagi untuk mengirim ulang OTP.",
+                    'retry_after' => $secondsLeft,
+                ], 429);
+            }
         }
 
         $user = User::where('phone', $phone)->first();

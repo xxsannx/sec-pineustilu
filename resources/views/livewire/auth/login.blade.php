@@ -144,19 +144,31 @@
 
                     <!-- OTP Method -->
                     <div class="space-y-2">
-                        <label class="block text-xs sm:text-sm font-semibold text-gray-700">Metode OTP</label>
-                        <div class="flex items-center space-x-4 mt-1">
-                            <label class="inline-flex items-center cursor-pointer group">
+                        <label class="block text-xs sm:text-sm font-semibold text-gray-700">OTP Method</label>
+                        <div class="grid grid-cols-2 gap-3 mt-1">
+                            <label
+                                class="relative flex items-center gap-2.5 p-3 sm:p-3.5 border-2 rounded-xl cursor-pointer transition-all duration-200 hover:border-[#017249]/40 hover:bg-[#017249]/5 group {{ old('otp_method', 'whatsapp') == 'whatsapp' ? 'border-[#017249] bg-[#017249]/5' : 'border-gray-200' }}">
                                 <input type="radio" name="otp_method" value="whatsapp"
-                                    class="form-radio text-[#017249] focus:ring-[#017249]" {{ old('otp_method', 'whatsapp') == 'whatsapp' ? 'checked' : '' }}>
-                                <span
-                                    class="ml-2 text-sm text-gray-700 group-hover:text-gray-900 transition-colors">WhatsApp</span>
+                                    class="form-radio text-[#017249] focus:ring-[#017249] shrink-0" {{ old('otp_method', 'whatsapp') == 'whatsapp' ? 'checked' : '' }}>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-green-600 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                                        <path d="M12 2C6.478 2 2 6.478 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.522 0 10-4.478 10-10S17.522 2 12 2zm0 18a7.96 7.96 0 01-4.29-1.248l-.308-.184-2.87.852.852-2.87-.184-.308A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
+                                    </svg>
+                                    <span class="text-xs sm:text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors">WhatsApp</span>
+                                </div>
                             </label>
-                            <label class="inline-flex items-center cursor-pointer group">
+                            <label
+                                class="relative flex items-center gap-2.5 p-3 sm:p-3.5 border-2 rounded-xl cursor-pointer transition-all duration-200 hover:border-[#017249]/40 hover:bg-[#017249]/5 group {{ old('otp_method') == 'email' ? 'border-[#017249] bg-[#017249]/5' : 'border-gray-200' }}">
                                 <input type="radio" name="otp_method" value="email"
-                                    class="form-radio text-[#017249] focus:ring-[#017249]" {{ old('otp_method') == 'email' ? 'checked' : '' }}>
-                                <span
-                                    class="ml-2 text-sm text-gray-700 group-hover:text-gray-900 transition-colors">Email</span>
+                                    class="form-radio text-[#017249] focus:ring-[#017249] shrink-0" {{ old('otp_method') == 'email' ? 'checked' : '' }}>
+                                <div class="flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-[#017249] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    <span class="text-xs sm:text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors">Email</span>
+                                </div>
                             </label>
                         </div>
                     </div>

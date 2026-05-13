@@ -245,7 +245,7 @@
                                             </div>
                                         </div>
                                         <input id="password" name="password" type="password" required
-                                            autocomplete="new-password" placeholder="Min. 8 characters"
+                                            autocomplete="new-password" placeholder="Min. 8 karakter, huruf besar, angka, simbol"
                                             class="block w-full pl-14 sm:pl-16 pr-12 py-3 sm:py-3.5 text-sm sm:text-base text-gray-900 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#017249]/20 focus:border-[#017249] transition-all duration-200 placeholder-gray-400 hover:border-gray-300 cursor-text" />
                                         <button type="button" data-toggle-password="password"
                                             class="absolute inset-y-0 right-0 pr-3 sm:pr-4 flex items-center hover:opacity-70 transition-opacity cursor-pointer"
@@ -262,6 +262,15 @@
                                     @error('password')
                                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                     @enderror
+                                    <div class="mt-1.5 text-xs text-gray-400 space-y-0.5">
+                                        <p class="font-medium text-gray-500">Kriteria password:</p>
+                                        <ul class="list-disc pl-4 space-y-0.5">
+                                            <li>Minimal 8 karakter</li>
+                                            <li>Huruf besar & kecil</li>
+                                            <li>Minimal satu angka</li>
+                                            <li>Minimal satu simbol (!@#$%^&*)</li>
+                                        </ul>
+                                    </div>
                                 </div>
 
                                 <!-- Confirm Password Input -->

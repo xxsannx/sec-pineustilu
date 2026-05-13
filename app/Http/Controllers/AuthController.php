@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\OtpVerification;
 use App\Services\FonnteService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -31,11 +32,27 @@ class AuthController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'regex:/^\+?[1-9]\d{7,15}$/', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => [
+                'required',
+                'string',
+                Password::min(8)
+                    ->letters()
+                    ->mixedCase()
+                    ->numbers()
+                    ->symbols(),
+                'confirmed',
+            ],
             'otp_method' => ['required', 'in:whatsapp,email'],
         ], [
             'phone.regex' => 'Silakan masukkan nomor HP yang valid dengan format internasional (contoh: +628123456789).',
             'phone.unique' => 'Nomor HP sudah terdaftar.',
+            'password.required' => 'Password is required.',
+            'password.confirmed' => 'Password confirmation does not match.',
+            'password.min' => 'Password must be at least 8 characters.',
+            'password.letters' => 'Password must contain at least one letter.',
+            'password.mixed' => 'Password must contain both uppercase and lowercase letters.',
+            'password.numbers' => 'Password must contain at least one number.',
+            'password.symbols' => 'Password must contain at least one symbol (e.g. !@#$%^&*).',
         ]);
 
         // Create user with unverified phone
@@ -73,12 +90,13 @@ class AuthController extends Controller
             session()->flash('warning', 'Terdapat kendala saat mengirim OTP. Silakan gunakan tombol Kirim Ulang Kode di bawah atau ganti metode OTP.');
         }
 
-        // Store phone, email, and method in session to use in OTP validation page
-        return redirect()->route('otp.verify.form')->with([
-            'verify_phone' => $user->phone,
-            'verify_email' => $user->email,
-            'verify_otp_method' => $request->otp_method,
-        ]);
+        // Store phone, email, and method in persistent session (not flash)
+        // so data survives AJAX requests, page refreshes, and multiple redirects
+        session()->put('verify_phone', $user->phone);
+        session()->put('verify_email', $user->email);
+        session()->put('verify_otp_method', $request->otp_method);
+
+        return redirect()->route('otp.verify.form');
     }
 
     public function loginOtpStart(Request $request)
@@ -128,11 +146,11 @@ class AuthController extends Controller
             session()->flash('warning', 'Terdapat kendala saat mengirim OTP. Silakan gunakan tombol Kirim Ulang Kode di bawah atau ganti metode OTP.');
         }
 
-        // Store phone, email, and method in session to use in OTP validation page
-        return redirect()->route('otp.verify.form')->with([
-            'verify_phone' => $user->phone,
-            'verify_email' => $user->email,
-            'verify_otp_method' => $request->otp_method,
-        ]);
+        // Store phone, email, and method in persistent session (not flash)
+        session()->put('verify_phone', $user->phone);
+        session()->put('verify_email', $user->email);
+        session()->put('verify_otp_method', $request->otp_method);
+
+        return redirect()->route('otp.verify.form');
     }
 }

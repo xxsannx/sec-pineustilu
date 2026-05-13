@@ -58,11 +58,16 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Automatically start the 60-second countdown when the page loads
-            startCooldown(60);
+            // Use server-calculated cooldown instead of hardcoded 60 seconds
+            const serverCooldown = {{ $cooldownSeconds ?? 0 }};
+            if (serverCooldown > 0) {
+                startCooldown(serverCooldown);
+            }
         });
 
         function startCooldown(seconds) {
+            if (seconds <= 0) return;
+
             const btn = document.getElementById('resendBtn');
             btn.disabled = true;
             btn.classList.add('opacity-50', 'cursor-not-allowed');
@@ -108,7 +113,22 @@
                 },
                 body: JSON.stringify({ phone: phone, method: method })
             })
-            .then(response => response.json().then(data => ({status: response.status, body: data})))
+            .then(response => {
+                const contentType = response.headers.get('content-type') || '';
+                if (contentType.includes('application/json')) {
+                    return response.json().then(data => ({status: response.status, body: data}));
+                }
+                // Handle non-JSON response (e.g. HTML from middleware)
+                return response.text().then(() => ({
+                    status: response.status,
+                    body: {
+                        success: false,
+                        message: response.status === 429
+                            ? 'Terlalu banyak permintaan. Silakan coba lagi nanti.'
+                            : 'Terjadi kesalahan pada server.'
+                    }
+                }));
+            })
             .then(res => {
                 msg.classList.remove('hidden');
                 if (res.status === 200) {
@@ -117,6 +137,11 @@
                     
                     // Start cooldown UI
                     startCooldown(60);
+                } else if (res.status === 429 && res.body.retry_after) {
+                    // Cooldown from backend — sync with server value
+                    msg.className = "text-xs mt-2 text-yellow-600";
+                    msg.innerText = res.body.message;
+                    startCooldown(res.body.retry_after);
                 } else {
                     msg.className = "text-xs mt-2 text-red-600";
                     msg.innerText = res.body.message || "Gagal mengirim ulang";
@@ -153,7 +178,7 @@
                 btn.innerText = 'Kirim Ulang Kode';
                 msg.classList.remove('hidden');
                 msg.className = "text-xs mt-2 text-red-600";
-                msg.innerText = 'Terjadi kesalahan sistem.';
+                msg.innerText = 'Terjadi kesalahan sistem. Silakan coba lagi.';
             });
         }
     </script>

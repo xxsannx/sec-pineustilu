@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Features;
 
+Route::get('/up', function () {
+    abort(403);
+});
+
 Route::view('/cerita', 'cerita')->name('cerita');
 
 Route::view('/', 'dashboard')->name('home');
@@ -82,10 +86,10 @@ Route::get('/barang-tambahan', [ItemController::class, 'index'])->name('barang-t
 // OTP Registration & Verification
 Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register.otp');
-    Route::post('/register', [AuthController::class, 'register'])->name('register.otp.post')->middleware('throttle:otp');
+    Route::post('/register', [AuthController::class, 'register'])->name('register.otp.post')->middleware('throttle:otp-register');
     Route::get('/verify-otp', [OTPController::class, 'showVerifyForm'])->name('otp.verify.form');
-    Route::post('/verify-otp', [OTPController::class, 'verify'])->name('otp.verify');
-    Route::post('/resend-otp', [OTPController::class, 'resend'])->name('otp.resend')->middleware('throttle:otp');
+    Route::post('/verify-otp', [OTPController::class, 'verify'])->name('otp.verify')->middleware('throttle:otp-verify');
+    Route::post('/resend-otp', [OTPController::class, 'resend'])->name('otp.resend')->middleware('throttle:otp-resend');
     Route::post('/login-otp-start', [AuthController::class, 'loginOtpStart'])->name('login.otp.start')->middleware('throttle:login');
 });
 
