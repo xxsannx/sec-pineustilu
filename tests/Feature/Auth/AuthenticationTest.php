@@ -12,9 +12,28 @@ class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
-    // Gunakan konstanta atau env variable, bukan hardcode string
-    private string $validPassword = 'Va1!dP@ssw0rd#Test';
-    private string $invalidPassword = 'Wr0ng!P@ssw0rd#Test';
+    /**
+     * Credentials untuk user yang valid.
+     * Password diambil dari default UserFactory (tidak hardcode di sini).
+     */
+    private function validCredentials(User $user): array
+    {
+        return [
+            'email'    => $user->email,
+            'password' => UserFactory::DEFAULT_PASSWORD, // konstanta di factory
+        ];
+    }
+
+    /**
+     * Credentials dengan password yang salah (tidak cocok dengan user manapun).
+     */
+    private function invalidCredentials(User $user): array
+    {
+        return [
+            'email'    => $user->email,
+            'password' => UserFactory::DEFAULT_PASSWORD . '_invalid', // pasti tidak cocok
+        ];
+    }
 
     public function test_login_screen_can_be_rendered(): void
     {
@@ -25,14 +44,9 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_authenticate_using_the_login_screen(): void
     {
-        $user = User::factory()->withoutTwoFactor()->create([
-            'password' => Hash::make($this->validPassword), // bcrypt by default
-        ]);
+        $user = User::factory()->withoutTwoFactor()->create();
 
-        $response = $this->post(route('login.store'), [
-            'email' => $user->email,
-            'password' => $this->validPassword,
-        ]);
+        $response = $this->post(route('login.store'), $this->validCredentials($user));
 
         $response
             ->assertSessionHasNoErrors()
@@ -43,14 +57,9 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_not_authenticate_with_invalid_password(): void
     {
-        $user = User::factory()->create([
-            'password' => Hash::make($this->validPassword),
-        ]);
+        $user = User::factory()->create();
 
-        $response = $this->post(route('login.store'), [
-            'email' => $user->email,
-            'password' => $this->invalidPassword,
-        ]);
+        $response = $this->post(route('login.store'), $this->invalidCredentials($user));
 
         $response->assertSessionHasErrorsIn('email');
 
@@ -68,14 +77,9 @@ class AuthenticationTest extends TestCase
             'confirmPassword' => true,
         ]);
 
-        $user = User::factory()->create([
-            'password' => Hash::make($this->validPassword),
-        ]);
+        $user = User::factory()->create();
 
-        $response = $this->post(route('login.store'), [
-            'email' => $user->email,
-            'password' => $this->validPassword,
-        ]);
+        $response = $this->post(route('login.store'), $this->validCredentials($user));
 
         $response->assertRedirect(route('two-factor.login'));
         $this->assertGuest();
