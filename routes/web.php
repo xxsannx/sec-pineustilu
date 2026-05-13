@@ -46,8 +46,15 @@ Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
 // Reschedule & Cancellation for guest users (with booking code lookup)
 Route::get('/reschedule', [BookingController::class, 'showReschedulePage'])->name('reschedule');
+// New reschedule flow: page where guest chooses new dates/units (separate from main glamping reservation)
+Route::get('/reschedule/{token}/pilih', [BookingController::class, 'showRescheduleForm'])->name('reschedule.form');
+Route::post('/reschedule/{token}/submit', [BookingController::class, 'processReschedule'])->name('reschedule.submit');
 Route::get('/cancellation', [BookingController::class, 'showCancellationPage'])->name('cancellation');
 Route::post('/cancellation/process', [BookingController::class, 'processCancellation'])->name('cancellation.process');
+// Guest-facing cancellation confirmation & refund flow
+Route::get('/cancellation/confirm', [BookingController::class, 'showCancellationConfirmPage'])->name('cancellation.confirm');
+Route::post('/cancellation/refund', [BookingController::class, 'processRefund'])->name('cancellation.refund');
+Route::get('/cancellation/success', [BookingController::class, 'showCancellationSuccessPage'])->name('cancellation.success');
 
 // Availability Table Route
 Route::get('/availability', [BookingController::class, 'showAvailabilityTable'])->name('availability');

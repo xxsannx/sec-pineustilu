@@ -1157,6 +1157,214 @@ class BookingController extends Controller
     }
 
     /**
+     * Show the reschedule form where guest can pick new dates/unit.
+     * This page is styled like the glamping reservation page but is a separate flow.
+     */
+    public function showRescheduleForm(Request $request, string $token): \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+    {
+        // For authenticated users, keep them in profile flow
+        if (Auth::check()) {
+            return redirect()->route('profile', ['tab' => 'reschedule']);
+        }
+
+        $booking = Booking::with(['bookingDetails.unit.area'])->where('token_code', strtoupper(trim($token)))->first();
+
+        if (!$booking) {
+            return redirect()->route('reschedule')->with('error', 'Kode booking tidak ditemukan.');
+        }
+
+        if ($booking->booking_type !== 'glamping') {
+            return redirect()->route('reschedule')->with('error', 'Reschedule hanya tersedia untuk pemesanan Glamping melalui halaman ini.');
+        }
+
+        $detail = $booking->bookingDetails->first();
+
+        if (!$booking->canBeRescheduled()) {
+            return redirect()->route('reschedule')->with('error', 'Booking tidak dapat di-reschedule pada status saat ini.');
+        }
+
+        // Prepare reservation-like data (similar to showGlampingReservation)
+        $checkinDate = $detail && $detail->check_in ? Carbon::parse($detail->check_in)->startOfDay() : Carbon::now()->startOfDay();
+        $checkin = $checkinDate->toDateString();
+
+        $areaUnits = $this->availabilityService->buildAreaUnits();
+        $availability = $this->availabilityService->computeAvailabilityForDate($areaUnits, $checkin);
+        $items = $this->getAmenityItems();
+        $unitPrices = $this->pricingService->getUnitPricesBySeasonType();
+        $highSeasonRanges = $this->pricingService->getHighSeasonRanges();
+        $unitExtraCharges = $this->availabilityService->getUnitExtraCharges();
+
+        /** @var User|null $authUser */
+        $authUser = Auth::user();
+        $contactPrefill = [
+            'is_authenticated' => (bool) $authUser,
+            'is_google' => (bool) ($authUser?->google_id),
+            'name' => $authUser?->name,
+            'email' => $authUser?->email,
+            'country_code' => $authUser?->country_code,
+            'phone' => $authUser?->phone,
+        ];
+
+        $originalTotalValue = $detail ? (float) $detail->total_price : 0.0;
+        $originalTotalDisplay = $this->formatIdr($originalTotalValue);
+
+        return view('reservasi.reschedule-form', [
+            'availability' => $availability,
+            'areaUnits' => $areaUnits,
+            'items' => $items,
+            'unitPrices' => $unitPrices,
+            'highSeasonRanges' => $highSeasonRanges,
+            'unitExtraCharges' => $unitExtraCharges,
+            'checkinDefault' => $checkin,
+            'contactPrefill' => $contactPrefill,
+            'originalBooking' => $booking,
+            'originalDetail' => $detail,
+            'originalTotal' => $originalTotalValue,
+            'originalTotalDisplay' => $originalTotalDisplay,
+        ]);
+    }
+
+    /**
+     * Process reschedule submission from guest.
+     * Updates booking detail with new dates/unit and recalculates price.
+     */
+    public function processReschedule(Request $request, string $token): \Illuminate\Http\RedirectResponse
+    {
+        $request->validate([
+            'checkin' => ['required', 'date', 'after_or_equal:today'],
+            'checkout' => ['required', 'date', 'after:checkin'],
+            'unit_id' => ['required', 'integer', 'exists:area_units,id'],
+        ]);
+
+        $booking = Booking::with(['bookingDetails'])->where('token_code', strtoupper(trim($token)))->firstOrFail();
+
+        if ($booking->booking_type !== 'glamping') {
+            return redirect()->route('reschedule')->with('error', 'Reschedule hanya tersedia untuk Glamping di halaman ini.');
+        }
+
+        if (!$booking->canBeRescheduled()) {
+            return redirect()->route('reschedule')->with('error', 'Booking tidak dapat di-reschedule pada status saat ini.');
+        }
+
+        $detail = $booking->bookingDetails->first();
+        if (!$detail) {
+            return redirect()->route('reschedule')->with('error', 'Rincian booking tidak ditemukan.');
+        }
+
+        // Use original guest count and original amenities selection by default
+        $guestCount = (int) $detail->number_of_people;
+
+        $unit = AreaUnit::query()->with(['area:id,slug,extra_charge_breakfast,extra_charge_full'])->findOrFail((int) $request->input('unit_id'));
+
+        $checkin = Carbon::parse($request->input('checkin'))->startOfDay();
+        $checkout = Carbon::parse($request->input('checkout'))->startOfDay();
+
+        // Ensure availability
+        $this->assertUnitAvailable($unit->id, $checkin, $checkout);
+
+        // Recompute base price using PricingService
+        $pricing = $this->pricingService->getUnitBasePriceForRange($unit->id, $checkin, $checkout);
+        $basePrice = (float) ($pricing['total'] ?? 0.0);
+
+        // Reconstruct amenities from original note (if any)
+        $note = $detail && $detail->note ? json_decode($detail->note, true) : [];
+        $amenitiesBreakdown = $note['amenities_breakdown'] ?? [];
+
+        $amenityIds = array_values(array_filter(array_map(fn($i) => (int) ($i['id'] ?? 0), $amenitiesBreakdown)));
+        if (!empty($amenityIds)) {
+            $amenities = Item::with('prices')->whereIn('id', $amenityIds)->get();
+        } else {
+            $amenities = collect();
+        }
+        $amenityBreakdown = [];
+        $extraChargeAmenities = 0.0;
+        foreach ($amenitiesBreakdown as $itemRow) {
+            $itemId = (int) ($itemRow['id'] ?? 0);
+            $qty = max(0, (int) ($itemRow['qty'] ?? 0));
+            if ($qty <= 0) continue;
+            $itemModel = $amenities->firstWhere('id', $itemId);
+            $latest = $itemModel?->prices->sortByDesc('created_at')->first();
+            $unitPrice = $latest ? (float) $latest->price : (float) ($itemRow['unit_price'] ?? 0.0);
+            $lineTotal = $unitPrice * $qty;
+            $extraChargeAmenities += $lineTotal;
+            $amenityBreakdown[] = [
+                'id' => $itemId,
+                'name' => $itemRow['name'] ?? ($itemModel?->name ?? 'Item'),
+                'type' => $itemRow['type'] ?? ($itemModel?->type ?? null),
+                'unit_price' => $unitPrice,
+                'qty' => $qty,
+                'line_total' => $lineTotal,
+            ];
+        }
+
+        // Extra guest charge computation (use original or form provided mode)
+        $extraChargeMode = (string) ($request->input('extra_charge_mode') ?? $note['extra_charge_mode'] ?? ($note['extra_breakfast']['mode'] ?? 'breakfast'));
+        $defaultPeople = (int) ($unit->default_people ?? 0);
+        $extraPeople = max(0, $guestCount - $defaultPeople);
+        $fullRate = $unit->area && $unit->area->extra_charge_full !== null ? (float) $unit->area->extra_charge_full : 0.0;
+        $breakfastRate = $unit->area && $unit->area->extra_charge_breakfast !== null ? (float) $unit->area->extra_charge_breakfast : 0.0;
+        $selectedExtraRate = 0.0;
+        if ($extraPeople > 0) {
+            $selectedExtraRate = $extraChargeMode === 'full' ? $fullRate : $breakfastRate;
+        }
+        $extraChargeGuestMode = $extraPeople * $selectedExtraRate;
+
+        $totalExtraCharge = $extraChargeAmenities + $extraChargeGuestMode;
+        $newTotalPrice = $basePrice + $totalExtraCharge;
+
+        $originalTotal = (float) $detail->total_price;
+
+        // Update DB inside transaction
+        DB::transaction(function () use ($detail, $unit, $checkin, $checkout, $guestCount, $totalExtraCharge, $newTotalPrice, $amenityBreakdown, $extraPeople, $selectedExtraRate, $extraChargeMode, $fullRate, $breakfastRate, $booking, $originalTotal, $pricing, $defaultPeople, $extraChargeGuestMode) {
+            $detail->unit_id = $unit->id;
+            $detail->check_in = $checkin->toDateString();
+            $detail->check_out = $checkout->toDateString();
+            $detail->number_of_people = $guestCount;
+            $detail->total_extra_charge = $totalExtraCharge;
+            $detail->total_price = $newTotalPrice;
+
+            $existingNote = json_decode($detail->note ?? '[]', true);
+            if (!is_array($existingNote)) {
+                $existingNote = [];
+            }
+
+            $merged = array_merge($existingNote, [
+                'nights' => $pricing['nights'] ?? null,
+                'nightly_breakdown' => $pricing['breakdown'] ?? [],
+                'amenities' => array_map(fn($a) => $a['id'], $amenityBreakdown),
+                'amenities_breakdown' => $amenityBreakdown,
+                'extra_breakfast' => [
+                    'default_people' => $defaultPeople,
+                    'extra_people' => $extraPeople,
+                    'rate' => $selectedExtraRate,
+                    'amount' => $extraChargeGuestMode,
+                    'mode' => $extraChargeMode,
+                ],
+                'extra_charge_rates' => [
+                    'full' => $fullRate,
+                    'breakfast' => $breakfastRate,
+                ],
+                'extra_charge_mode' => $extraChargeMode,
+            ]);
+
+            $detail->note = json_encode($merged, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+            $detail->save();
+
+            // Update booking status depending on price difference
+            if ($newTotalPrice > $originalTotal) {
+                $booking->status = BookingStatus::PEMBAYARAN;
+            } else {
+                $booking->status = BookingStatus::BERHASIL;
+            }
+            $booking->save();
+        });
+
+        // Redirect back to order details page so user sees updated status and payment if needed
+        return redirect()->route('reservasi.detail-pesanan', ['token' => $booking->token_code]);
+    }
+
+    /**
      * Show the cancellation page.
      * If user is logged in, redirect to profile tab.
      * If code is provided via GET, lookup and show booking details.
@@ -1192,6 +1400,121 @@ class BookingController extends Controller
             'error' => $error,
             'code' => $code,
         ]);
+    }
+
+    /**
+     * Show confirmation page that summarizes refund and booking details.
+     */
+    public function showCancellationConfirmPage(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+    {
+        if (Auth::check()) {
+            return redirect()->route('profile', ['tab' => 'cancellation']);
+        }
+
+        $code = $request->input('code');
+        if (!$code) {
+            return redirect()->route('cancellation')->with('error', 'Kode booking tidak disediakan.');
+        }
+
+        $booking = Booking::with([
+            'bookingDetails.unit.area',
+            'bookingOutbounds.outbound',
+            'bookingOutbounds.outboundVariant',
+        ])->where('token_code', strtoupper(trim($code)))->first();
+
+        if (!$booking) {
+            return redirect()->route('cancellation')->with('error', 'Kode booking tidak ditemukan.');
+        }
+
+        if (!$booking->canBeCancelled()) {
+            return redirect()->route('cancellation')->with('error', 'Booking dengan status "' . $booking->status->label() . '" tidak dapat dibatalkan.');
+        }
+
+        $cancellationFee = 0.0;
+        $refundAmount = 0.0;
+
+        if ($booking->booking_type === 'glamping' && $booking->bookingDetails->first()) {
+            $detail = $booking->bookingDetails->first();
+            $total = (float) ($detail->total_price ?? 0.0);
+            $cancellationFee = 0.0; // adjust business rule if needed
+            $refundAmount = max(0.0, $total - $cancellationFee);
+        } elseif ($booking->booking_type === 'outbound' && $booking->bookingOutbounds->first()) {
+            $out = $booking->bookingOutbounds->first();
+            $total = (float) ($out->total_price ?? 0.0);
+            $cancellationFee = 0.0;
+            $refundAmount = max(0.0, $total - $cancellationFee);
+        }
+
+        return view('cancellation_confirm', [
+            'booking' => $booking,
+            'code' => strtoupper(trim($code)),
+            'cancellation_fee' => $cancellationFee,
+            'refund_amount' => $refundAmount,
+        ]);
+    }
+
+    /**
+     * Process refund after user confirms on the confirmation page.
+     */
+    public function processRefund(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $request->validate([
+            'code' => 'required|string|max:50',
+            'reason' => 'nullable|string|max:500',
+            'accept_terms' => 'accepted',
+        ]);
+
+        $code = strtoupper(trim($request->input('code')));
+        $booking = Booking::with(['bookingDetails', 'bookingOutbounds'])->where('token_code', $code)->first();
+
+        if (!$booking) {
+            return redirect()->route('cancellation')->with('error', 'Kode booking tidak ditemukan.');
+        }
+
+        if (!$booking->canBeCancelled()) {
+            return redirect()->route('cancellation')->with('error', 'Booking dengan status "' . $booking->status->label() . '" tidak dapat dibatalkan.');
+        }
+
+        $cancellationFee = 0.0;
+        $refundAmount = 0.0;
+
+        if ($booking->booking_type === 'glamping' && $booking->bookingDetails->first()) {
+            $detail = $booking->bookingDetails->first();
+            $total = (float) ($detail->total_price ?? 0.0);
+            $refundAmount = max(0.0, $total - $cancellationFee);
+        } elseif ($booking->booking_type === 'outbound' && $booking->bookingOutbounds->first()) {
+            $out = $booking->bookingOutbounds->first();
+            $total = (float) ($out->total_price ?? 0.0);
+            $refundAmount = max(0.0, $total - $cancellationFee);
+        }
+
+        DB::transaction(function () use ($booking, $request, $cancellationFee, $refundAmount) {
+            Cancellation::create([
+                'booking_id' => $booking->id,
+                'cancellation_date' => now(),
+                'cancelled_by' => 'guest',
+                'reason' => $request->input('reason', 'Guest requested cancellation'),
+                'status' => 'approved',
+                'cancellation_fee' => $cancellationFee,
+                'total_refund' => $refundAmount,
+                'refund_status' => 'completed',
+            ]);
+
+            $booking->status = BookingStatus::DIBATALKAN;
+            $booking->save();
+
+            // TODO: enqueue refund job / integrate payment gateway if required
+        });
+
+        return redirect()->route('cancellation.success')->with('success', 'Pembatalan dan pengembalian dana berhasil diproses.');
+    }
+
+    /**
+     * Show a simple success page after refund + cancellation.
+     */
+    public function showCancellationSuccessPage(Request $request): \Illuminate\Contracts\View\View
+    {
+        return view('cancellation_success');
     }
 
     /**
