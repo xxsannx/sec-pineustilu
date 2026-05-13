@@ -4,12 +4,17 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\Features;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
+
+    // Gunakan konstanta atau env variable, bukan hardcode string
+    private string $validPassword = 'Va1!dP@ssw0rd#Test';
+    private string $invalidPassword = 'Wr0ng!P@ssw0rd#Test';
 
     public function test_login_screen_can_be_rendered(): void
     {
@@ -20,17 +25,13 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_authenticate_using_the_login_screen(): void
     {
-        $plainPassword = 'password';
-
-        $user = User::factory()
-            ->withoutTwoFactor()
-            ->create([
-                'password' => bcrypt($plainPassword),
-            ]);
+        $user = User::factory()->withoutTwoFactor()->create([
+            'password' => Hash::make($this->validPassword), // bcrypt by default
+        ]);
 
         $response = $this->post(route('login.store'), [
             'email' => $user->email,
-            'password' => $plainPassword,
+            'password' => $this->validPassword,
         ]);
 
         $response
@@ -42,16 +43,13 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_not_authenticate_with_invalid_password(): void
     {
-        $correctPassword = 'password';
-        $invalidPassword = 'wrong-password';
-
         $user = User::factory()->create([
-            'password' => bcrypt($correctPassword),
+            'password' => Hash::make($this->validPassword),
         ]);
 
         $response = $this->post(route('login.store'), [
             'email' => $user->email,
-            'password' => $invalidPassword,
+            'password' => $this->invalidPassword,
         ]);
 
         $response->assertSessionHasErrorsIn('email');
@@ -70,19 +68,16 @@ class AuthenticationTest extends TestCase
             'confirmPassword' => true,
         ]);
 
-        $plainPassword = 'password';
-
         $user = User::factory()->create([
-            'password' => bcrypt($plainPassword),
+            'password' => Hash::make($this->validPassword),
         ]);
 
         $response = $this->post(route('login.store'), [
             'email' => $user->email,
-            'password' => $plainPassword,
+            'password' => $this->validPassword,
         ]);
 
         $response->assertRedirect(route('two-factor.login'));
-
         $this->assertGuest();
     }
 
@@ -93,7 +88,6 @@ class AuthenticationTest extends TestCase
         $response = $this->actingAs($user)->post(route('logout'));
 
         $response->assertRedirect(route('home'));
-
         $this->assertGuest();
     }
 }
