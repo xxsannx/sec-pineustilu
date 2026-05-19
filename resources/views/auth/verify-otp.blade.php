@@ -19,9 +19,7 @@
             </div>
             
             <div class="relative z-10 flex flex-col items-center">
-                <div style="background: #f5f0e8; border-radius: 16px; padding: 20px 32px; display: inline-block;" class="mb-10">
-                    <img src="{{ asset('images/dashboard/logo.png') }}" alt="Pineus Tilu" style="width: 220px;" class="object-contain">
-                </div>                
+                <img src="{{ asset('images/dashboard/logo.png') }}" alt="Pineus Tilu Logo" class="h-32 mb-10 brightness-0 invert drop-shadow-2xl object-contain">
                 <!-- Shield Icon -->
                 <div class="bg-white/10 p-4 rounded-full mb-6">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#f5f0e8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
