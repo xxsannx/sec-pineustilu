@@ -1,40 +1,33 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.2-fpm-alpine AS base
 
-# 1. Install dependensi sistem menggunakan apk dengan opsi yang benar
-RUN apk update && apk add --no-cache \
-    git \
-    cronie \
-    curl \
-    libpng-dev \
-    libxml-dev \
-    oniguruma-dev \
-    zip \
-    unzip \
-    nginx
+# Install dependencies sistem
+RUN apk add --no-cache \
+    nginx supervisor \
+    libpng-dev libjpeg-turbo-dev libwebp-dev freetype-dev \
+    libzip-dev zip unzip git curl \
+    oniguruma-dev
 
-# 2. Install ekstensi PHP bawaan yang dibutuhkan Laravel
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype \
+    && docker-php-ext-install pdo_mysql mbstring zip exif pcntl gd
 
-# 3. Ambil Composer versi terbaru
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# 4. Tentukan direktori kerja di dalam container
-WORKDIR /var/www
+WORKDIR /var/www/html
 
-# 5. Salin seluruh file project ke dalam container
-COPY . /var/www
+COPY . .
 
-# 6. Install dependensi composer (vendor) khusus untuk production
-RUN composer install --no-interaction --optimize-autoloader --no-dev
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# 7. Salin konfigurasi Nginx dengan jalur folder Alpine Linux
-COPY .nginx/nginx.conf /etc/nginx/http.d/default.conf
+RUN mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
 
-# 8. Atur hak akses folder storage & cache agar Laravel bisa menulis log
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+COPY docker/nginx.conf /etc/nginx/http.d/default.conf
+COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# 9. Buka port 80
-EXPOSE 80
+EXPOSE 8080
 
-# 10. Jalankan service Nginx dan PHP-FPM secara bersamaan
-CMD nginx && php-fpm
+ENTRYPOINT ["/entrypoint.sh"]
