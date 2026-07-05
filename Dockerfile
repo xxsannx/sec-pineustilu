@@ -1,14 +1,24 @@
 FROM php:8.2-fpm-alpine AS base
 
-# Install dependencies sistem
+# Install dependencies sistem (termasuk -dev packages untuk compile ekstensi)
 RUN apk add --no-cache \
-    nginx supervisor \
+    nginx supervisor gettext \
     libpng-dev libjpeg-turbo-dev libwebp-dev freetype-dev \
-    libzip-dev zip unzip git curl \
-    oniguruma-dev
+    libzip-dev zip unzip git curl-dev \
+    oniguruma-dev icu-dev libxml2-dev
 
 RUN docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype \
-    && docker-php-ext-install pdo_mysql mbstring zip exif pcntl gd
+    && docker-php-ext-install \
+        pdo_mysql \
+        mbstring \
+        zip \
+        exif \
+        pcntl \
+        gd \
+        intl \
+        bcmath \
+        xml \
+        curl
 
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
