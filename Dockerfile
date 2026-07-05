@@ -1,7 +1,7 @@
 FROM php:8.2-fpm-alpine
 
-# 1. Install dependensi sistem menggunakan apk (bukan apt-get) yang jauh lebih cepat & stabil
-RUN apk update && apk add --no-nginx-bootstrap --no-cache \
+# 1. Install dependensi sistem menggunakan apk dengan opsi yang benar
+RUN apk update && apk add --no-cache \
     git \
     cronie \
     curl \
