@@ -1,5 +1,5 @@
 # Stage 1: Build frontend assets
-FROM node:20-alpine AS node_builder
+FROM node:20-slim AS node_builder
 
 WORKDIR /app
 COPY package*.json ./
@@ -26,7 +26,6 @@ WORKDIR /var/www/html
 
 COPY . .
 
-# Copy hasil build Vite dari stage node_builder
 COPY --from=node_builder /app/public/build ./public/build
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
