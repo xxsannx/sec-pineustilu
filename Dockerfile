@@ -1,6 +1,15 @@
+# Stage 1: Build frontend assets
+FROM node:20-alpine AS node_builder
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Stage 2: PHP application
 FROM php:8.2-fpm-alpine AS base
 
-# Install dependencies sistem (termasuk -dev packages untuk compile ekstensi)
 RUN apk add --no-cache \
     nginx supervisor gettext \
     libpng-dev libjpeg-turbo-dev libwebp-dev freetype-dev \
@@ -9,23 +18,16 @@ RUN apk add --no-cache \
 
 RUN docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype \
     && docker-php-ext-install \
-        pdo_mysql \
-        mbstring \
-        zip \
-        exif \
-        pcntl \
-        gd \
-        intl \
-        bcmath \
-        xml \
-        curl
+        pdo_mysql mbstring zip exif pcntl gd intl bcmath xml curl
 
-# Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
 COPY . .
+
+# Copy hasil build Vite dari stage node_builder
+COPY --from=node_builder /app/public/build ./public/build
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
